@@ -16,8 +16,6 @@ public class HubRequestDto {
         private String address;
         private Float latitude;
         private Float longitude;
-        private UUID companyId;
-        private Integer stock;
     }
 
 }

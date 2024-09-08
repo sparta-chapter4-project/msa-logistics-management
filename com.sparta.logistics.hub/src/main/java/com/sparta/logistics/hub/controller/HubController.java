@@ -5,10 +5,9 @@ import com.sparta.logistics.hub.dto.HubResponseDto;
 import com.sparta.logistics.hub.service.HubService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/hub")
@@ -21,6 +20,12 @@ public class HubController {
     public ResponseEntity<HubResponseDto.Create> createHub(
             @RequestBody HubRequestDto.Create requestDto) {
         return ResponseEntity.ok(hubService.createHub(requestDto));
+    }
+
+    @GetMapping("/{hubId}")
+    public ResponseEntity<HubResponseDto.GetByHubId> getHub(
+            @PathVariable UUID hubId) {
+        return ResponseEntity.ok(hubService.getHubById(hubId));
     }
 
 }

@@ -22,4 +22,26 @@ public class HubResponseDto {
         }
     }
 
+    @Builder
+    @Getter
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @AllArgsConstructor(access = AccessLevel.PRIVATE)
+    public static class GetByHubId {
+
+        private UUID hubId;
+        private String name;
+        private String address;
+        private Float latitude;
+        private Float longitude;
+
+        public static GetByHubId of(Hub hub) {
+            return GetByHubId.builder()
+                    .hubId(hub.getId())
+                    .name(hub.getName())
+                    .address(hub.getAddress())
+                    .latitude(hub.getLatitude())
+                    .longitude(hub.getLongitude())
+                    .build();
+        }
+    }
 }
