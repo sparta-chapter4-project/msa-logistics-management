@@ -4,10 +4,9 @@ import com.sparta.logistics.delivery.application.DeliveryService;
 import com.sparta.logistics.delivery.application.dtos.DeliveryRequestDtos;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/delivery")
@@ -19,6 +18,15 @@ public class DeliveryController {
     @PostMapping
     public ResponseEntity<Boolean> createDelivery(@RequestBody DeliveryRequestDtos.CreateDto request) {
         deliveryService.createDelivery(request);
+        return ResponseEntity.ok(true);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Boolean> updateDelivery(
+            @PathVariable("id") UUID id,
+            @RequestBody DeliveryRequestDtos.UpdateDto request)
+    {
+        deliveryService.updateDelivery(id, request);
         return ResponseEntity.ok(true);
     }
 }

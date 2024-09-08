@@ -37,4 +37,31 @@ public class DeliveryRequestDtos {
         @JsonProperty("recipient_slack_id")
         private String recipientSlackId;
     }
+
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class UpdateDto {
+
+        @JsonProperty("delivery_manager_id")
+        private UUID deliveryManagerId;
+
+        @JsonProperty("start_hub_id")
+        private UUID startHubId;
+
+        @JsonProperty("end_hub_id")
+        private UUID endHubId;
+
+        @JsonProperty("address")
+        private String address;
+
+        @JsonProperty("recipient_id")
+        private Long recipientId;
+
+        @JsonProperty("recipient_slack_id")
+        private String recipientSlackId;
+
+        @JsonProperty("status")
+        private String status;
+    }
 }
