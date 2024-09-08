@@ -62,4 +62,8 @@ public class DeliveryRoute {
                 .isDeleted(false)
                 .build();
     }
+
+    public void updateIsDeleted() {
+        this.isDeleted = true;
+    }
 }

@@ -25,9 +25,14 @@ public class DeliveryRouteController {
     @PutMapping("/{id}")
     public ResponseEntity<Boolean> updateDeliveryRoute(
             @PathVariable("id") UUID id,
-            @RequestBody DeliveryRouteRequestDtos.UpdateDto request)
-    {
+            @RequestBody DeliveryRouteRequestDtos.UpdateDto request) {
         deliveryRouteService.updateDeliveryRoute(id, request);
+        return ResponseEntity.ok(true);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Boolean> deleteDeliveryRoute(@PathVariable("id") UUID id) {
+        deliveryRouteService.deleteDeliveryRoute(id);
         return ResponseEntity.ok(true);
     }
 }

@@ -39,4 +39,12 @@ public class DeliveryRouteService {
             deliveryRoute.setStatus(request.getStatus());
         }
     }
+
+    @Transactional
+    public void deleteDeliveryRoute(UUID id) {
+        DeliveryRoute deliveryRoute = deliveryRouteRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 배송 경로를 찾을 수 없습니다."));
+
+        deliveryRoute.updateIsDeleted();
+    }
 }
