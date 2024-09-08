@@ -30,8 +30,15 @@ public class HubController {
     }
 
     @GetMapping
-    public ResponseEntity<List<HubResponseDto.Get>> getHubList(){
+    public ResponseEntity<List<HubResponseDto.Get>> getHubList() {
         return ResponseEntity.ok(hubService.getHubList());
     }
+
+    @PutMapping
+    public ResponseEntity<HubResponseDto.Update> updateHub(
+            @RequestBody HubRequestDto.Update requestDto) {
+        return ResponseEntity.ok(hubService.updateHub(requestDto));
+    }
+
 
 }

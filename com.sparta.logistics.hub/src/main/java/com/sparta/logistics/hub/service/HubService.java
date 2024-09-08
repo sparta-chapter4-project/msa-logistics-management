@@ -6,6 +6,7 @@ import com.sparta.logistics.hub.entity.Hub;
 import com.sparta.logistics.hub.repository.HubRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -40,9 +41,15 @@ public class HubService {
         return hubRepository.findAll().stream().map(HubResponseDto.Get::of).toList();
     }
 
+    @Transactional
+    public HubResponseDto.Update updateHub(HubRequestDto.Update requestDto) {
+        Hub hub = findById(requestDto.getHubId());
+        hub.update(requestDto);
+        return HubResponseDto.Update.of(hub);
+    }
+
 
     public Hub findById(UUID hubId){
         return hubRepository.findById(hubId).orElseThrow(NoSuchElementException::new);
     }
-
 }

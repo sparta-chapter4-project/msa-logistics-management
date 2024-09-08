@@ -44,4 +44,27 @@ public class HubResponseDto {
                     .build();
         }
     }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @AllArgsConstructor(access = AccessLevel.PRIVATE)
+    public static class Update {
+
+        private UUID hubId;
+        private String name;
+        private String address;
+        private Float latitude;
+        private Float longitude;
+
+        public static Update of(Hub hub) {
+            return Update.builder()
+                    .hubId(hub.getId())
+                    .name(hub.getName())
+                    .address(hub.getAddress())
+                    .latitude(hub.getLatitude())
+                    .longitude(hub.getLongitude())
+                    .build();
+        }
+    }
 }
