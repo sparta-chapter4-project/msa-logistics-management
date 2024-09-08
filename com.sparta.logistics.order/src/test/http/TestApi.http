@@ -1,0 +1,10 @@
+### Order Create - Send Post request with json body
+POST http://localhost:8080/order
+Content-Type: application/json
+
+{
+  "supply_company_id": "123e4567-e89b-12d3-a456-426614174000",
+  "demand_company_id": "987e6543-e21b-12d3-a456-426614174001",
+  "product_id": "abcde123-4567-8901-abcd-1234567890ab",
+  "amount": 100
+}
