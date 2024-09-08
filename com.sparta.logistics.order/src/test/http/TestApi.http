@@ -16,5 +16,9 @@ Content-Type: application/json
 
 {
   "delivery_id": "987e6543-e21b-12d3-a456-426614174001",
-  "amount": 300
+  "amount": 200,
+  "status": "DELIVERY"
 }
+
+### Order Cancel - Send Delete request with path variable
+DELETE http://localhost:8080/order/{{orderId}}

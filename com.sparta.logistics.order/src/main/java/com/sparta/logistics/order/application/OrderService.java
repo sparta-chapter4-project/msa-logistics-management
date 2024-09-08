@@ -36,4 +36,12 @@ public class OrderService {
             order.setStatus(request.getStatus());
         }
     }
+
+    @Transactional
+    public void cancelOrder(UUID orderId) {
+        Order order = orderRepository.findById(orderId).orElseThrow(() ->
+                new NullPointerException("해당 주문을 찾을 수 없습니다.")
+        );
+        order.updateIsDeleted();
+    }
 }

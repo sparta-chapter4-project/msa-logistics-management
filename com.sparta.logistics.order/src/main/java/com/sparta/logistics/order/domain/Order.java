@@ -51,4 +51,8 @@ public class Order {
                 .isDeleted(false)
                 .build();
     }
+
+    public void updateIsDeleted() {
+        this.isDeleted = true;
+    }
 }

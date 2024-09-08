@@ -27,4 +27,10 @@ public class OrderController {
         orderService.updateOrder(orderId, request);
         return ResponseEntity.ok(true);
     }
+
+    @DeleteMapping("/{orderId}")
+    public ResponseEntity<Boolean> cancelOrder(@PathVariable(name = "orderId")UUID orderId) {
+        orderService.cancelOrder(orderId);
+        return ResponseEntity.ok(true);
+    }
 }
