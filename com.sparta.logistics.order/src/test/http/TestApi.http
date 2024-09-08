@@ -8,3 +8,13 @@ Content-Type: application/json
   "product_id": "abcde123-4567-8901-abcd-1234567890ab",
   "amount": 100
 }
+
+### Order Update - Send Put request with path variable, json body
+@orderId=315e5e10-d5d2-4f10-9672-018b11cf9a9d
+PUT http://localhost:8080/order/{{orderId}}
+Content-Type: application/json
+
+{
+  "delivery_id": "987e6543-e21b-12d3-a456-426614174001",
+  "amount": 300
+}
