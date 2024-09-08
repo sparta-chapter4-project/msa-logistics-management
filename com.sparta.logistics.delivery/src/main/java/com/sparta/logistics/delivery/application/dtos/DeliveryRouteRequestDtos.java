@@ -40,4 +40,18 @@ public class DeliveryRouteRequestDtos {
         @JsonProperty("status")
         private String status;
     }
+
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class UpdateDto {
+        @JsonProperty("real_distance")
+        private Integer realDistance;
+
+        @JsonProperty("real_time")
+        private Integer realTime;
+
+        @JsonProperty("status")
+        private String status;
+    }
 }

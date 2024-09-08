@@ -28,12 +28,15 @@ Content-Type: application/json
 ]
 
 ### DeliveryRoute Update - Send Put request with path variable, json body
-#@deliveryRouteId=efbd40ad-0104-4f52-a346-e6e64934032e
-#PUT http://localhost:8080/delivery-route/{{deliveryRouteId}}
-#Content-Type: application/json
-#
-#{
-#}
+@deliveryRouteId=53e0d99e-d292-45c6-942f-30a3b92ed82b
+PUT http://localhost:8080/delivery-route/{{deliveryRouteId}}
+Content-Type: application/json
+
+{
+  "real_distance": 90,
+  "real_time": 50,
+  "status": "MOVE_HUB"
+}
 
 ### DeliveryRoute Cancel - Send Delete request with path variable
 #DELETE http://localhost:8080/delivery-route/{{deliveryRouteId}}

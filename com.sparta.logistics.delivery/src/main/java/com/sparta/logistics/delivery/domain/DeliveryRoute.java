@@ -12,6 +12,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder(access = AccessLevel.PRIVATE)
 @Getter
+@Setter
 public class DeliveryRoute {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
