@@ -67,4 +67,18 @@ public class HubResponseDto {
                     .build();
         }
     }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @AllArgsConstructor(access = AccessLevel.PRIVATE)
+    public static class Delete {
+        private UUID hubId;
+
+        public static Delete of(Hub hub){
+            return Delete.builder()
+                    .hubId(hub.getId())
+                    .build();
+        }
+    }
 }

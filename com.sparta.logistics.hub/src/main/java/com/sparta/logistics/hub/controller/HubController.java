@@ -40,5 +40,11 @@ public class HubController {
         return ResponseEntity.ok(hubService.updateHub(requestDto));
     }
 
+    @DeleteMapping("/{hubId}")
+    public ResponseEntity<HubResponseDto.Delete> deleteHub(
+            @PathVariable UUID hubId) {
+        return ResponseEntity.ok(hubService.deleteHub(hubId));
+    }
+
 
 }

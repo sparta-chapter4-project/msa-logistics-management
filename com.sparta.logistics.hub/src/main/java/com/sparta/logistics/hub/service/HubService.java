@@ -48,8 +48,16 @@ public class HubService {
         return HubResponseDto.Update.of(hub);
     }
 
+    @Transactional
+    public HubResponseDto.Delete deleteHub(UUID hubId) {
+        Hub hub = findById(hubId);
+        hub.delete();
+        return HubResponseDto.Delete.of(hub);
+    }
+
 
     public Hub findById(UUID hubId){
         return hubRepository.findById(hubId).orElseThrow(NoSuchElementException::new);
     }
+
 }
