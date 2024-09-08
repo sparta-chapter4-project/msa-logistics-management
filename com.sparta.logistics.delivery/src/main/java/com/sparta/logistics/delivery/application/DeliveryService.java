@@ -47,4 +47,12 @@ public class DeliveryService {
             delivery.setStatus(request.getStatus());
         }
     }
+
+    @Transactional
+    public void cancelDelivery(UUID id) {
+        Delivery delivery = deliveryRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 배송 정보를 찾을 수 없습니다."));
+
+        delivery.updateIsDeleted();
+    }
 }

@@ -29,4 +29,10 @@ public class DeliveryController {
         deliveryService.updateDelivery(id, request);
         return ResponseEntity.ok(true);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Boolean> cancelDelivery(@PathVariable("id") UUID id) {
+        deliveryService.cancelDelivery(id);
+        return ResponseEntity.ok(true);
+    }
 }

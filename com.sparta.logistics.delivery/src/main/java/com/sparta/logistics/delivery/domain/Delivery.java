@@ -58,4 +58,8 @@ public class Delivery {
                 .isDeleted(false)
                 .build();
     }
+
+    public void updateIsDeleted() {
+        this.isDeleted = true;
+    }
 }

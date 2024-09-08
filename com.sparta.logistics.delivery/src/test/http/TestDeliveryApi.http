@@ -31,4 +31,4 @@ Content-Type: application/json
 
 
 ### Delivery Cancel - Send Delete request with path variable
-#DELETE http://localhost:8080/delivery/{{deliveryId}}
+DELETE http://localhost:8080/delivery/{{deliveryId}}
