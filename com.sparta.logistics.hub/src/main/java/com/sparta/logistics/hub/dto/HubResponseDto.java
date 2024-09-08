@@ -26,7 +26,7 @@ public class HubResponseDto {
     @Getter
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     @AllArgsConstructor(access = AccessLevel.PRIVATE)
-    public static class GetByHubId {
+    public static class Get {
 
         private UUID hubId;
         private String name;
@@ -34,8 +34,8 @@ public class HubResponseDto {
         private Float latitude;
         private Float longitude;
 
-        public static GetByHubId of(Hub hub) {
-            return GetByHubId.builder()
+        public static Get of(Hub hub) {
+            return Get.builder()
                     .hubId(hub.getId())
                     .name(hub.getName())
                     .address(hub.getAddress())

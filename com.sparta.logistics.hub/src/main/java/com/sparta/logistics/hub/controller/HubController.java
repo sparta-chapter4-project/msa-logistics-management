@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -23,9 +24,14 @@ public class HubController {
     }
 
     @GetMapping("/{hubId}")
-    public ResponseEntity<HubResponseDto.GetByHubId> getHub(
+    public ResponseEntity<HubResponseDto.Get> getHub(
             @PathVariable UUID hubId) {
-        return ResponseEntity.ok(hubService.getHubById(hubId));
+        return ResponseEntity.ok(hubService.getHub(hubId));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<HubResponseDto.Get>> getHubList(){
+        return ResponseEntity.ok(hubService.getHubList());
     }
 
 }

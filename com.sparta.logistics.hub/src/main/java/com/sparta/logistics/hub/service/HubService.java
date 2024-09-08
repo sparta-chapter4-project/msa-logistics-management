@@ -7,6 +7,7 @@ import com.sparta.logistics.hub.repository.HubRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
 
@@ -31,9 +32,14 @@ public class HubService {
     }
 
 
-    public HubResponseDto.GetByHubId getHubById(UUID hubId) {
-        return HubResponseDto.GetByHubId.of(findById(hubId));
+    public HubResponseDto.Get getHub(UUID hubId) {
+        return HubResponseDto.Get.of(findById(hubId));
     }
+
+    public List<HubResponseDto.Get> getHubList() {
+        return hubRepository.findAll().stream().map(HubResponseDto.Get::of).toList();
+    }
+
 
     public Hub findById(UUID hubId){
         return hubRepository.findById(hubId).orElseThrow(NoSuchElementException::new);
