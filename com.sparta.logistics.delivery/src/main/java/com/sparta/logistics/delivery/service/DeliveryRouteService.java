@@ -10,8 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.UUID;
 
-@Service
 @RequiredArgsConstructor
+@Service
 public class DeliveryRouteService {
 
     private final DeliveryRouteRepository deliveryRouteRepository;

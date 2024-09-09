@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/delivery-route")
-@RequiredArgsConstructor
 public class DeliveryRouteController {
 
     private final DeliveryRouteService deliveryRouteService;

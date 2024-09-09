@@ -9,8 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
-@Service
 @RequiredArgsConstructor
+@Service
 public class DeliveryService {
 
     private final DeliveryRepository deliveryRepository;
