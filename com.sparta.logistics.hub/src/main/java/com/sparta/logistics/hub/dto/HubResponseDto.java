@@ -3,14 +3,15 @@ package com.sparta.logistics.hub.dto;
 import com.sparta.logistics.hub.entity.Hub;
 import lombok.*;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 public class HubResponseDto {
 
     @Builder
     @Getter
-    @NoArgsConstructor(access = AccessLevel.PROTECTED)
-    @AllArgsConstructor(access = AccessLevel.PRIVATE)
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class Create{
 
         private UUID hubId;
@@ -24,9 +25,9 @@ public class HubResponseDto {
 
     @Builder
     @Getter
-    @NoArgsConstructor(access = AccessLevel.PROTECTED)
-    @AllArgsConstructor(access = AccessLevel.PRIVATE)
-    public static class Get {
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Get implements Serializable {
 
         private UUID hubId;
         private String name;
@@ -47,9 +48,9 @@ public class HubResponseDto {
 
     @Builder
     @Getter
-    @NoArgsConstructor(access = AccessLevel.PROTECTED)
-    @AllArgsConstructor(access = AccessLevel.PRIVATE)
-    public static class Update {
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Update implements Serializable{
 
         private UUID hubId;
         private String name;
@@ -70,8 +71,8 @@ public class HubResponseDto {
 
     @Builder
     @Getter
-    @NoArgsConstructor(access = AccessLevel.PROTECTED)
-    @AllArgsConstructor(access = AccessLevel.PRIVATE)
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class Delete {
         private UUID hubId;
 

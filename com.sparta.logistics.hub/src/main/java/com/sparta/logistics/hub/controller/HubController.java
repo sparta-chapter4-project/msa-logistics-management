@@ -47,9 +47,12 @@ public class HubController {
     }
 
     // name , address
+    // Get -> Body 사용 X
     @GetMapping("/search")
     public ResponseEntity<List<HubResponseDto.Get>> searchHub(
-            @RequestBody HubRequestDto.Search requestDto) {
-        return ResponseEntity.ok(hubService.searchHub(requestDto));
+            @RequestParam(name = "address") String address,
+            @RequestParam(name = "name") String name
+    ) {
+        return ResponseEntity.ok(hubService.searchHub(address, name));
     }
 }
