@@ -13,7 +13,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder(access = AccessLevel.PRIVATE)
 @Getter
-@Setter
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -50,6 +49,12 @@ public class Order {
                 .status("ORDER_RECEIVED")
                 .isDeleted(false)
                 .build();
+    }
+
+    public void update(final OrderRequestDto.Update request) {
+        this.deliveryId = request.getDeliveryId();
+        this.amount = request.getAmount();
+        this.status = request.getStatus();
     }
 
     public void updateIsDeleted() {

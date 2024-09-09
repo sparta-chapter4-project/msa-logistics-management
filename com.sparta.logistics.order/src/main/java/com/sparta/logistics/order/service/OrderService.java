@@ -25,16 +25,7 @@ public class OrderService {
         Order order = orderRepository.findById(orderId).orElseThrow(() ->
                 new NullPointerException("해당 주문을 찾을 수 없습니다.")
         );
-
-        if (request.getDeliveryId() != null) {
-            order.setDeliveryId(request.getDeliveryId());
-        }
-        if (request.getAmount() != null) {
-            order.setAmount(request.getAmount());
-        }
-        if (request.getStatus() != null) {
-            order.setStatus(request.getStatus());
-        }
+        order.update(request);
     }
 
     @Transactional
