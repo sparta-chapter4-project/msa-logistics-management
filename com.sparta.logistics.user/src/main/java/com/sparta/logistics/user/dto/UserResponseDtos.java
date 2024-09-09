@@ -7,7 +7,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-public class UserResponseDtos {
+public class UserResponseDto {
 
     @Getter
     @NoArgsConstructor
@@ -37,7 +37,7 @@ public class UserResponseDtos {
         private String tel;
         private UserRoleEnum role;
 
-        public static UserInfo list(User user) {
+        public static UserInfo get(User user) {
             return UserInfo.builder()
                 .userId(user.getId())
                 .name(user.getName())
