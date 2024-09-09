@@ -29,6 +29,13 @@ public class OrderService {
                 .collect(Collectors.toList());
     }
 
+    public OrderResponseDto.Get getFindOrder(UUID id) {
+        Order order = orderRepository.findById(id).orElseThrow(() ->
+                new NullPointerException("해당 주문을 찾을 수 없습니다.")
+        );
+        return OrderResponseDto.Get.of(order);
+    }
+
     @Transactional
     public void updateOrder(UUID orderId, OrderRequestDto.Update request) {
         Order order = orderRepository.findById(orderId).orElseThrow(() ->

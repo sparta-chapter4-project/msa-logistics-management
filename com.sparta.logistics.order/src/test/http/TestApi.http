@@ -12,8 +12,11 @@ Content-Type: application/json
 ### Order Get - Send Get request
 GET http://localhost:8080/order
 
-### Order Update - Send Put request with path variable, json body
+### Order Find Get - Send Get request with path variable
 @orderId=315e5e10-d5d2-4f10-9672-018b11cf9a9d
+GET http://localhost:8080/order/{{orderId}}
+
+### Order Update - Send Put request with path variable, json body
 PUT http://localhost:8080/order/{{orderId}}
 Content-Type: application/json
 

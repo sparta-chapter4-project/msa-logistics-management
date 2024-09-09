@@ -28,6 +28,11 @@ public class OrderController {
         return ResponseEntity.ok(orderService.getOrder());
     }
 
+    @GetMapping("/{orderId}")
+    public ResponseEntity<OrderResponseDto.Get> getFindOrder(@PathVariable(name = "orderId")UUID id) {
+        return ResponseEntity.ok(orderService.getFindOrder(id));
+    }
+
     @PutMapping("/{orderId}")
     public ResponseEntity<Boolean> updateOrder(@PathVariable(name = "orderId")UUID orderId,
                                                @RequestBody OrderRequestDto.Update request) {
