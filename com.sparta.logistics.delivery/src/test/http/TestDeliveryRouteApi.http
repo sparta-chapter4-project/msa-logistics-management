@@ -34,7 +34,7 @@ Content-Type: application/json
 
 {
   "realDistance": 90,
-  "real_time": 50,
+  "realTime": 50,
   "status": "MOVE_HUB"
 }
 

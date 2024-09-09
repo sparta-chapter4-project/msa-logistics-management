@@ -28,16 +28,7 @@ public class DeliveryRouteService {
     public void updateDeliveryRoute(UUID id, DeliveryRouteRequestDto.Update request) {
         DeliveryRoute deliveryRoute = deliveryRouteRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 배송 경로를 찾을 수 없습니다."));
-
-        if (request.getRealDistance() != null) {
-            deliveryRoute.setRealDistance(request.getRealDistance());
-        }
-        if (request.getRealTime() != null) {
-            deliveryRoute.setRealTime(request.getRealTime());
-        }
-        if (request.getStatus() != null) {
-            deliveryRoute.setStatus(request.getStatus());
-        }
+        deliveryRoute.update(request);
     }
 
     @Transactional

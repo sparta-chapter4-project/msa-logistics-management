@@ -12,7 +12,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder(access = AccessLevel.PRIVATE)
 @Getter
-@Setter
 public class DeliveryRoute {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -61,6 +60,12 @@ public class DeliveryRoute {
                 .status(request.getStatus())
                 .isDeleted(false)
                 .build();
+    }
+
+    public void update(DeliveryRouteRequestDto.Update request) {
+        this.realDistance = request.getRealDistance();
+        this.realTime = request.getRealTime();
+        this.status = request.getStatus();
     }
 
     public void updateIsDeleted() {
