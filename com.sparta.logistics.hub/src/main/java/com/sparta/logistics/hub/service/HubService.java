@@ -56,6 +56,10 @@ public class HubService {
     }
 
 
+    public List<HubResponseDto.Get> searchHub(HubRequestDto.Search requestDto) {
+        return hubRepository.findAllByAddressAndName(requestDto.getAddress(), requestDto.getName());
+    }
+
     public Hub findById(UUID hubId){
         return hubRepository.findById(hubId).orElseThrow(NoSuchElementException::new);
     }
