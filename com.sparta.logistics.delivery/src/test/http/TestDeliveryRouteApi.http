@@ -1,0 +1,42 @@
+### Delivery Create - Send Post request with json body
+POST http://localhost:8080/delivery-route
+Content-Type: application/json
+
+[
+  {
+    "delivery_id": "d5e1b123-8f9c-4d3b-a0c1-fc97e3b8a5bc",
+    "sequence": 1,
+    "start_hub_id": "e3d4f5a1-22b7-4f97-bd5c-2b67b8d2a1c4",
+    "end_hub_id": "e2d5c7f8-3b4a-4c5d-9e1f-6a8c9b0d2e5b",
+    "estimated_distance": 100,
+    "estimated_time": 60,
+    "real_distance": 90,
+    "real_time": 50,
+    "status": "DELIVERY"
+  },
+  {
+    "delivery_id": "d5e1b123-8f9c-4d3b-a0c1-fc97e3b8a5bc",
+    "sequence": 2,
+    "start_hub_id": "e2d5c7f8-3b4a-4c5d-9e1f-6a8c9b0d2e5b",
+    "end_hub_id": "f4d9a5b7-6c3b-4d8a-b1f2-7e9c3d8a2e6b",
+    "estimated_distance": 120,
+    "estimated_time": 70,
+    "real_distance": 105,
+    "real_time": 60,
+    "status": "WAIT_HUB"
+  }
+]
+
+### DeliveryRoute Update - Send Put request with path variable, json body
+@deliveryRouteId=53e0d99e-d292-45c6-942f-30a3b92ed82b
+PUT http://localhost:8080/delivery-route/{{deliveryRouteId}}
+Content-Type: application/json
+
+{
+  "real_distance": 90,
+  "real_time": 50,
+  "status": "MOVE_HUB"
+}
+
+### DeliveryRoute Cancel - Send Delete request with path variable
+DELETE http://localhost:8080/delivery-route/{{deliveryRouteId}}
