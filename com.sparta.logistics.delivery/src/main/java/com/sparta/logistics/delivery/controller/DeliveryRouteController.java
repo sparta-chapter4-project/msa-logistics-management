@@ -1,7 +1,8 @@
 package com.sparta.logistics.delivery.controller;
 
-import com.sparta.logistics.delivery.service.DeliveryRouteService;
 import com.sparta.logistics.delivery.dto.DeliveryRouteRequestDto;
+import com.sparta.logistics.delivery.dto.DeliveryRouteResponseDto;
+import com.sparta.logistics.delivery.service.DeliveryRouteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +12,7 @@ import java.util.UUID;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/delivery-route")
+@RequestMapping("/deliveryroute")
 public class DeliveryRouteController {
 
     private final DeliveryRouteService deliveryRouteService;
@@ -20,6 +21,11 @@ public class DeliveryRouteController {
     public ResponseEntity<Boolean> createDeliveryRoutes(@RequestBody List<DeliveryRouteRequestDto.Create> requests) {
         deliveryRouteService.createDeliveryRoutes(requests);
         return ResponseEntity.ok(true);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<DeliveryRouteResponseDto.Get>> getDeliveryRoute() {
+        return ResponseEntity.ok(deliveryRouteService.getDeliveryRoute());
     }
 
     @PutMapping("/{id}")
