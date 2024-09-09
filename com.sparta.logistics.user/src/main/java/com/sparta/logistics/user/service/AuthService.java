@@ -1,7 +1,6 @@
 package com.sparta.logistics.user.service;
 
-import com.sparta.logistics.user.dto.SignInReqDto;
-import com.sparta.logistics.user.dto.SignUpReqDto;
+import com.sparta.logistics.user.dto.UserRequestDtos;
 import com.sparta.logistics.user.entity.User;
 import com.sparta.logistics.user.repository.UserRepository;
 import io.jsonwebtoken.Jwts;
@@ -18,8 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.crypto.SecretKey;
 import java.util.Date;
 
-@Service
 @RequiredArgsConstructor
+@Service
 public class AuthService {
 
     public static final String AUTHORIZATION_KEY = "role";
@@ -39,7 +38,7 @@ public class AuthService {
     }
 
     @Transactional
-    public void signUp(SignUpReqDto signUpReqDto) {
+    public void signUp(UserRequestDtos.SignUpReqDto signUpReqDto) {
         if (userRepository.findByName(signUpReqDto.getName()).isPresent()) {
             throw new IllegalArgumentException("중복된 사용자가 존재합니다.");
         }
@@ -48,12 +47,11 @@ public class AuthService {
             throw new IllegalArgumentException("중복된 Email 입니다.");
         }
 
-        User user = new User(signUpReqDto, passwordEncoder.encode(signUpReqDto.getPassword()));
-        userRepository.save(user);
+        userRepository.save(User.create(signUpReqDto, passwordEncoder.encode(signUpReqDto.getPassword())));
     }
 
     @Transactional
-    public String signIn(SignInReqDto signInReqDto) {
+    public String signIn(UserRequestDtos.SignInReqDto signInReqDto) {
         User user = userRepository.findByName(signInReqDto.getName()).orElseThrow(() ->
             new IllegalArgumentException("존재하지 않는 사용자 입니다."));
 
@@ -65,8 +63,6 @@ public class AuthService {
     }
 
     public String createToken(User user) {
-        new Date();
-        new Date(System.currentTimeMillis());
         return "Bearer " +
             Jwts.builder()
                 .claim("user_id", user.getId())

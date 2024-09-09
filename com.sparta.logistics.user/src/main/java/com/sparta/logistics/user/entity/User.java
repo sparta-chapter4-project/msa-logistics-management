@@ -1,16 +1,15 @@
 package com.sparta.logistics.user.entity;
 
-import com.sparta.logistics.user.dto.SignUpReqDto;
+import com.sparta.logistics.user.dto.UserRequestDtos;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
 @Table(name = "p_user")
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder(access = AccessLevel.PRIVATE)
+@Getter
 public class User {
 
     @Id
@@ -32,11 +31,13 @@ public class User {
     @Enumerated(value = EnumType.STRING)
     private UserRoleEnum role;
 
-    public User(SignUpReqDto signUpReqDto, String password) {
-        this.name = signUpReqDto.getName();
-        this.password = password;
-        this.email = signUpReqDto.getEmail();
-        this.tel = signUpReqDto.getTel();
-        this.role = signUpReqDto.getRole();
+    public static User create(UserRequestDtos.SignUpReqDto signUpReqDto, String password) {
+        return User.builder()
+            .name(signUpReqDto.getName())
+            .password(password)
+            .email(signUpReqDto.getEmail())
+            .tel(signUpReqDto.getTel())
+            .role(signUpReqDto.getRole())
+            .build();
     }
 }
