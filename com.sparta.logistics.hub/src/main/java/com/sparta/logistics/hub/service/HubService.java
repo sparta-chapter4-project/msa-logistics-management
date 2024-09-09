@@ -38,7 +38,7 @@ public class HubService {
     }
 
     public List<HubResponseDto.Get> getHubList() {
-        return hubRepository.findAll().stream().map(HubResponseDto.Get::of).toList();
+        return hubRepository.findAllAndIsDeletedFalse().stream().map(HubResponseDto.Get::of).toList();
     }
 
     @Transactional
@@ -56,8 +56,12 @@ public class HubService {
     }
 
 
+    public List<HubResponseDto.Get> searchHub(HubRequestDto.Search requestDto) {
+        return hubRepository.findAllByAddressAndName(requestDto.getAddress(), requestDto.getName());
+    }
+
     public Hub findById(UUID hubId){
-        return hubRepository.findById(hubId).orElseThrow(NoSuchElementException::new);
+        return hubRepository.findByIdAndIsDeletedFalse(hubId).orElseThrow(NoSuchElementException::new);
     }
 
 }
