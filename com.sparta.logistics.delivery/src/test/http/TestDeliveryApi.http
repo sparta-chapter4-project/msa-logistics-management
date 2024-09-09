@@ -13,9 +13,14 @@ Content-Type: application/json
   "recipientSlackId": "U1234567"
 }
 
+### Delivery Get - Send Get request
+GET http://localhost:8080/delivery
+
+### Delivery Get - Send Get request with path variable
+@deliveryId=efbd40ad-0104-4f52-a346-e6e64934032e
+GET http://localhost:8080/delivery/{{deliveryId}}
 
 ### Delivery Update - Send Put request with path variable, json body
-@deliveryId=efbd40ad-0104-4f52-a346-e6e64934032e
 PUT http://localhost:8080/delivery/{{deliveryId}}
 Content-Type: application/json
 
