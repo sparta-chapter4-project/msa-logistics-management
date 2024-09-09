@@ -32,6 +32,12 @@ public class DeliveryRouteService {
                 .collect(Collectors.toList());
     }
 
+    public DeliveryRouteResponseDto.Get getFindDeliveryRoute(UUID id) {
+        DeliveryRoute deliveryRoute = deliveryRouteRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 배송 경로를 찾을 수 없습니다."));
+        return DeliveryRouteResponseDto.Get.of(deliveryRoute);
+    }
+
     @Transactional
     public void updateDeliveryRoute(UUID id, DeliveryRouteRequestDto.Update request) {
         DeliveryRoute deliveryRoute = deliveryRouteRepository.findById(id)

@@ -28,16 +28,21 @@ public class DeliveryRouteController {
         return ResponseEntity.ok(deliveryRouteService.getDeliveryRoute());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<DeliveryRouteResponseDto.Get> getFindDeliveryRoute(@PathVariable(name = "id")UUID id) {
+        return ResponseEntity.ok(deliveryRouteService.getFindDeliveryRoute(id));
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<Boolean> updateDeliveryRoute(
-            @PathVariable("id") UUID id,
+            @PathVariable(name = "id") UUID id,
             @RequestBody DeliveryRouteRequestDto.Update request) {
         deliveryRouteService.updateDeliveryRoute(id, request);
         return ResponseEntity.ok(true);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Boolean> deleteDeliveryRoute(@PathVariable("id") UUID id) {
+    public ResponseEntity<Boolean> deleteDeliveryRoute(@PathVariable(name = "id") UUID id) {
         deliveryRouteService.deleteDeliveryRoute(id);
         return ResponseEntity.ok(true);
     }

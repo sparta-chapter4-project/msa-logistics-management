@@ -30,8 +30,11 @@ Content-Type: application/json
 ### DeliveryRoute Get - Send Get request
 GET http://localhost:8080/deliveryroute
 
-### DeliveryRoute Update - Send Put request with path variable, json body
+### DeliveryRoute Get - Send Get request with path variable
 @deliveryRouteId=53e0d99e-d292-45c6-942f-30a3b92ed82b
+GET http://localhost:8080/deliveryroute/{{deliveryRouteId}}
+
+### DeliveryRoute Update - Send Put request with path variable, json body
 PUT http://localhost:8080/deliveryroute/{{deliveryRouteId}}
 Content-Type: application/json
 
