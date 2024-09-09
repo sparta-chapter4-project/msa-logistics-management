@@ -1,6 +1,6 @@
 package com.sparta.logistics.order.service;
 
-import com.sparta.logistics.order.dto.OrderRequestDtos;
+import com.sparta.logistics.order.dto.OrderRequestDto;
 import com.sparta.logistics.order.entity.Order;
 import com.sparta.logistics.order.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,12 +16,12 @@ public class OrderService {
     private final OrderRepository orderRepository;
 
     @Transactional
-    public void createOrder(OrderRequestDtos.CreateDto request) {
+    public void createOrder(OrderRequestDto.Create request) {
         orderRepository.save(Order.create(request));
     }
 
     @Transactional
-    public void updateOrder(UUID orderId, OrderRequestDtos.UpdateDto request) {
+    public void updateOrder(UUID orderId, OrderRequestDto.Update request) {
         Order order = orderRepository.findById(orderId).orElseThrow(() ->
                 new NullPointerException("해당 주문을 찾을 수 없습니다.")
         );

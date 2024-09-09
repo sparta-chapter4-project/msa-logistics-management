@@ -7,17 +7,14 @@ import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
-public class OrderRequestDtos {
+public class OrderRequestDto {
 
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class CreateDto {
-        @JsonProperty("supply_company_id")
+    public static class Create {
         private UUID supplyCompanyId;
-        @JsonProperty("demand_company_id")
         private UUID demandCompanyId;
-        @JsonProperty("product_id")
         private UUID productId;
         private Long amount;
     }
@@ -25,8 +22,7 @@ public class OrderRequestDtos {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class UpdateDto {
-        @JsonProperty("delivery_id")
+    public static class Update {
         private UUID deliveryId;
         private Long amount;
         private String status;

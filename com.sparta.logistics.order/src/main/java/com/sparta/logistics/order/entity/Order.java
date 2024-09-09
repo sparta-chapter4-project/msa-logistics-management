@@ -1,6 +1,6 @@
 package com.sparta.logistics.order.entity;
 
-import com.sparta.logistics.order.dto.OrderRequestDtos;
+import com.sparta.logistics.order.dto.OrderRequestDto;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -40,7 +40,7 @@ public class Order {
     @Column(name = "is_deleted")
     private boolean isDeleted;
 
-    public static Order create(final OrderRequestDtos.CreateDto request) {
+    public static Order create(final OrderRequestDto.Create request) {
         return Order.builder()
                 .supplyCompanyId(request.getSupplyCompanyId())
                 .demandCompanyId(request.getDemandCompanyId())
