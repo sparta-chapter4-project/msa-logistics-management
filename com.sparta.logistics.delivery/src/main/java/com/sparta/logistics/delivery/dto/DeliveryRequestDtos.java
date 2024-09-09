@@ -1,4 +1,4 @@
-package com.sparta.logistics.delivery.application.dtos;
+package com.sparta.logistics.delivery.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

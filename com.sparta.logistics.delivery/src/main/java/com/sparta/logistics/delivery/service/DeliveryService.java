@@ -1,8 +1,8 @@
-package com.sparta.logistics.delivery.application;
+package com.sparta.logistics.delivery.service;
 
-import com.sparta.logistics.delivery.application.dtos.DeliveryRequestDtos;
-import com.sparta.logistics.delivery.domain.Delivery;
-import com.sparta.logistics.delivery.domain.DeliveryRepository;
+import com.sparta.logistics.delivery.dto.DeliveryRequestDtos;
+import com.sparta.logistics.delivery.entity.Delivery;
+import com.sparta.logistics.delivery.repository.DeliveryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

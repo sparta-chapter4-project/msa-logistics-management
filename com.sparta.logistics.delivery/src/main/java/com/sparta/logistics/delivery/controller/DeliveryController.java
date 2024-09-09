@@ -1,7 +1,7 @@
 package com.sparta.logistics.delivery.controller;
 
-import com.sparta.logistics.delivery.application.DeliveryService;
-import com.sparta.logistics.delivery.application.dtos.DeliveryRequestDtos;
+import com.sparta.logistics.delivery.service.DeliveryService;
+import com.sparta.logistics.delivery.dto.DeliveryRequestDtos;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

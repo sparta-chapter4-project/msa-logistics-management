@@ -1,6 +1,6 @@
-package com.sparta.logistics.delivery.domain;
+package com.sparta.logistics.delivery.entity;
 
-import com.sparta.logistics.delivery.application.dtos.DeliveryRouteRequestDtos;
+import com.sparta.logistics.delivery.dto.DeliveryRouteRequestDtos;
 import jakarta.persistence.*;
 import lombok.*;
 
