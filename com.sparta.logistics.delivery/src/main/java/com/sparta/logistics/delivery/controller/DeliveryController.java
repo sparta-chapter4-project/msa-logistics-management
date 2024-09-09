@@ -1,11 +1,13 @@
 package com.sparta.logistics.delivery.controller;
 
+import com.sparta.logistics.delivery.dto.DeliveryResponseDto;
 import com.sparta.logistics.delivery.service.DeliveryService;
 import com.sparta.logistics.delivery.dto.DeliveryRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -19,6 +21,11 @@ public class DeliveryController {
     public ResponseEntity<Boolean> createDelivery(@RequestBody DeliveryRequestDto.Create request) {
         deliveryService.createDelivery(request);
         return ResponseEntity.ok(true);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<DeliveryResponseDto.Get>> getDelivery() {
+        return ResponseEntity.ok(deliveryService.getDelivery());
     }
 
     @PutMapping("/{id}")
