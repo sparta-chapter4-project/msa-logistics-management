@@ -1,5 +1,6 @@
-package com.sparta.logistics.order.domain;
+package com.sparta.logistics.order.repository;
 
+import com.sparta.logistics.order.entity.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;

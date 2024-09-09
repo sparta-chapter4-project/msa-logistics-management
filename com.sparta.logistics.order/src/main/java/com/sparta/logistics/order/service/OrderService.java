@@ -1,8 +1,8 @@
-package com.sparta.logistics.order.application;
+package com.sparta.logistics.order.service;
 
-import com.sparta.logistics.order.application.dots.OrderRequestDtos;
-import com.sparta.logistics.order.domain.Order;
-import com.sparta.logistics.order.domain.OrderRepository;
+import com.sparta.logistics.order.dto.OrderRequestDtos;
+import com.sparta.logistics.order.entity.Order;
+import com.sparta.logistics.order.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

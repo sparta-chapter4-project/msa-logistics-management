@@ -1,6 +1,6 @@
-package com.sparta.logistics.order.domain;
+package com.sparta.logistics.order.entity;
 
-import com.sparta.logistics.order.application.dots.OrderRequestDtos;
+import com.sparta.logistics.order.dto.OrderRequestDtos;
 import jakarta.persistence.*;
 import lombok.*;
 
