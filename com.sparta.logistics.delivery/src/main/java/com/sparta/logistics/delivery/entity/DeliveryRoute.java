@@ -1,6 +1,6 @@
-package com.sparta.logistics.delivery.domain;
+package com.sparta.logistics.delivery.entity;
 
-import com.sparta.logistics.delivery.application.dtos.DeliveryRouteRequestDtos;
+import com.sparta.logistics.delivery.dto.DeliveryRouteRequestDto;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,7 +12,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder(access = AccessLevel.PRIVATE)
 @Getter
-@Setter
 public class DeliveryRoute {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -48,7 +47,7 @@ public class DeliveryRoute {
     @Column(name = "is_deleted")
     private Boolean isDeleted;
 
-    public static DeliveryRoute create(DeliveryRouteRequestDtos.CreateDto request) {
+    public static DeliveryRoute create(DeliveryRouteRequestDto.Create request) {
         return DeliveryRoute.builder()
                 .deliveryId(request.getDeliveryId())
                 .sequence(request.getSequence())
@@ -61,6 +60,12 @@ public class DeliveryRoute {
                 .status(request.getStatus())
                 .isDeleted(false)
                 .build();
+    }
+
+    public void update(DeliveryRouteRequestDto.Update request) {
+        this.realDistance = request.getRealDistance();
+        this.realTime = request.getRealTime();
+        this.status = request.getStatus();
     }
 
     public void updateIsDeleted() {

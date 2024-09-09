@@ -3,14 +3,14 @@ POST http://localhost:8080/delivery
 Content-Type: application/json
 
 {
-  "order_id": "123e4567-e89b-12d3-a456-426614174000",
-  "delivery_manager_id": "123e4567-e89b-12d3-a456-426614174001",
+  "orderId": "123e4567-e89b-12d3-a456-426614174000",
+  "deliveryManagerId": "123e4567-e89b-12d3-a456-426614174001",
   "status": "WAIT_HUB",
-  "start_hub_id": "123e4567-e89b-12d3-a456-426614174002",
-  "end_hub_id": "123e4567-e89b-12d3-a456-426614174003",
+  "startHubId": "123e4567-e89b-12d3-a456-426614174002",
+  "endHubId": "123e4567-e89b-12d3-a456-426614174003",
   "address": "서울시 강남구 테헤란로 123",
-  "recipient_id": 10000123,
-  "recipient_slack_id": "U1234567"
+  "recipientId": 10000123,
+  "recipientSlackId": "U1234567"
 }
 
 
@@ -20,12 +20,12 @@ PUT http://localhost:8080/delivery/{{deliveryId}}
 Content-Type: application/json
 
 {
-  "delivery_manager_id": "123e4567-e89b-12d3-a456-426614174000",
-  "start_hub_id": "123e4567-e89b-12d3-a456-426614174001",
-  "end_hub_id": "123e4567-e89b-12d3-a456-426614174002",
+  "deliveryManagerId": "123e4567-e89b-12d3-a456-426614174000",
+  "startHubId": "123e4567-e89b-12d3-a456-426614174001",
+  "endHubId": "123e4567-e89b-12d3-a456-426614174002",
   "address": "서울시 강남구 테헤란로 123",
-  "recipient_id": 10000123,
-  "recipient_slack_id": "U1234567",
+  "recipientId": 10000123,
+  "recipientSlackId": "U1234567",
   "status": "DELIVERY"
 }
 

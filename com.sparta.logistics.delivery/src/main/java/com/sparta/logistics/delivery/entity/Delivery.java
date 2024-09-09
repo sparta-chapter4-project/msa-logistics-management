@@ -1,6 +1,6 @@
-package com.sparta.logistics.delivery.domain;
+package com.sparta.logistics.delivery.entity;
 
-import com.sparta.logistics.delivery.application.dtos.DeliveryRequestDtos;
+import com.sparta.logistics.delivery.dto.DeliveryRequestDto;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,7 +12,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder(access = AccessLevel.PRIVATE)
 @Getter
-@Setter
 public class Delivery {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -45,7 +44,7 @@ public class Delivery {
     @Column(name = "is_deleted")
     private boolean isDeleted;
 
-    public static Delivery create(DeliveryRequestDtos.CreateDto request) {
+    public static Delivery create(DeliveryRequestDto.Create request) {
         return Delivery.builder()
                 .orderId(request.getOrderId())
                 .deliveryManagerId(request.getDeliveryManagerId())
@@ -57,6 +56,16 @@ public class Delivery {
                 .recipientSlackId(request.getRecipientSlackId())
                 .isDeleted(false)
                 .build();
+    }
+
+    public void update(DeliveryRequestDto.Update request) {
+        this.deliveryManagerId = request.getDeliveryManagerId();
+        this.startHubId = request.getStartHubId();
+        this.endHubId = request.getEndHubId();
+        this.address = request.getAddress();
+        this.recipientId = request.getRecipientId();
+        this.recipientSlackId = request.getRecipientSlackId();
+        this.status = request.getStatus();
     }
 
     public void updateIsDeleted() {

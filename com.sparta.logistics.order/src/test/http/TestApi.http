@@ -3,9 +3,9 @@ POST http://localhost:8080/order
 Content-Type: application/json
 
 {
-  "supply_company_id": "123e4567-e89b-12d3-a456-426614174000",
-  "demand_company_id": "987e6543-e21b-12d3-a456-426614174001",
-  "product_id": "abcde123-4567-8901-abcd-1234567890ab",
+  "supplyCompanyId": "123e4567-e89b-12d3-a456-426614174000",
+  "demandCompanyId": "987e6543-e21b-12d3-a456-426614174001",
+  "productId": "abcde123-4567-8901-abcd-1234567890ab",
   "amount": 100
 }
 
@@ -15,7 +15,7 @@ PUT http://localhost:8080/order/{{orderId}}
 Content-Type: application/json
 
 {
-  "delivery_id": "987e6543-e21b-12d3-a456-426614174001",
+  "deliveryId": "987e6543-e21b-12d3-a456-426614174001",
   "amount": 200,
   "status": "DELIVERY"
 }
