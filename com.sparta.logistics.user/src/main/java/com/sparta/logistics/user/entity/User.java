@@ -10,7 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder(access = AccessLevel.PRIVATE)
 @Getter
-public class User {
+public class User extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
