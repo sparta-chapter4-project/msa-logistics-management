@@ -29,6 +29,12 @@ public class DeliveryService {
                 .collect(Collectors.toList());
     }
 
+    public DeliveryResponseDto.Get getFindDelivery(UUID id) {
+        Delivery delivery = deliveryRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 배송 정보를 찾을 수 없습니다."));
+        return DeliveryResponseDto.Get.of(delivery);
+    }
+
     @Transactional
     public void updateDelivery(UUID id, DeliveryRequestDto.Update request) {
         Delivery delivery = deliveryRepository.findById(id)

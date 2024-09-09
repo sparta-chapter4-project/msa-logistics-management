@@ -28,6 +28,11 @@ public class DeliveryController {
         return ResponseEntity.ok(deliveryService.getDelivery());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<DeliveryResponseDto.Get> getFindDelivery(@PathVariable(name = "id")UUID id) {
+        return ResponseEntity.ok(deliveryService.getFindDelivery(id));
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<Boolean> updateDelivery(
             @PathVariable("id") UUID id,
