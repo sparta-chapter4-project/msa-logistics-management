@@ -12,7 +12,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder(access = AccessLevel.PRIVATE)
 @Getter
-@Setter
 public class Delivery {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -57,6 +56,16 @@ public class Delivery {
                 .recipientSlackId(request.getRecipientSlackId())
                 .isDeleted(false)
                 .build();
+    }
+
+    public void update(DeliveryRequestDto.Update request) {
+        this.deliveryManagerId = request.getDeliveryManagerId();
+        this.startHubId = request.getStartHubId();
+        this.endHubId = request.getEndHubId();
+        this.address = request.getAddress();
+        this.recipientId = request.getRecipientId();
+        this.recipientSlackId = request.getRecipientSlackId();
+        this.status = request.getStatus();
     }
 
     public void updateIsDeleted() {
