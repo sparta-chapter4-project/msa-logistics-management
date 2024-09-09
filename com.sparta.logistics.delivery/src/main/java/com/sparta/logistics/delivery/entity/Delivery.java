@@ -1,6 +1,6 @@
 package com.sparta.logistics.delivery.entity;
 
-import com.sparta.logistics.delivery.dto.DeliveryRequestDtos;
+import com.sparta.logistics.delivery.dto.DeliveryRequestDto;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -45,7 +45,7 @@ public class Delivery {
     @Column(name = "is_deleted")
     private boolean isDeleted;
 
-    public static Delivery create(DeliveryRequestDtos.CreateDto request) {
+    public static Delivery create(DeliveryRequestDto.Create request) {
         return Delivery.builder()
                 .orderId(request.getOrderId())
                 .deliveryManagerId(request.getDeliveryManagerId())
