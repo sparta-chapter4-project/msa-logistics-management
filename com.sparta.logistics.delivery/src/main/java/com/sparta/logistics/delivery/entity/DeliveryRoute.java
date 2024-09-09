@@ -1,6 +1,6 @@
 package com.sparta.logistics.delivery.entity;
 
-import com.sparta.logistics.delivery.dto.DeliveryRouteRequestDtos;
+import com.sparta.logistics.delivery.dto.DeliveryRouteRequestDto;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -48,7 +48,7 @@ public class DeliveryRoute {
     @Column(name = "is_deleted")
     private Boolean isDeleted;
 
-    public static DeliveryRoute create(DeliveryRouteRequestDtos.CreateDto request) {
+    public static DeliveryRoute create(DeliveryRouteRequestDto.Create request) {
         return DeliveryRoute.builder()
                 .deliveryId(request.getDeliveryId())
                 .sequence(request.getSequence())

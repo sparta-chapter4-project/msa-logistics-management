@@ -1,6 +1,6 @@
 package com.sparta.logistics.delivery.service;
 
-import com.sparta.logistics.delivery.dto.DeliveryRouteRequestDtos;
+import com.sparta.logistics.delivery.dto.DeliveryRouteRequestDto;
 import com.sparta.logistics.delivery.entity.DeliveryRoute;
 import com.sparta.logistics.delivery.repository.DeliveryRouteRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,15 +17,15 @@ public class DeliveryRouteService {
     private final DeliveryRouteRepository deliveryRouteRepository;
 
     @Transactional
-    public void createDeliveryRoutes(List<DeliveryRouteRequestDtos.CreateDto> requests) {
-        for (DeliveryRouteRequestDtos.CreateDto request : requests) {
+    public void createDeliveryRoutes(List<DeliveryRouteRequestDto.Create> requests) {
+        for (DeliveryRouteRequestDto.Create request : requests) {
             DeliveryRoute deliveryRoute = DeliveryRoute.create(request);
             deliveryRouteRepository.save(deliveryRoute);
         }
     }
 
     @Transactional
-    public void updateDeliveryRoute(UUID id, DeliveryRouteRequestDtos.UpdateDto request) {
+    public void updateDeliveryRoute(UUID id, DeliveryRouteRequestDto.Update request) {
         DeliveryRoute deliveryRoute = deliveryRouteRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 배송 경로를 찾을 수 없습니다."));
 
