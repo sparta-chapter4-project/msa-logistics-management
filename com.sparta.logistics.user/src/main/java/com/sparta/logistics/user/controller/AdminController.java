@@ -8,15 +8,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/admin")
+public class AdminController {
 
     private final UserService userService;
 
-    @GetMapping("")
-    public ResponseEntity<UserResponseDtos.MyInfo> MyInfo() {
-        return ResponseEntity.ok(userService.MyInfo());
+    @GetMapping("/user")
+    public ResponseEntity<List<UserResponseDtos.UserInfo>> list() {
+        return ResponseEntity.ok(userService.list());
     }
 }
