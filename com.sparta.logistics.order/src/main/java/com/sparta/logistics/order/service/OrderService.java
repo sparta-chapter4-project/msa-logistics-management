@@ -1,13 +1,16 @@
 package com.sparta.logistics.order.service;
 
 import com.sparta.logistics.order.dto.OrderRequestDto;
+import com.sparta.logistics.order.dto.OrderResponseDto;
 import com.sparta.logistics.order.entity.Order;
 import com.sparta.logistics.order.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -18,6 +21,19 @@ public class OrderService {
     @Transactional
     public void createOrder(OrderRequestDto.Create request) {
         orderRepository.save(Order.create(request));
+    }
+
+    public List<OrderResponseDto.Get> getOrder() {
+        return orderRepository.findAll().stream()
+                .map(OrderResponseDto.Get::of)
+                .collect(Collectors.toList());
+    }
+
+    public OrderResponseDto.Get getFindOrder(UUID id) {
+        Order order = orderRepository.findById(id).orElseThrow(() ->
+                new NullPointerException("해당 주문을 찾을 수 없습니다.")
+        );
+        return OrderResponseDto.Get.of(order);
     }
 
     @Transactional
