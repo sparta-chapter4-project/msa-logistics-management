@@ -24,4 +24,29 @@ public class CompanyResponseDto {
                     .build();
         }
     }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Get {
+
+        private UUID companyId;
+        private UUID hubId;
+        private String name;
+        private String address;
+        private Integer zipcode;
+        private Boolean type;
+
+        public static Get of(Company company){
+            return Get.builder()
+                    .companyId(company.getId())
+                    .hubId(company.getHubId())
+                    .name(company.getName())
+                    .address(company.getAddress())
+                    .zipcode(company.getZipcode())
+                    .type(company.getType())
+                    .build();
+        }
+    }
 }

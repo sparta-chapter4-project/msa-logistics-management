@@ -8,6 +8,9 @@ import com.sparta.logisitcs.company.repository.CompanyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.NoSuchElementException;
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 public class CompanyService {
@@ -18,4 +21,13 @@ public class CompanyService {
          return CompanyResponseDto.Create.of(companyRepository.save(Company.create(requestDto)));
     }
 
+    public CompanyResponseDto.Get getCompany(UUID companyId) {
+        return CompanyResponseDto.Get.of(findById(companyId));
+    }
+
+    public Company findById(UUID companyId){
+        return companyRepository.findByCompanyId(companyId).orElseThrow(
+                NoSuchElementException::new
+        );
+    }
 }

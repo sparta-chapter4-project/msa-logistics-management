@@ -6,10 +6,8 @@ import java.util.UUID;
 
 public class CompanyRequestDto {
 
-    @Builder
     @Getter
     @NoArgsConstructor
-    @AllArgsConstructor
     public static class Create{
 
         private UUID hubId;
@@ -18,5 +16,4 @@ public class CompanyRequestDto {
         private Integer zipcode;
         private Boolean type;
     }
-
 }

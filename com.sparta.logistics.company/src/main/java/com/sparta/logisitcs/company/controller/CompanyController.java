@@ -5,10 +5,9 @@ import com.sparta.logisitcs.company.dto.CompanyResponseDto;
 import com.sparta.logisitcs.company.service.CompanyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/company")
@@ -23,4 +22,9 @@ public class CompanyController {
         return ResponseEntity.ok(companyService.createCompany(requestDto));
     }
 
+    @GetMapping("/{companyId}")
+    public ResponseEntity<CompanyResponseDto.Get> getCompany(
+            @PathVariable UUID companyId) {
+        return ResponseEntity.ok(companyService.getCompany(companyId));
+    }
 }

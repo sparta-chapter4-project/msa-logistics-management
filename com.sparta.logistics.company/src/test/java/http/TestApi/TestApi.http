@@ -9,3 +9,10 @@ Content-Type: application/json
   "zipcode": "06210",
   "type": true
 }
+
+### Order Find Get - Send Get request with path variable
+< {%
+    request.variables.set("companyId", "80b1056a-81f4-436d-9661-4628503893e7")
+%}
+GET http://localhost:8080/company/{{companyId}}
+
