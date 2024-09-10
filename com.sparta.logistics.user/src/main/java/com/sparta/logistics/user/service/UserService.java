@@ -24,7 +24,7 @@ public class UserService {
     }
 
     public List<UserResponseDto.UserInfo> list() {
-        return userRepository.findAll().stream().map(UserResponseDto.UserInfo::get).toList();
+        return userRepository.findAllByIsDeletedFalse().stream().map(UserResponseDto.UserInfo::get).toList();
     }
 
     public UserResponseDto.UserInfo get(Long userId) {
@@ -32,7 +32,7 @@ public class UserService {
     }
 
     private User existUser(Long userId){
-        return userRepository.findById(userId).orElseThrow(
+        return userRepository.findByIdAndIsDeletedFalse(userId).orElseThrow(
             () -> new IllegalArgumentException("유저가 존재하지 않습니다.")
         );
     }
@@ -43,5 +43,13 @@ public class UserService {
         user.update(update);
 
         return "수정완료";
+    }
+
+    @Transactional
+    public String delete(Long userId) {
+        User user = existUser(userId);
+        user.delete();
+
+        return "삭제완료";
     }
 }

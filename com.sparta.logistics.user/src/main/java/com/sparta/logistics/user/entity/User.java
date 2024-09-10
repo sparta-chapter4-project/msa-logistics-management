@@ -47,4 +47,8 @@ public class User extends BaseEntity {
         this.tel = update.getTel();
         this.role = update.getRole();
     }
+
+    public void delete() {
+        this.isDeleted = true;
+    }
 }

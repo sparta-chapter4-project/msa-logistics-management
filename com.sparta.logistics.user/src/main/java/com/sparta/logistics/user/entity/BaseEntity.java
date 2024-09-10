@@ -42,5 +42,5 @@ public abstract class BaseEntity {
     private String deletedBy;
 
     @Column(name = "is_deleted", nullable = false)
-    private boolean isDeleted = false;
+    public boolean isDeleted = false;
 }

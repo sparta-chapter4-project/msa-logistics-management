@@ -30,4 +30,9 @@ public class AdminController {
     public ResponseEntity<String> update(@PathVariable Long userId, @RequestBody UserRequestDto.Update update) {
         return ResponseEntity.ok(userService.update(userId, update));
     }
+
+    @DeleteMapping("user/{userId}")
+    public ResponseEntity<String> delete(@PathVariable Long userId) {
+        return ResponseEntity.ok(userService.delete(userId));
+    }
 }
