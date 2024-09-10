@@ -3,6 +3,7 @@ package com.sparta.logistics.user.service;
 import com.sparta.logistics.user.dto.UserRequestDto;
 import com.sparta.logistics.user.dto.UserResponseDto;
 import com.sparta.logistics.user.entity.User;
+import com.sparta.logistics.user.global.security.UserDetailsImpl;
 import com.sparta.logistics.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -20,9 +21,8 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    public UserResponseDto.MyInfo myInfo() {
-        Long userId = 1L; //인증객체에서 정보 가져오도록 수정
-        User user = existUser(userId);
+    public UserResponseDto.MyInfo myInfo(UserDetailsImpl userDetails) {
+        User user = existUser(userDetails.getId());
 
         return UserResponseDto.MyInfo.get(user);
     }
