@@ -1,17 +1,16 @@
 package com.sparta.logistics.user.entity;
 
-import com.sparta.logistics.user.dto.SignUpReqDto;
+import com.sparta.logistics.user.dto.UserRequestDto;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
 @Table(name = "p_user")
-public class User {
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder(access = AccessLevel.PRIVATE)
+@Getter
+public class User extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,11 +31,24 @@ public class User {
     @Enumerated(value = EnumType.STRING)
     private UserRoleEnum role;
 
-    public User(SignUpReqDto signUpReqDto, String password) {
-        this.name = signUpReqDto.getName();
-        this.password = password;
-        this.email = signUpReqDto.getEmail();
-        this.tel = signUpReqDto.getTel();
-        this.role = signUpReqDto.getRole();
+    public static User create(UserRequestDto.SignUpReqDto signUpReqDto, String password) {
+        return User.builder()
+            .name(signUpReqDto.getName())
+            .password(password)
+            .email(signUpReqDto.getEmail())
+            .tel(signUpReqDto.getTel())
+            .role(signUpReqDto.getRole())
+            .build();
+    }
+
+    public void update(UserRequestDto.Update update) {
+        this.name = update.getName();
+        this.email = update.getEmail();
+        this.tel = update.getTel();
+        this.role = update.getRole();
+    }
+
+    public void delete() {
+        this.isDeleted = true;
     }
 }
