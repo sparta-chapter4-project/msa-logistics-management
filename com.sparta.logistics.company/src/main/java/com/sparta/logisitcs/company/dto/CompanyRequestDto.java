@@ -16,4 +16,16 @@ public class CompanyRequestDto {
         private Integer zipcode;
         private Boolean type;
     }
+
+    @Getter
+    @NoArgsConstructor
+    public static class Update {
+
+        private UUID companyId;
+        private UUID hubId;
+        private String name;
+        private String address;
+        private Integer zipcode;
+        private Boolean type;
+    }
 }

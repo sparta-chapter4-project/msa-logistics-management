@@ -23,7 +23,7 @@ public class CompanyController {
 
     @PostMapping
     public ResponseEntity<CompanyResponseDto.Create> createCompany(
-            @RequestBody CompanyRequestDto.Create requestDto){
+            @RequestBody CompanyRequestDto.Create requestDto) {
         return ResponseEntity.ok(companyService.createCompany(requestDto));
     }
 
@@ -36,5 +36,11 @@ public class CompanyController {
     @GetMapping
     public ResponseEntity<List<CompanyResponseDto.Get>> getCompanies() {
         return ResponseEntity.ok(companyService.getCompanies());
+    }
+
+    @PutMapping
+    public ResponseEntity<CompanyResponseDto.Update> updateCompany(
+            @RequestBody CompanyRequestDto.Update requestDto) {
+        return ResponseEntity.ok(companyService.updateCompany(requestDto));
     }
 }

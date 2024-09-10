@@ -42,4 +42,22 @@ public class Company extends BaseEntity{
                 .type(requestDto.getType())
                 .build();
     }
+
+    public void update(CompanyRequestDto.Update requestDto) {
+        if(!requestDto.getHubId().equals(this.hubId)){
+            this.hubId = requestDto.getHubId();
+        }
+        if(!requestDto.getName().equals(this.name)){
+            this.name = requestDto.getName();
+        }
+        if(!requestDto.getAddress().equals(this.address)){
+            this.address = requestDto.getAddress();
+        }
+        if(!requestDto.getZipcode().equals(this.zipcode)){
+            this.zipcode = requestDto.getZipcode();
+        }
+        if(!requestDto.getType().equals(this.type)){
+            this.type = requestDto.getType();
+        }
+    }
 }

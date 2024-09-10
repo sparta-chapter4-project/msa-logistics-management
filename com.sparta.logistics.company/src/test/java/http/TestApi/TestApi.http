@@ -18,3 +18,16 @@ GET http://localhost:8080/company/{{companyId}}
 
 ### Company Find Get - Send Get request
 GET http://localhost:8080/company
+
+### Company Update - Send Put request with path variable, json body
+PUT http://localhost:8080/company
+Content-Type: application/json
+
+{
+  "companyId": "2259adc1-3181-4e2b-8145-35971b004d16",
+  "hubId": "59d67615-c2b5-4971-9672-edda66e24930",
+  "name": "컴퍼니123",
+  "address": "서울특별시 노원구 공릉동 589-15",
+  "zipcode": "654321",
+  "type": true
+}

@@ -8,6 +8,7 @@ import com.sparta.logisitcs.company.repository.CompanyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -30,6 +31,13 @@ public class CompanyService {
 
     public List<CompanyResponseDto.Get> getCompanies() {
         return companyRepository.findAll().stream().map(CompanyResponseDto.Get::of).toList();
+    }
+
+    @Transactional
+    public CompanyResponseDto.Update updateCompany(CompanyRequestDto.Update requestDto) {
+        Company company = findById(requestDto.getCompanyId());
+        company.update(requestDto);
+        return CompanyResponseDto.Update.of(company);
     }
 
     public Company findById(UUID companyId){
