@@ -1,4 +1,4 @@
-package com.sparta.logistics.delivery.application.dtos;
+package com.sparta.logistics.delivery.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -7,51 +7,29 @@ import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
-public class DeliveryRouteRequestDtos {
+public class DeliveryRouteRequestDto {
 
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class CreateDto {
-        @JsonProperty("delivery_id")
+    public static class Create {
         private UUID deliveryId;
-
-        @JsonProperty("sequence")
         private Integer sequence;
-
-        @JsonProperty("start_hub_id")
         private UUID startHubId;
-
-        @JsonProperty("end_hub_id")
         private UUID endHubId;
-
-        @JsonProperty("estimated_distance")
         private Integer estimatedDistance;
-
-        @JsonProperty("estimated_time")
         private Integer estimatedTime;
-
-        @JsonProperty("real_distance")
         private Integer realDistance;
-
-        @JsonProperty("real_time")
         private Integer realTime;
-
-        @JsonProperty("status")
         private String status;
     }
 
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class UpdateDto {
-        @JsonProperty("real_distance")
+    public static class Update {
         private Integer realDistance;
-
-        @JsonProperty("real_time")
         private Integer realTime;
-
-        @JsonProperty("status")
         private String status;
     }
 }

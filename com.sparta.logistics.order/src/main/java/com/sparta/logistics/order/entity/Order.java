@@ -1,6 +1,6 @@
-package com.sparta.logistics.order.domain;
+package com.sparta.logistics.order.entity;
 
-import com.sparta.logistics.order.application.dots.OrderRequestDtos;
+import com.sparta.logistics.order.dto.OrderRequestDto;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,7 +13,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder(access = AccessLevel.PRIVATE)
 @Getter
-@Setter
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -40,7 +39,7 @@ public class Order {
     @Column(name = "is_deleted")
     private boolean isDeleted;
 
-    public static Order create(final OrderRequestDtos.CreateDto request) {
+    public static Order create(final OrderRequestDto.Create request) {
         return Order.builder()
                 .supplyCompanyId(request.getSupplyCompanyId())
                 .demandCompanyId(request.getDemandCompanyId())
@@ -50,6 +49,12 @@ public class Order {
                 .status("ORDER_RECEIVED")
                 .isDeleted(false)
                 .build();
+    }
+
+    public void update(final OrderRequestDto.Update request) {
+        this.deliveryId = request.getDeliveryId();
+        this.amount = request.getAmount();
+        this.status = request.getStatus();
     }
 
     public void updateIsDeleted() {

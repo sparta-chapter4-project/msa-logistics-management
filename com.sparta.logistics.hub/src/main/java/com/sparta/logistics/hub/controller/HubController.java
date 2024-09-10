@@ -46,5 +46,13 @@ public class HubController {
         return ResponseEntity.ok(hubService.deleteHub(hubId));
     }
 
-
+    // name , address
+    // Get -> Body 사용 X
+    @GetMapping("/search")
+    public ResponseEntity<List<HubResponseDto.Get>> searchHub(
+            @RequestParam(name = "address") String address,
+            @RequestParam(name = "name") String name
+    ) {
+        return ResponseEntity.ok(hubService.searchHub(address, name));
+    }
 }
