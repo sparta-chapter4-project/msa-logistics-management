@@ -1,5 +1,6 @@
 package com.sparta.logistics.order.service;
 
+import com.sparta.logistics.order.dto.DeliveryRequestDto;
 import com.sparta.logistics.order.dto.OrderRequestDto;
 import com.sparta.logistics.order.dto.OrderResponseDto;
 import com.sparta.logistics.order.entity.Order;
@@ -17,10 +18,12 @@ import java.util.stream.Collectors;
 public class OrderService {
 
     private final OrderRepository orderRepository;
+    private final DeliveryService deliveryService;
 
     @Transactional
     public void createOrder(OrderRequestDto.Create request) {
-        orderRepository.save(Order.create(request));
+        Order order = orderRepository.save(Order.create(request));
+        deliveryService.createDelivery(DeliveryRequestDto.Create.of(order.getId()));
     }
 
     public List<OrderResponseDto.Get> getOrder() {
