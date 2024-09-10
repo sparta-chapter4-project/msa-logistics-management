@@ -17,9 +17,10 @@ public class DeliveryRouteController {
 
     private final DeliveryRouteService deliveryRouteService;
 
+    // 주문 생성으로 만들어지니 해당 메소드는 관리자 권한으로 가야할 듯 - kyeonkim
     @PostMapping
-    public ResponseEntity<Boolean> createDeliveryRoutes(@RequestBody List<DeliveryRouteRequestDto.Create> requests) {
-        deliveryRouteService.createDeliveryRoutes(requests);
+    public ResponseEntity<Boolean> createDeliveryRoutes(@RequestBody DeliveryRouteRequestDto.Create request) {
+        deliveryRouteService.createDeliveryRoute(request);
         return ResponseEntity.ok(true);
     }
 
@@ -29,7 +30,7 @@ public class DeliveryRouteController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<DeliveryRouteResponseDto.Get> getFindDeliveryRoute(@PathVariable(name = "id")UUID id) {
+    public ResponseEntity<DeliveryRouteResponseDto.Get> getFindDeliveryRoute(@PathVariable(name = "id") UUID id) {
         return ResponseEntity.ok(deliveryRouteService.getFindDeliveryRoute(id));
     }
 

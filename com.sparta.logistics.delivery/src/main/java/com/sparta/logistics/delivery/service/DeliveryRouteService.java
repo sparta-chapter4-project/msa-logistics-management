@@ -19,11 +19,8 @@ public class DeliveryRouteService {
     private final DeliveryRouteRepository deliveryRouteRepository;
 
     @Transactional
-    public void createDeliveryRoutes(List<DeliveryRouteRequestDto.Create> requests) {
-        for (DeliveryRouteRequestDto.Create request : requests) {
-            DeliveryRoute deliveryRoute = DeliveryRoute.create(request);
-            deliveryRouteRepository.save(deliveryRoute);
-        }
+    public void createDeliveryRoute(DeliveryRouteRequestDto.Create request) {
+            deliveryRouteRepository.save(DeliveryRoute.create(request));
     }
 
     public List<DeliveryRouteResponseDto.Get> getDeliveryRoute() {
