@@ -37,3 +37,9 @@ Content-Type: application/json
     request.variables.set("companyId", "80b1056a-81f4-436d-9661-4628503893e7")
 %}
 DELETE http://localhost:8080/company/{{companyId}}
+
+### Company search - Send Get request with request Parameter
+GET http://localhost:8080/company/search
+    ?address=서울
+    &name=컴퍼니
+    &region=1

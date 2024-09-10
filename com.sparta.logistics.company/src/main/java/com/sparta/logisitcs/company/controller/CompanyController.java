@@ -49,4 +49,14 @@ public class CompanyController {
             @PathVariable UUID companyId) {
         return ResponseEntity.ok(companyService.deleteCompany(companyId));
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<Page<CompanyResponseDto.Get>> searchCompany(
+            @PageableDefault(size = 10, sort = "createdAt", direction = Sort.Direction.ASC) Pageable pageable,
+            @RequestParam(value = "address") String address,
+            @RequestParam(value = "name") String name
+    ) {
+        return ResponseEntity.ok(companyService.searchCompany(address, name, pageable));
+    }
+
 }

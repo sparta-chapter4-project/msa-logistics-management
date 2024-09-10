@@ -7,6 +7,7 @@ import com.sparta.logisitcs.company.entity.Company;
 import com.sparta.logisitcs.company.repository.CompanyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,7 +31,7 @@ public class CompanyService {
 
 
     public List<CompanyResponseDto.Get> getCompanies() {
-        return companyRepository.findAll().stream().map(CompanyResponseDto.Get::of).toList();
+        return companyRepository.findAllByDsl().stream().map(CompanyResponseDto.Get::of).toList();
     }
 
     @Transactional
@@ -47,9 +48,13 @@ public class CompanyService {
         return CompanyResponseDto.Delete.of(company);
     }
 
+    public Page<CompanyResponseDto.Get> searchCompany(String address, String name, Pageable pageable) {
+        return companyRepository.findAllByCondition(address, name, pageable);
+    }
     public Company findById(UUID companyId){
         return companyRepository.findByCompanyId(companyId).orElseThrow(
                 NoSuchElementException::new
         );
     }
+
 }
