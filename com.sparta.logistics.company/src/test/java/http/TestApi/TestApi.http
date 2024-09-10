@@ -1,18 +1,20 @@
-### Order Create - Send Post request with json body
+### Company Create - Send Post request with json body
 POST http://localhost:8080/company
 Content-Type: application/json
 
 {
-  "hubId": "126bd829-113e-41b8-ad0c-b86e8b467979",
-  "name": "컴퍼니",
+  "hubId": "59d67615-c2b5-4971-9672-edda66e24930",
+  "name": "컴퍼니2",
   "address": "서울특별시 강남구 테헤란로44길 8",
-  "zipcode": "06210",
-  "type": true
+  "zipcode": "123456",
+  "type": false
 }
 
-### Order Find Get - Send Get request with path variable
+### Company Find Get - Send Get request with path variable
 < {%
     request.variables.set("companyId", "80b1056a-81f4-436d-9661-4628503893e7")
 %}
 GET http://localhost:8080/company/{{companyId}}
 
+### Company Find Get - Send Get request
+GET http://localhost:8080/company

@@ -4,9 +4,14 @@ import com.sparta.logisitcs.company.dto.CompanyRequestDto;
 import com.sparta.logisitcs.company.dto.CompanyResponseDto;
 import com.sparta.logisitcs.company.service.CompanyService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -26,5 +31,10 @@ public class CompanyController {
     public ResponseEntity<CompanyResponseDto.Get> getCompany(
             @PathVariable UUID companyId) {
         return ResponseEntity.ok(companyService.getCompany(companyId));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<CompanyResponseDto.Get>> getCompanies() {
+        return ResponseEntity.ok(companyService.getCompanies());
     }
 }
