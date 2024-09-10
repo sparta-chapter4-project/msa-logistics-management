@@ -1,0 +1,45 @@
+### Company Create - Send Post request with json body
+POST http://localhost:8080/company
+Content-Type: application/json
+
+{
+  "hubId": "59d67615-c2b5-4971-9672-edda66e24930",
+  "name": "컴퍼니2",
+  "address": "서울특별시 강남구 테헤란로44길 8",
+  "zipcode": "123456",
+  "type": false
+}
+
+### Company Find Get - Send Get request with path variable
+< {%
+    request.variables.set("companyId", "80b1056a-81f4-436d-9661-4628503893e7")
+%}
+GET http://localhost:8080/company/{{companyId}}
+
+### Company Find Get - Send Get request
+GET http://localhost:8080/company
+
+### Company Update - Send Put request with path variable, json body
+PUT http://localhost:8080/company
+Content-Type: application/json
+
+{
+  "companyId": "2259adc1-3181-4e2b-8145-35971b004d16",
+  "hubId": "59d67615-c2b5-4971-9672-edda66e24930",
+  "name": "컴퍼니123",
+  "address": "서울특별시 노원구 공릉동 589-15",
+  "zipcode": "654321",
+  "type": true
+}
+
+### Company delete - Send Delete request with path variable
+< {%
+    request.variables.set("companyId", "80b1056a-81f4-436d-9661-4628503893e7")
+%}
+DELETE http://localhost:8080/company/{{companyId}}
+
+### Company search - Send Get request with request Parameter
+GET http://localhost:8080/company/search
+    ?address=서울
+    &name=컴퍼니
+    &region=1
