@@ -1,6 +1,8 @@
 package com.sparta.logistics.user.repository;
 
 import com.sparta.logistics.user.entity.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -11,6 +13,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByIdAndIsDeletedFalse(Long id);
 
     List<User> findAllByIsDeletedFalse();
+
+    Page<User> findAllByIsDeletedFalseAndNameContains(Pageable pageable, String name);
 
     Optional<User> findByName(String name);
 
