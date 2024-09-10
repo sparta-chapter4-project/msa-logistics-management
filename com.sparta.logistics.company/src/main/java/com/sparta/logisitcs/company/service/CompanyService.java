@@ -40,6 +40,13 @@ public class CompanyService {
         return CompanyResponseDto.Update.of(company);
     }
 
+    @Transactional
+    public CompanyResponseDto.Delete deleteCompany(UUID companyId) {
+        Company company = findById(companyId);
+        company.delete();
+        return CompanyResponseDto.Delete.of(company);
+    }
+
     public Company findById(UUID companyId){
         return companyRepository.findByCompanyId(companyId).orElseThrow(
                 NoSuchElementException::new

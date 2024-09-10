@@ -74,4 +74,18 @@ public class CompanyResponseDto {
                     .build();
         }
     }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Delete {
+        private UUID companyId;
+
+        public static Delete of(Company company){
+            return Delete.builder()
+                    .companyId(company.getId())
+                    .build();
+        }
+    }
 }

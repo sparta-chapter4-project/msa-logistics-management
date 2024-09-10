@@ -43,4 +43,10 @@ public class CompanyController {
             @RequestBody CompanyRequestDto.Update requestDto) {
         return ResponseEntity.ok(companyService.updateCompany(requestDto));
     }
+
+    @DeleteMapping("/{companyId}")
+    public ResponseEntity<CompanyResponseDto.Delete> deleteCompany(
+            @PathVariable UUID companyId) {
+        return ResponseEntity.ok(companyService.deleteCompany(companyId));
+    }
 }

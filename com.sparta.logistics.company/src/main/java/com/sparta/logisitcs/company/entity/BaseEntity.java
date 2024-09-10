@@ -41,4 +41,9 @@ public class BaseEntity {
     @Column
     @Builder.Default
     private Boolean isDeleted = false;
+
+    public void delete() {
+        this.deletedAt = LocalDateTime.now();
+        this.isDeleted = true;
+    }
 }
