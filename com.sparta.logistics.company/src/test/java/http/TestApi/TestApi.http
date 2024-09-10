@@ -1,0 +1,11 @@
+### Order Create - Send Post request with json body
+POST http://localhost:8080/company
+Content-Type: application/json
+
+{
+  "hubId": "126bd829-113e-41b8-ad0c-b86e8b467979",
+  "name": "컴퍼니",
+  "address": "서울특별시 강남구 테헤란로44길 8",
+  "zipcode": "06210",
+  "type": true
+}
