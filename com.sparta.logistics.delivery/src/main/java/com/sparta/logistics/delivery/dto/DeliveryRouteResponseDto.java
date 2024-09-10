@@ -14,13 +14,13 @@ public class DeliveryRouteResponseDto {
     public static class Get {
         private UUID id;
         private UUID deliveryId;
-        private int sequence;
+        private Integer sequence;
         private UUID startHubId;
         private UUID endHubId;
-        private int estimatedDistance;
-        private int estimatedTime;
-        private int realDistance;
-        private int realTime;
+        private Integer estimatedDistance;
+        private Integer estimatedTime;
+        private Integer realDistance;
+        private Integer realTime;
         private String status;
 
         public static DeliveryRouteResponseDto.Get of(final DeliveryRoute deliveryRoute) {

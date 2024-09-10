@@ -42,7 +42,7 @@ public class Delivery {
     private String status;
 
     @Column(name = "is_deleted")
-    private boolean isDeleted;
+    private Boolean isDeleted;
 
     public static Delivery create(DeliveryRequestDto.Create request) {
         return Delivery.builder()

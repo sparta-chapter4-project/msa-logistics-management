@@ -37,7 +37,7 @@ public class Order {
     private String status;
 
     @Column(name = "is_deleted")
-    private boolean isDeleted;
+    private Boolean isDeleted;
 
     public static Order create(final OrderRequestDto.Create request) {
         return Order.builder()
