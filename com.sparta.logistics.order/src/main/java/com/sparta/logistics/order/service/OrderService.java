@@ -23,7 +23,8 @@ public class OrderService {
     @Transactional
     public void createOrder(OrderRequestDto.Create request) {
         Order order = orderRepository.save(Order.create(request));
-        deliveryService.createDelivery(DeliveryRequestDto.Create.of(order.getId()));
+        UUID deliveryId = deliveryService.createDelivery(DeliveryRequestDto.Create.of(order.getId()));
+        order.updateDeliveryId(deliveryId);
     }
 
     public List<OrderResponseDto.Get> getOrder() {

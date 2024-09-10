@@ -19,8 +19,9 @@ public class DeliveryService {
     private final DeliveryRepository deliveryRepository;
 
     @Transactional
-    public void createDelivery(DeliveryRequestDto.Create request) {
-        deliveryRepository.save(Delivery.create(request));
+    public UUID createDelivery(DeliveryRequestDto.Create request) {
+        Delivery delivery = deliveryRepository.save(Delivery.create(request));
+        return delivery.getId();
     }
 
     public List<DeliveryResponseDto.Get> getDelivery() {

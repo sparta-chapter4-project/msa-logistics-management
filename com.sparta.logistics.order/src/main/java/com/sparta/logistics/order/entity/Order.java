@@ -57,6 +57,8 @@ public class Order {
         this.status = request.getStatus();
     }
 
+    public void updateDeliveryId(UUID id) { this.deliveryId = id; }
+
     public void updateIsDeleted() {
         this.isDeleted = true;
     }

@@ -1,8 +1,8 @@
 package com.sparta.logistics.delivery.controller;
 
+import com.sparta.logistics.delivery.dto.DeliveryRequestDto;
 import com.sparta.logistics.delivery.dto.DeliveryResponseDto;
 import com.sparta.logistics.delivery.service.DeliveryService;
-import com.sparta.logistics.delivery.dto.DeliveryRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,9 +18,8 @@ public class DeliveryController {
     private final DeliveryService deliveryService;
 
     @PostMapping
-    public ResponseEntity<Boolean> createDelivery(@RequestBody DeliveryRequestDto.Create request) {
-        deliveryService.createDelivery(request);
-        return ResponseEntity.ok(true);
+    public ResponseEntity<UUID> createDelivery(@RequestBody DeliveryRequestDto.Create request) {
+        return ResponseEntity.ok(deliveryService.createDelivery(request));
     }
 
     @GetMapping
