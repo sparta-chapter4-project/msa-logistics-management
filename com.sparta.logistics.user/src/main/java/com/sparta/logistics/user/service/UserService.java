@@ -1,10 +1,12 @@
 package com.sparta.logistics.user.service;
 
+import com.sparta.logistics.user.dto.UserRequestDto;
 import com.sparta.logistics.user.dto.UserResponseDto;
 import com.sparta.logistics.user.entity.User;
 import com.sparta.logistics.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -33,5 +35,13 @@ public class UserService {
         return userRepository.findById(userId).orElseThrow(
             () -> new IllegalArgumentException("유저가 존재하지 않습니다.")
         );
+    }
+
+    @Transactional
+    public String update(Long userId, UserRequestDto.Update update) {
+        User user = existUser(userId);
+        user.update(update);
+
+        return "수정완료";
     }
 }

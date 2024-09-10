@@ -40,4 +40,11 @@ public class User extends BaseEntity {
             .role(signUpReqDto.getRole())
             .build();
     }
+
+    public void update(UserRequestDto.Update update) {
+        this.name = update.getName();
+        this.email = update.getEmail();
+        this.tel = update.getTel();
+        this.role = update.getRole();
+    }
 }
