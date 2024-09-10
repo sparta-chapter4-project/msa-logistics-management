@@ -8,7 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-public class UserRequestDtos {
+public class UserRequestDto {
 
     @Getter
     @NoArgsConstructor
@@ -42,5 +42,22 @@ public class UserRequestDtos {
         @Pattern(regexp = "^[a-zA-Z0-9_#$%^!-]{8,15}$")
         @NotBlank
         private String password;
+    }
+
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Update {
+        @Pattern(regexp = "^[a-z0-9]{4,10}$")
+        @NotBlank
+        private String name;
+
+        @Email
+        @NotBlank
+        private String email;
+        @NotBlank
+        private String tel;
+
+        private UserRoleEnum role;
     }
 }

@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 public class UserResponseDto {
 
+    @Builder
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
@@ -18,11 +19,13 @@ public class UserResponseDto {
         private String tel;
         private UserRoleEnum role;
 
-        public MyInfo(User user) {
-            this.name = user.getName();
-            this.email = user.getEmail();
-            this.tel = user.getTel();
-            this.role = user.getRole();
+        public static MyInfo get(User user) {
+            return MyInfo.builder()
+                .name(user.getName())
+                .email(user.getEmail())
+                .tel(user.getTel())
+                .role(user.getRole())
+                .build();
         }
     }
 

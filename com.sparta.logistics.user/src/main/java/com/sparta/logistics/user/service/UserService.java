@@ -18,7 +18,7 @@ public class UserService {
         Long userId = 1L; //인증객체에서 정보 가져오도록 수정
         User user = existUser(userId);
 
-        return new UserResponseDto.MyInfo(user);
+        return UserResponseDto.MyInfo.get(user);
     }
 
     public List<UserResponseDto.UserInfo> list() {

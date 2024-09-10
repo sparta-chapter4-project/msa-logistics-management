@@ -1,6 +1,6 @@
 package com.sparta.logistics.user.service;
 
-import com.sparta.logistics.user.dto.UserRequestDtos;
+import com.sparta.logistics.user.dto.UserRequestDto;
 import com.sparta.logistics.user.entity.User;
 import com.sparta.logistics.user.repository.UserRepository;
 import io.jsonwebtoken.Jwts;
@@ -38,7 +38,7 @@ public class AuthService {
     }
 
     @Transactional
-    public void signUp(UserRequestDtos.SignUpReqDto signUpReqDto) {
+    public void signUp(UserRequestDto.SignUpReqDto signUpReqDto) {
         if (userRepository.findByName(signUpReqDto.getName()).isPresent()) {
             throw new IllegalArgumentException("중복된 사용자가 존재합니다.");
         }
@@ -51,7 +51,7 @@ public class AuthService {
     }
 
     @Transactional
-    public String signIn(UserRequestDtos.SignInReqDto signInReqDto) {
+    public String signIn(UserRequestDto.SignInReqDto signInReqDto) {
         User user = userRepository.findByName(signInReqDto.getName()).orElseThrow(() ->
             new IllegalArgumentException("존재하지 않는 사용자 입니다."));
 

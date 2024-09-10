@@ -1,6 +1,6 @@
 package com.sparta.logistics.user.controller;
 
-import com.sparta.logistics.user.dto.UserRequestDtos;
+import com.sparta.logistics.user.dto.UserRequestDto;
 import com.sparta.logistics.user.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -15,12 +15,12 @@ public class AuthController {
     private final AuthService authService;
 
     @GetMapping("/signIn")
-    public ResponseEntity<String> signIn(@Validated @RequestBody UserRequestDtos.SignInReqDto signInReqDto){
+    public ResponseEntity<String> signIn(@Validated @RequestBody UserRequestDto.SignInReqDto signInReqDto){
         return ResponseEntity.ok(authService.signIn(signInReqDto));
     }
 
     @PostMapping("/signUp")
-    public ResponseEntity<Boolean> signUp(@Validated @RequestBody UserRequestDtos.SignUpReqDto signUpReqDto) {
+    public ResponseEntity<Boolean> signUp(@Validated @RequestBody UserRequestDto.SignUpReqDto signUpReqDto) {
         authService.signUp(signUpReqDto);
         return ResponseEntity.ok(true);
     }

@@ -1,6 +1,6 @@
 package com.sparta.logistics.user.entity;
 
-import com.sparta.logistics.user.dto.UserRequestDtos;
+import com.sparta.logistics.user.dto.UserRequestDto;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -31,7 +31,7 @@ public class User extends BaseEntity {
     @Enumerated(value = EnumType.STRING)
     private UserRoleEnum role;
 
-    public static User create(UserRequestDtos.SignUpReqDto signUpReqDto, String password) {
+    public static User create(UserRequestDto.SignUpReqDto signUpReqDto, String password) {
         return User.builder()
             .name(signUpReqDto.getName())
             .password(password)
