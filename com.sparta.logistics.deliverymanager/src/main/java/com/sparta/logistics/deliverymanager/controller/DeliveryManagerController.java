@@ -1,11 +1,13 @@
 package com.sparta.logistics.deliveryManager.controller;
 
 import com.sparta.logistics.deliveryManager.dto.DeliveryManagerRequestDto;
+import com.sparta.logistics.deliveryManager.dto.DeliveryManagerResponseDto;
 import com.sparta.logistics.deliveryManager.service.DeliveryManagerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -19,6 +21,11 @@ public class DeliveryManagerController {
     public ResponseEntity<Boolean> createDeliveryManager(@RequestBody DeliveryManagerRequestDto.Create request) {
         deliveryManagerService.createDeliveryManager(request);
         return ResponseEntity.ok(true);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<DeliveryManagerResponseDto.Get>> getDeliveryManager() {
+        return ResponseEntity.ok(deliveryManagerService.getDeliveryManager());
     }
 
     @PatchMapping("/{id}")
