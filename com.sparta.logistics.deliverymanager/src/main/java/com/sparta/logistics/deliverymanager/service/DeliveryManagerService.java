@@ -29,6 +29,13 @@ public class DeliveryManagerService {
                 .collect(Collectors.toList());
     }
 
+    public DeliveryManagerResponseDto.Get getFindDeliveryManager(UUID id) {
+        DeliveryManager deliveryManager = deliveryManagerRepository.findById(id).orElseThrow(
+                () -> new NullPointerException("배송 담당자 정보를 찾을 수 없습니다.")
+        );
+        return DeliveryManagerResponseDto.Get.of(deliveryManager);
+    }
+
     @Transactional
     public void updateDeliveryManager(UUID id, DeliveryManagerRequestDto.Update request) {
         DeliveryManager deliveryManager = deliveryManagerRepository.findById(id).orElseThrow(
