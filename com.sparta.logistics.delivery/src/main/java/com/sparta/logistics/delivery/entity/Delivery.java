@@ -54,6 +54,7 @@ public class Delivery {
                 .address(request.getAddress())
                 .recipientId(request.getRecipientId())
                 .recipientSlackId(request.getRecipientSlackId())
+                .status("READY_DELIVERY")
                 .isDeleted(false)
                 .build();
     }

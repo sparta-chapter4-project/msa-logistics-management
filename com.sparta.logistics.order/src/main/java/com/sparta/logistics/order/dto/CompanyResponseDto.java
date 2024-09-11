@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import java.util.UUID;
 
 public class CompanyResponseDto {
-    @Builder
+
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor

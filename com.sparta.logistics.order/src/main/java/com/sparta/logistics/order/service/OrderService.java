@@ -1,9 +1,6 @@
 package com.sparta.logistics.order.service;
 
-import com.sparta.logistics.order.dto.CompanyResponseDto;
-import com.sparta.logistics.order.dto.DeliveryRequestDto;
-import com.sparta.logistics.order.dto.OrderRequestDto;
-import com.sparta.logistics.order.dto.OrderResponseDto;
+import com.sparta.logistics.order.dto.*;
 import com.sparta.logistics.order.entity.Order;
 import com.sparta.logistics.order.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +18,7 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final DeliveryService deliveryService;
     private final CompanyService companyService;
+    private final DeliveyManagerService deliveyManagerService;
 
     @Transactional
     public void createOrder(OrderRequestDto.Create request) {
@@ -30,12 +28,12 @@ public class OrderService {
         // 수요 업체 데이터 가져오기
         CompanyResponseDto.Get demandData = companyService.getCompany(request.getDemandCompanyId());
         // 배송 담당자 데이터 가져오기
-        // 가져온 데이터를 객체로 넘기기
-        // 예를 들어, DeliveryRequestDto.Create.of(supplyData, demandData, managerData) 이렇게 넘어감
+        DeliveryManagerResponseDto.Get managerData = deliveyManagerService.getDeliveryManagersByHubId(supplyData.getHubId());
         UUID deliveryId = deliveryService.createDelivery(DeliveryRequestDto.Create.of(
                 order.getId(),
                 supplyData,
-                demandData
+                demandData,
+                managerData
         ));
         order.updateDeliveryId(deliveryId);
     }
