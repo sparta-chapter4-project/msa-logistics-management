@@ -1,21 +1,65 @@
 package com.sparta.logistics.user.service;
 
+import com.sparta.logistics.user.dto.UserDto;
 import com.sparta.logistics.user.dto.UserRequestDto;
 import com.sparta.logistics.user.entity.User;
-import com.sparta.logistics.user.global.jwt.JwtUtil;
 import com.sparta.logistics.user.repository.UserRepository;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.io.Decoders;
+import io.jsonwebtoken.security.Keys;
+import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.crypto.SecretKey;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Date;
+import java.util.stream.Collectors;
+
 @RequiredArgsConstructor
 @Service
+@Slf4j
 public class AuthService {
+
+    private final AuthenticationManager authenticationManager;
+    private final RedisService redisService;
 
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
-    private final JwtUtil jwtUtil;
+//    private final JwtUtil jwtUtil;
+
+    private final SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
+    @Value("${service.jwt.secret-key}")
+    private String jwtSecretKey;
+    private SecretKey key;
+    public static final String AUTHORIZATION_KEY = "role";
+    public int ACCESS_TOKEN_TTL_SECONDS = 60 * 60 * 1000;
+
+    @PostConstruct
+    public void init() {
+        byte[] bytes = Decoders.BASE64URL.decode(jwtSecretKey);
+        key = Keys.hmacShaKeyFor(bytes);
+    }
 
     @Transactional
     public void signUp(UserRequestDto.SignUpReqDto signUpReqDto) {
@@ -30,7 +74,7 @@ public class AuthService {
         userRepository.save(User.create(signUpReqDto, passwordEncoder.encode(signUpReqDto.getPassword())));
     }
 
-    @Transactional
+//    @Transactional
     public String signIn(UserRequestDto.SignInReqDto signInReqDto) {
         User user = userRepository.findByName(signInReqDto.getName()).orElseThrow(() ->
             new IllegalArgumentException("존재하지 않는 사용자 입니다."));
@@ -39,6 +83,61 @@ public class AuthService {
             throw new IllegalArgumentException("비밀번호가 일치하지 않습니다");
         }
 
-        return jwtUtil.createAccessToken(user);
+        log.info("뭐가문제야");
+
+//        TestDto testDto = new TestDto(signInReqDto.getName(),signInReqDto.getPassword());
+//
+        Collection<? extends GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority(user.getRole().getAuthority()));
+
+        Authentication authentication = authenticationManager.authenticate(
+            new UsernamePasswordAuthenticationToken(user, null,authorities)
+        );
+
+
+
+
+
+        log.info("인증이 안되나");
+
+//        User user2 = (User) authentication.getPrincipal();
+
+        log.info("어디까지오는겨");
+
+        var userDto = UserDto.create(user);
+
+        log.info("여기까진오나");
+
+        redisService.setValue("user:" + signInReqDto.getName(), userDto);
+
+        log.info("어디까지오나");
+
+        return createToken(user);
     }
+
+    public String createToken(User user) {
+        return "Bearer " +
+            Jwts.builder()
+                .subject(user.getName())
+                .claim(AUTHORIZATION_KEY, user.getRole())
+                .expiration(new Date(System.currentTimeMillis() + ACCESS_TOKEN_TTL_SECONDS))
+                .issuedAt(new Date(System.currentTimeMillis()))
+                .signWith(key, signatureAlgorithm)
+                .compact();
+    }
+
+    public Boolean verifyUser(Long userId) {
+        return userRepository.findById(userId).isPresent();
+    }
+
+//    private record UserDto(String userName, String role) {
+//        public static UserDto fromUser(org.springframework.security.core.userdetails.User user) {
+//            return new UserDto(
+//                user.getUsername(),
+//                user.getAuthorities().stream()
+//                    .map(GrantedAuthority::getAuthority)
+//                    .collect(Collectors.toList())
+//            );
+//        }
+//    }
+    private record TestDto(String username, String password){}
 }

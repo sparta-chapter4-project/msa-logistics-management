@@ -2,7 +2,6 @@ package com.sparta.logistics.user.controller;
 
 import com.sparta.logistics.user.dto.UserRequestDto;
 import com.sparta.logistics.user.dto.UserResponseDto;
-import com.sparta.logistics.user.global.security.UserDetailsImpl;
 import com.sparta.logistics.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -15,8 +14,8 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@PreAuthorize("hasAnyRole('MASTER')")
-@RequestMapping("/admin")
+//@PreAuthorize("hasAnyRole('MASTER')")
+@RequestMapping("/user/admin")
 public class AdminController {
 
     private final UserService userService;

@@ -3,7 +3,6 @@ package com.sparta.logistics.user.service;
 import com.sparta.logistics.user.dto.UserRequestDto;
 import com.sparta.logistics.user.dto.UserResponseDto;
 import com.sparta.logistics.user.entity.User;
-import com.sparta.logistics.user.global.security.UserDetailsImpl;
 import com.sparta.logistics.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -21,11 +20,11 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    public UserResponseDto.MyInfo myInfo(UserDetailsImpl userDetails) {
-        User user = existUser(userDetails.getId());
-
-        return UserResponseDto.MyInfo.get(user);
-    }
+//    public UserResponseDto.MyInfo myInfo(UserDetailsImpl userDetails) {
+//        User user = existUser(userDetails.getId());
+//
+//        return UserResponseDto.MyInfo.get(user);
+//    }
 
     public List<UserResponseDto.UserInfo> list() {
         return userRepository.findAllByIsDeletedFalse().stream().map(UserResponseDto.UserInfo::get).toList();

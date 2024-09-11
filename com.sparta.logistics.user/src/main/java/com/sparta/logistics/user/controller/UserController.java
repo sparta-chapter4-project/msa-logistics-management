@@ -1,7 +1,6 @@
 package com.sparta.logistics.user.controller;
 
 import com.sparta.logistics.user.dto.UserResponseDto;
-import com.sparta.logistics.user.global.security.UserDetailsImpl;
 import com.sparta.logistics.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +18,8 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping("")
-    public ResponseEntity<UserResponseDto.MyInfo> myInfo(@AuthenticationPrincipal UserDetailsImpl userDetails) {
-        return ResponseEntity.ok(userService.myInfo(userDetails));
-    }
+//    @GetMapping("")
+//    public ResponseEntity<UserResponseDto.MyInfo> myInfo(@AuthenticationPrincipal UserDetailsImpl userDetails) {
+//        return ResponseEntity.ok(userService.myInfo(userDetails));
+//    }
 }
