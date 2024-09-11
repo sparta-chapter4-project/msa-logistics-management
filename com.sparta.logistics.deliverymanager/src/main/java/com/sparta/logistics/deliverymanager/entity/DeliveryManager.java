@@ -41,4 +41,9 @@ public class DeliveryManager {
                 .isDeleted(false)
                 .build();
     }
+
+    public void update(DeliveryManagerRequestDto.Update request) {
+        this.hubId = request.getHubId();
+        this.type = request.getType();
+    }
 }

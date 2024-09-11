@@ -9,11 +9,18 @@ public class DeliveryManagerRequestDto {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    @Builder(access = AccessLevel.PRIVATE)
     public static class Create {
         private Long userId;
         private UUID hubId;
         private UUID slackId;
+        private String type;
+    }
+
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Update {
+        private UUID hubId;
         private String type;
     }
 }
