@@ -21,7 +21,7 @@ public class DeliveryManagerController {
         return ResponseEntity.ok(true);
     }
 
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<Boolean> updateDeliveryManager(
             @PathVariable(name = "id")UUID id,
             @RequestBody DeliveryManagerRequestDto.Update request
