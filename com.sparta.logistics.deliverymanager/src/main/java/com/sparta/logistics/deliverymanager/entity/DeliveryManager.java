@@ -46,4 +46,8 @@ public class DeliveryManager {
         this.hubId = request.getHubId();
         this.type = request.getType();
     }
+
+    public void updateIsDeleted() {
+        this.isDeleted = true;
+    }
 }

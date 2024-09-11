@@ -29,4 +29,12 @@ public class DeliveryManagerController {
         deliveryManagerService.updateDeliveryManager(id, request);
         return ResponseEntity.ok(true);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Boolean> deleteDeliveryManager(
+            @PathVariable(name = "id")UUID id
+    ) {
+        deliveryManagerService.deleteDeliveryManager(id);
+        return ResponseEntity.ok(true);
+    }
 }

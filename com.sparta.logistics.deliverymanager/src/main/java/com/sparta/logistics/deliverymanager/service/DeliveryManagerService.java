@@ -27,4 +27,10 @@ public class DeliveryManagerService {
         deliveryManager.update(request);
     }
 
+    @Transactional
+    public void deleteDeliveryManager(UUID id) {
+        DeliveryManager deliveryManager = deliveryManagerRepository.findById(id).orElseThrow(
+                () -> new NullPointerException("배송 담당자 정보를 찾을 수 없습니다."));
+        deliveryManager.updateIsDeleted();
+    }
 }
