@@ -20,9 +20,16 @@ public class DeliveryRequestDto {
         private Long recipientId;
         private String recipientSlackId;
 
-        public static DeliveryRequestDto.Create of(final UUID orderId) {
+        public static DeliveryRequestDto.Create of(
+                final UUID orderId,
+                final CompanyResponseDto.Get supplyData,
+                final CompanyResponseDto.Get demandData
+        ) {
             return Create.builder()
                     .orderId(orderId)
+                    .startHubId(supplyData.getHubId())
+                    .endHubId(demandData.getHubId())
+                    .address(demandData.getAddress())
                     .build();
 
         }
