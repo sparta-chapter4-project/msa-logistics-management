@@ -21,9 +21,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class WebSecurityConfig {
 
 //    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final UserDetailsServiceImpl userDetailsService;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -37,15 +39,15 @@ public class WebSecurityConfig {
         return configuration.getAuthenticationManager();
     }
 
-    @Bean
-    public UserDetailsService userDetailsService() {
-        // 이 부분은 DB 조회를 위한 부분으로 바꾸시거나, UserDetailsServiceImpl을 작성하셔도 됩니다.
-        var user = User.withUsername("user")
-            .password(passwordEncoder().encode("password"))
-            .roles("USER")
-            .build();
-        return new InMemoryUserDetailsManager(user);
-    }
+//    @Bean
+//    public UserDetailsService userDetailsService() {
+//        // 이 부분은 DB 조회를 위한 부분으로 바꾸시거나, UserDetailsServiceImpl을 작성하셔도 됩니다.
+//        var user = User.withUsername("user")
+//            .password(passwordEncoder().encode("password"))
+//            .roles("USER")
+//            .build();
+//        return new InMemoryUserDetailsManager(user);
+//    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -57,6 +59,8 @@ public class WebSecurityConfig {
         http.sessionManagement((sessionManagement) ->
             sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         );
+
+        http.userDetailsService(userDetailsService);
 
         return http.build();
     }

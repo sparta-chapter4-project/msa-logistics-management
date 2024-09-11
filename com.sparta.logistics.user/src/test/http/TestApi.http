@@ -1,0 +1,19 @@
+POST http://localhost:19095/user/auth/signUp
+Content-Type: application/json
+
+{
+  "name": "newname",
+  "password": "new_password",
+  "email": "email@email.com",
+  "tel": "010-9173-9505",
+  "role": "MASTER"
+}
+
+###
+POST http://localhost:19095/user/auth/signIn
+Content-Type: application/json
+
+{
+  "name": "newname",
+  "password": "new_password"
+}

@@ -3,6 +3,8 @@ package com.sparta.logistics.user.service;
 import com.sparta.logistics.user.dto.UserDto;
 import com.sparta.logistics.user.dto.UserRequestDto;
 import com.sparta.logistics.user.entity.User;
+import com.sparta.logistics.user.entity.UserRoleEnum;
+import com.sparta.logistics.user.global.security.UserDetailsImpl;
 import com.sparta.logistics.user.repository.UserRepository;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -87,38 +89,37 @@ public class AuthService {
 
 //        TestDto testDto = new TestDto(signInReqDto.getName(),signInReqDto.getPassword());
 //
-        Collection<? extends GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority(user.getRole().getAuthority()));
+//        Collection<? extends GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority(user.getRole().getAuthority()));
+
+        System.out.println("signInReqDto.getName() = " + signInReqDto.getName());
 
         Authentication authentication = authenticationManager.authenticate(
-            new UsernamePasswordAuthenticationToken(user, null,authorities)
+            new UsernamePasswordAuthenticationToken(signInReqDto.getName(), signInReqDto.getPassword())
         );
 
 
-
-
-
         log.info("인증이 안되나");
-
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 //        User user2 = (User) authentication.getPrincipal();
 
         log.info("어디까지오는겨");
 
-        var userDto = UserDto.create(user);
+//        var userDto = UserDto.create(user2);
 
         log.info("여기까진오나");
 
-        redisService.setValue("user:" + signInReqDto.getName(), userDto);
+//        redisService.setValue("user:" + signInReqDto.getName(), userDto);
 
         log.info("어디까지오나");
 
-        return createToken(user);
+        return createToken(userDetails.getUsername(), userDetails.getRole());
     }
 
-    public String createToken(User user) {
+    public String createToken(String name, UserRoleEnum role) {
         return "Bearer " +
             Jwts.builder()
-                .subject(user.getName())
-                .claim(AUTHORIZATION_KEY, user.getRole())
+                .subject(name)
+                .claim(AUTHORIZATION_KEY, role)
                 .expiration(new Date(System.currentTimeMillis() + ACCESS_TOKEN_TTL_SECONDS))
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .signWith(key, signatureAlgorithm)

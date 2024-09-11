@@ -5,7 +5,6 @@ import com.sparta.logistics.user.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +16,7 @@ public class AuthController {
 
     private final AuthService authService;
 
-    @GetMapping("/signIn")
+    @PostMapping("/signIn")
     public ResponseEntity<String> signIn(@Validated @RequestBody UserRequestDto.SignInReqDto signInReqDto){
         log.info("test");
         return ResponseEntity.ok(authService.signIn(signInReqDto));
