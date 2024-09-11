@@ -1,0 +1,27 @@
+### DeliveryManager Create - Send Post request with json body
+POST http://localhost:8080/deliverymanager
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "hubId": "5e6fa614-17c6-4a23-8bba-7bf05f11cd89",
+  "slackId": "5e6fa614-17c6-4a23-8bba-7bf05f11cd89",
+  "type": "COMPANY_DELIVERY"
+}
+
+#### DeliveryManager Get - Send Get request
+#GET http://localhost:8080/deliverymanager
+#
+#### DeliveryManager Find Get - Send Get request with path variable
+#@deliveryManagerId=
+#GET http://localhost:8080/deliverymanager/{{deliveryManagerId}}
+#
+#### DeliveryManager Update - Send Put request with path variable, json body
+#PUT http://localhost:8080/deliverymanager/{{deliveryManagerId}}
+#Content-Type: application/json
+#
+#{
+#}
+#
+#### Order Cancel - Send Delete request with path variable
+#DELETE http://localhost:8080/deliverymanager/{{deliveryManagerId}}

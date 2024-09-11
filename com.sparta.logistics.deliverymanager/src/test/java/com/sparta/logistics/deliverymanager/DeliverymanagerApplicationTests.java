@@ -1,10 +1,10 @@
-package com.sparta.logistics.deliverymanager;
+package com.sparta.logistics.deliveryManager;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DeliverymanagerApplicationTests {
+class DeliveryManagerApplicationTests {
 
 	@Test
 	void contextLoads() {
