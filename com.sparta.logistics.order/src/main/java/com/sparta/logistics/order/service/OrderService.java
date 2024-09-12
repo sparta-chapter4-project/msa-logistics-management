@@ -4,6 +4,8 @@ import com.sparta.logistics.order.dto.*;
 import com.sparta.logistics.order.entity.Order;
 import com.sparta.logistics.order.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,10 +40,8 @@ public class OrderService {
         order.updateDeliveryId(deliveryId);
     }
 
-    public List<OrderResponseDto.Get> getOrder() {
-        return orderRepository.findAll().stream()
-                .map(OrderResponseDto.Get::of)
-                .collect(Collectors.toList());
+    public Page<OrderResponseDto.Get> getOrder(Pageable pageable) {
+        return orderRepository.findAll(pageable).map(OrderResponseDto.Get::of);
     }
 
     public OrderResponseDto.Get getFindOrder(UUID id) {
@@ -64,6 +64,6 @@ public class OrderService {
         Order order = orderRepository.findById(orderId).orElseThrow(() ->
                 new NullPointerException("해당 주문을 찾을 수 없습니다.")
         );
-        order.updateIsDeleted();
+        order.delete();
     }
 }
