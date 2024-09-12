@@ -10,3 +10,9 @@ Content-Type: application/json
   "companyStock": 20,
   "price": 2000
 }
+
+### Company Find Get - Send Get request with path variable
+< {%
+    request.variables.set("productId", "a9f9aa32-0212-4a36-ab35-d96aecc7b479")
+%}
+GET http://localhost:8080/product/{{productId}}
