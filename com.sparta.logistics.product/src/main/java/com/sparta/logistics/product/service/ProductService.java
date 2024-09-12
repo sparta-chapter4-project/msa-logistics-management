@@ -7,6 +7,7 @@ import com.sparta.logistics.product.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
 
@@ -23,8 +24,12 @@ public class ProductService {
         return ProductResponseDto.Get.of(findById(productId));
     }
 
+    public List<ProductResponseDto.Get> getProducts() {
+        return productRepository.findAllByQuerydsl().stream().map(ProductResponseDto.Get::of).toList();
+    }
     public Product findById(UUID productId){
         return productRepository.findByProductId(productId).orElseThrow(
                 NoSuchElementException::new);
     }
+
 }
