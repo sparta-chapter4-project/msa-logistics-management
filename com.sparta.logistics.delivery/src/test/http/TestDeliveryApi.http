@@ -1,5 +1,6 @@
+@DeliveryPort=8081
 ### Delivery Create - Send Post request with json body
-POST http://localhost:8080/delivery
+POST http://localhost:{{DeliveryPort}}/delivery
 Content-Type: application/json
 
 {
@@ -14,14 +15,14 @@ Content-Type: application/json
 }
 
 ### Delivery Get - Send Get request
-GET http://localhost:8080/delivery
+GET http://localhost:{{DeliveryPort}}/delivery
 
 ### Delivery Get - Send Get request with path variable
 @deliveryId=efbd40ad-0104-4f52-a346-e6e64934032e
-GET http://localhost:8080/delivery/{{deliveryId}}
+GET http://localhost:{{DeliveryPort}}/delivery/{{deliveryId}}
 
 ### Delivery Update - Send Put request with path variable, json body
-PUT http://localhost:8080/delivery/{{deliveryId}}
+PUT http://localhost:{{DeliveryPort}}/delivery/{{deliveryId}}
 Content-Type: application/json
 
 {
@@ -36,4 +37,4 @@ Content-Type: application/json
 
 
 ### Delivery Cancel - Send Delete request with path variable
-DELETE http://localhost:8080/delivery/{{deliveryId}}
+DELETE http://localhost:{{DeliveryPort}}/delivery/{{deliveryId}}
