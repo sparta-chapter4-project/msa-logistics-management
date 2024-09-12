@@ -5,6 +5,7 @@ import com.sparta.logistics.gateway.service.RedisService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,6 +25,7 @@ import java.util.Optional;
 
 @Configuration
 @EnableWebFluxSecurity
+@Slf4j
 public class SecurityConfig {
 
     @Value("${jwt.secret.key}") // Base64 Encode 한 SecretKey
@@ -69,7 +71,7 @@ public class SecurityConfig {
                             .parseClaimsJws(token)
                             .getBody();
 
-                    String username = claims.getSubject();
+                    String username = claims.get("name", String.class);
 
                     UserRedisDto userRedisDto =
                             Optional.ofNullable(
@@ -81,7 +83,7 @@ public class SecurityConfig {
 
                     // 사용자 정보를 새로운 헤더에 추가
                     ServerHttpRequest modifiedRequest = exchange.getRequest().mutate()
-                            .header("X-User-Name", userRedisDto.getName())  // 사용자명 헤더 추가
+                            .header("X-User-Name", userRedisDto.getUsername())  // 사용자명 헤더 추가
                             .header("X-User-Roles", String.join(",", userRedisDto.getRoles()))    // 권한 정보 헤더 추가
                             .build();
 
@@ -91,6 +93,7 @@ public class SecurityConfig {
 
                     // 추가적인 JWT 처리 로직을 넣을 수 있음
                 } catch (Exception e) {
+                    log.error(e.getMessage());
                     return Mono.error(new RuntimeException("Invalid JWT Token"));
                 }
             }

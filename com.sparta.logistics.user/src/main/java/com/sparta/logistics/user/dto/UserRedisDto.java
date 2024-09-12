@@ -14,12 +14,12 @@ public class UserRedisDto {
     @AllArgsConstructor
     @Builder(access = AccessLevel.PRIVATE)
     public static class Create {
-        private String name;
+        private String username;
         private Collection<String> roles;
 
         public static UserRedisDto.Create of(UserDetails userDetails) {
             return Create.builder()
-                    .name(userDetails.getUsername())
+                    .username(userDetails.getUsername())
                     .roles(
                             userDetails.getAuthorities().stream()
                             .map(GrantedAuthority::getAuthority)

@@ -11,6 +11,6 @@ import java.util.Collection;
 @NoArgsConstructor
 public class UserRedisDto {
 
-    private String name;
+    private String username;
     private Collection<String> roles;
 }
