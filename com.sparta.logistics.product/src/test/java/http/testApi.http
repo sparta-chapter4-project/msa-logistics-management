@@ -1,0 +1,46 @@
+### Product Create - Send Post request with json body
+POST http://localhost:8080/product
+Content-Type: application/json
+
+{
+  "hubId": "126bd829-113e-41b8-ad0c-b86e8b467979",
+  "companyId": "7469d4b6-98e6-4f66-a283-f5426088e5dd",
+  "name": "상품상품222",
+  "hubStock": 10,
+  "companyStock": 20,
+  "price": 2000
+}
+
+### Product Find Get - Send Get request with path variable
+< {%
+    request.variables.set("productId", "a9f9aa32-0212-4a36-ab35-d96aecc7b479")
+%}
+GET http://localhost:8080/product/{{productId}}
+
+### Product Find Get - Send Get request
+GET http://localhost:8080/product
+
+### Product Find Update - Send Update request
+PUT http://localhost:8080/product
+Content-Type: application/json
+
+{
+  "productId": "a9f9aa32-0212-4a36-ab35-d96aecc7b479",
+  "hubId": "126bd829-113e-41b8-ad0c-b86e8b467979",
+  "companyId": "7469d4b6-98e6-4f66-a283-f5426088e5dd",
+  "name": "이름이름",
+  "hubStock": 10,
+  "companyStock": 20,
+  "price" : 10000
+}
+
+### Product Find Delete - Send Delete request
+< {%
+    request.variables.set("productId", "a9f9aa32-0212-4a36-ab35-d96aecc7b479")
+%}
+DELETE http://localhost:8080/product/{{productId}}
+
+### Product search - Send Get request with request Parameter
+GET http://localhost:8080/product/search
+
+
