@@ -4,10 +4,13 @@ import com.sparta.logistics.deliveryManager.dto.DeliveryManagerRequestDto;
 import com.sparta.logistics.deliveryManager.dto.DeliveryManagerResponseDto;
 import com.sparta.logistics.deliveryManager.service.DeliveryManagerService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -24,8 +27,10 @@ public class DeliveryManagerController {
     }
 
     @GetMapping
-    public ResponseEntity<List<DeliveryManagerResponseDto.Get>> getDeliveryManager() {
-        return ResponseEntity.ok(deliveryManagerService.getDeliveryManager());
+    public ResponseEntity<Page<DeliveryManagerResponseDto.Get>> getDeliveryManager(
+            @PageableDefault(size = 10, sort = "createdAt", direction = Sort.Direction.ASC) Pageable pageable
+    ) {
+        return ResponseEntity.ok(deliveryManagerService.getDeliveryManager(pageable));
     }
 
     @GetMapping("/{id}")

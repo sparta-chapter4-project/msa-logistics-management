@@ -1,5 +1,6 @@
+@DeliveyManagerPort=8083
 ### DeliveryManager Create - Send Post request with json body
-POST http://localhost:8083/deliverymanager
+POST http://localhost:{{DeliveyManagerPort}}/deliverymanager
 Content-Type: application/json
 
 {
@@ -10,18 +11,18 @@ Content-Type: application/json
 }
 
 ### DeliveryManager Get - Send Get request
-GET http://localhost:8083/deliverymanager
+GET http://localhost:{{DeliveyManagerPort}}/deliverymanager
 
 ### DeliveryManager Find Get - Send Get request with path variable
 @deliveryManagerId=8d2ef67e-553f-48e9-9a23-91bfa8eb00b3
-GET http://localhost:8083/deliverymanager/{{deliveryManagerId}}
+GET http://localhost:{{DeliveyManagerPort}}/deliverymanager/{{deliveryManagerId}}
 
 ### DeliveryManager Find Get Hub Id - Send Get request with path variable
 @hubId=59d67615-c2b5-4971-9672-edda66e24930
-GET localhost:8083/deliverymanager/hub/{{hubId}}
+GET localhost:{{DeliveyManagerPort}}/deliverymanager/hub/{{hubId}}
 
 ### DeliveryManager Update - Send Put request with path variable, json body
-PATCH http://localhost:8083/deliverymanager/{{deliveryManagerId}}
+PATCH http://localhost:{{DeliveyManagerPort}}/deliverymanager/{{deliveryManagerId}}
 Content-Type: application/json
 
 {
@@ -30,4 +31,4 @@ Content-Type: application/json
 }
 
 ### Order Cancel - Send Delete request with path variable
-DELETE http://localhost:8083/deliverymanager/{{deliveryManagerId}}
+DELETE http://localhost:{{DeliveyManagerPort}}/deliverymanager/{{deliveryManagerId}}

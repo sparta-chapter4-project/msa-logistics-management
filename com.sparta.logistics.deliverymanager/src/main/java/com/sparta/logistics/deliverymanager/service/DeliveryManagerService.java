@@ -5,6 +5,8 @@ import com.sparta.logistics.deliveryManager.dto.DeliveryManagerResponseDto;
 import com.sparta.logistics.deliveryManager.entity.DeliveryManager;
 import com.sparta.logistics.deliveryManager.repository.DeliveryManagerRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,10 +25,8 @@ public class DeliveryManagerService {
         deliveryManagerRepository.save(DeliveryManager.create(request));
     }
 
-    public List<DeliveryManagerResponseDto.Get> getDeliveryManager() {
-        return deliveryManagerRepository.findAll().stream()
-                .map(DeliveryManagerResponseDto.Get::of)
-                .collect(Collectors.toList());
+    public Page<DeliveryManagerResponseDto.Get> getDeliveryManager(Pageable pageable) {
+        return deliveryManagerRepository.findAll(pageable).map(DeliveryManagerResponseDto.Get::of);
     }
 
     public DeliveryManagerResponseDto.Get getFindDeliveryManager(UUID id) {
@@ -55,7 +55,7 @@ public class DeliveryManagerService {
     public void deleteDeliveryManager(UUID id) {
         DeliveryManager deliveryManager = deliveryManagerRepository.findById(id).orElseThrow(
                 () -> new NullPointerException("배송 담당자 정보를 찾을 수 없습니다."));
-        deliveryManager.updateIsDeleted();
+        deliveryManager.delete();
     }
 
 
