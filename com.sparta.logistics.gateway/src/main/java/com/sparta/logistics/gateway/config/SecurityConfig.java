@@ -82,7 +82,7 @@ public class SecurityConfig {
                     // 사용자 정보를 새로운 헤더에 추가
                     ServerHttpRequest modifiedRequest = exchange.getRequest().mutate()
                             .header("X-User-Name", userRedisDto.getName())  // 사용자명 헤더 추가
-                            .header("X-User-Role", String.valueOf(userRedisDto.getRole()))    // 권한 정보 헤더 추가
+                            .header("X-User-Roles", String.join(",", userRedisDto.getRoles()))    // 권한 정보 헤더 추가
                             .build();
 
                     // 수정된 요청으로 필터 체인 계속 처리

@@ -4,6 +4,7 @@ import com.sparta.logistics.user.dto.UserRedisDto;
 import com.sparta.logistics.user.dto.UserRequestDto;
 import com.sparta.logistics.user.dto.UserResponseDto;
 import com.sparta.logistics.user.entity.User;
+import com.sparta.logistics.user.entity.UserRoleEnum;
 import com.sparta.logistics.user.repository.UserRepository;
 import com.sparta.logistics.user.security.JwtUtil;
 import com.sparta.logistics.user.security.UserDetailsImpl;
@@ -15,11 +16,14 @@ import org.springframework.data.domain.Sort;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -58,9 +62,9 @@ public class UserService {
                 new UsernamePasswordAuthenticationToken(signInReqDto.getName(), signInReqDto.getPassword())
         );
 
-        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        UserDetailsImpl userDetail = (UserDetailsImpl) authentication.getPrincipal();
 
-        UserRedisDto.Create userRedis = UserRedisDto.Create.of(userDetails.getUsername(), userDetails.getRole());
+        UserRedisDto.Create userRedis = UserRedisDto.Create.of(userDetail);
 
         redisService.setValue("user:" + user.getName(), userRedis);
 

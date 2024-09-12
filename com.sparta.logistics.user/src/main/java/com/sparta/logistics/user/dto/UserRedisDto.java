@@ -1,7 +1,11 @@
 package com.sparta.logistics.user.dto;
 
-import com.sparta.logistics.user.entity.UserRoleEnum;
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+import java.util.stream.Collectors;
 
 public class UserRedisDto {
 
@@ -11,12 +15,16 @@ public class UserRedisDto {
     @Builder(access = AccessLevel.PRIVATE)
     public static class Create {
         private String name;
-        private UserRoleEnum role;
+        private Collection<String> roles;
 
-        public static UserRedisDto.Create of(String name, UserRoleEnum role) {
+        public static UserRedisDto.Create of(UserDetails userDetails) {
             return Create.builder()
-                    .name(name)
-                    .role(role)
+                    .name(userDetails.getUsername())
+                    .roles(
+                            userDetails.getAuthorities().stream()
+                            .map(GrantedAuthority::getAuthority)
+                            .collect(Collectors.toList())
+                    )
                     .build();
         }
     }
