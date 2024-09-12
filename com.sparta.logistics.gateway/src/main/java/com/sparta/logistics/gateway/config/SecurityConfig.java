@@ -1,6 +1,6 @@
 package com.sparta.logistics.gateway.config;
 
-import com.sparta.logistics.gateway.domain.UserDto;
+import com.sparta.logistics.gateway.domain.UserRedisDto;
 import com.sparta.logistics.gateway.service.RedisService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -46,7 +46,6 @@ public class SecurityConfig {
 
     @Bean
     public WebFilter jwtAuthenticationFilter(RedisService redisService) {
-        // TODO: 게이트웨이 jwt 인증 처리 필터
         return (exchange, chain) -> {
 
             if (exchange.getRequest().getURI().getPath().equals("/user/signIn") ||
@@ -72,9 +71,9 @@ public class SecurityConfig {
 
                     String username = claims.getSubject();
 
-                    var userDto =
+                    UserRedisDto userRedisDto =
                             Optional.ofNullable(
-                                    redisService.getValueAsClass("user:" + username, UserDto.class)
+                                    redisService.getValueAsClass("user:" + username, UserRedisDto.class)
                                     )
                             .orElseThrow(() -> new UsernameNotFoundException("User " + username + " not found")
                     );
@@ -82,8 +81,8 @@ public class SecurityConfig {
 
                     // 사용자 정보를 새로운 헤더에 추가
                     ServerHttpRequest modifiedRequest = exchange.getRequest().mutate()
-                            .header("X-User-Name", username)  // 사용자명 헤더 추가
-                            .header("X-User-Roles", String.join(",", userDto.getRoles()))    // 권한 정보 헤더 추가
+                            .header("X-User-Name", userRedisDto.getName())  // 사용자명 헤더 추가
+                            .header("X-User-Role", String.valueOf(userRedisDto.getRole()))    // 권한 정보 헤더 추가
                             .build();
 
                     // 수정된 요청으로 필터 체인 계속 처리

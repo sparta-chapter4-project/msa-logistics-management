@@ -1,16 +1,20 @@
 package com.sparta.logistics.user.service;
 
+import com.sparta.logistics.user.dto.UserRedisDto;
 import com.sparta.logistics.user.dto.UserRequestDto;
 import com.sparta.logistics.user.dto.UserResponseDto;
 import com.sparta.logistics.user.entity.User;
-import com.sparta.logistics.user.global.jwt.JwtUtil;
-import com.sparta.logistics.user.global.security.UserDetailsImpl;
 import com.sparta.logistics.user.repository.UserRepository;
+import com.sparta.logistics.user.security.JwtUtil;
+import com.sparta.logistics.user.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +25,9 @@ import java.util.List;
 @Service
 public class UserService {
 
+    private final AuthenticationManager authenticationManager;
     private final UserRepository userRepository;
+    private final RedisService redisService;
 
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
@@ -48,6 +54,16 @@ public class UserService {
             throw new IllegalArgumentException("비밀번호가 일치하지 않습니다");
         }
 
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(signInReqDto.getName(), signInReqDto.getPassword())
+        );
+
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+
+        UserRedisDto.Create userRedis = UserRedisDto.Create.of(userDetails.getUsername(), userDetails.getRole());
+
+        redisService.setValue("user:" + user.getName(), userRedis);
+
         return jwtUtil.createAccessToken(user);
     }
 
@@ -66,9 +82,9 @@ public class UserService {
         return UserResponseDto.UserInfo.get(existUser(userId));
     }
 
-    private User existUser(Long userId){
+    private User existUser(Long userId) {
         return userRepository.findByIdAndIsDeletedFalse(userId).orElseThrow(
-            () -> new IllegalArgumentException("유저가 존재하지 않습니다.")
+                () -> new IllegalArgumentException("유저가 존재하지 않습니다.")
         );
     }
 

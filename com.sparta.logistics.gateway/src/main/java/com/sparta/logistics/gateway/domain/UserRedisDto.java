@@ -4,13 +4,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Collection;
-
 @Getter
 @Setter
 @NoArgsConstructor
-public class UserDto {
+public class UserRedisDto {
 
-    private String userName;
-    private Collection<String> roles;
+    private String name;
+    private UserRoleEnum role;
 }

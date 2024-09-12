@@ -1,4 +1,4 @@
-package com.sparta.logistics.user.global.security;
+package com.sparta.logistics.user.security;
 
 import com.sparta.logistics.user.entity.User;
 import com.sparta.logistics.user.repository.UserRepository;

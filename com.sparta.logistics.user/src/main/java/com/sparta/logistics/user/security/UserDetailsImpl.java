@@ -1,6 +1,7 @@
-package com.sparta.logistics.user.global.security;
+package com.sparta.logistics.user.security;
 
 import com.sparta.logistics.user.entity.User;
+import com.sparta.logistics.user.entity.UserRoleEnum;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
@@ -26,11 +27,11 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public String getPassword() {
-        return null;
+        return user.getPassword();
     }
 
+    public UserRoleEnum getRole() { return user.getRole(); }
+
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
-    }
+    public Collection<? extends GrantedAuthority> getAuthorities() { return authorities; }
 }
