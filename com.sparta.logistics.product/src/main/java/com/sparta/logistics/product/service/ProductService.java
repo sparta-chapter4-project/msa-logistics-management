@@ -5,6 +5,8 @@ import com.sparta.logistics.product.dto.ProductResponseDto;
 import com.sparta.logistics.product.entity.Product;
 import com.sparta.logistics.product.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -40,6 +42,9 @@ public class ProductService {
         return ProductResponseDto.Delete.of(product);
     }
 
+    public Page<ProductResponseDto.Get> search(Pageable pageable) {
+        return productRepository.search(pageable);
+    }
     public Product findById(UUID productId){
         return productRepository.findByProductId(productId).orElseThrow(
                 NoSuchElementException::new);

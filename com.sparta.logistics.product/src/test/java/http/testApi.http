@@ -40,6 +40,7 @@ Content-Type: application/json
 %}
 DELETE http://localhost:8080/product/{{productId}}
 
-
+### Product search - Send Get request with request Parameter
+GET http://localhost:8080/product/search
 
 
