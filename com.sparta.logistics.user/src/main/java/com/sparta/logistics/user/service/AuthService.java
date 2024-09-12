@@ -5,6 +5,7 @@ import com.sparta.logistics.user.dto.UserRequestDto;
 import com.sparta.logistics.user.entity.User;
 import com.sparta.logistics.user.entity.UserRoleEnum;
 import com.sparta.logistics.user.global.security.UserDetailsImpl;
+import com.sparta.logistics.user.global.security.UserDetailsServiceImpl;
 import com.sparta.logistics.user.repository.UserRepository;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -45,6 +46,8 @@ public class AuthService {
 
     private final AuthenticationManager authenticationManager;
     private final RedisService redisService;
+
+    private final UserDetailsServiceImpl userDetailsService;
 
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
@@ -89,7 +92,7 @@ public class AuthService {
 
 //        TestDto testDto = new TestDto(signInReqDto.getName(),signInReqDto.getPassword());
 //
-//        Collection<? extends GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority(user.getRole().getAuthority()));
+        Collection<? extends GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority(user.getRole().getAuthority()));
 
         System.out.println("signInReqDto.getName() = " + signInReqDto.getName());
 
@@ -97,20 +100,27 @@ public class AuthService {
             new UsernamePasswordAuthenticationToken(signInReqDto.getName(), signInReqDto.getPassword())
         );
 
+//        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(signInReqDto.getName(), signInReqDto.getPassword(), authorities);
+
 
         log.info("인증이 안되나");
-        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+//        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+
+        UserDetailsImpl userDetails = this.userDetailsService.loadUserByUsername(user.getName());
 //        User user2 = (User) authentication.getPrincipal();
 
         log.info("어디까지오는겨");
 
-//        var userDto = UserDto.create(user2);
+        var userDto = UserDto.create(user);
 
         log.info("여기까진오나");
 
-//        redisService.setValue("user:" + signInReqDto.getName(), userDto);
+        redisService.setValue("user:" + signInReqDto.getName(), userDto);
 
         log.info("어디까지오나");
+
+//        authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+//                SecurityContextHolder.getContextHolderStrategy().getContext().setAuthentication(authenticationToken);
 
         return createToken(userDetails.getUsername(), userDetails.getRole());
     }

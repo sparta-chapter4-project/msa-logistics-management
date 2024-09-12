@@ -26,18 +26,18 @@ public class AdminController {
     }
 
     @GetMapping("user/{userId}")
-    public ResponseEntity<UserResponseDto.UserInfo> get(@PathVariable Long userId) {
-        return ResponseEntity.ok(userService.get(userId));
+    public ResponseEntity<UserResponseDto.UserInfo> get(@PathVariable String userName) {
+        return ResponseEntity.ok(userService.get(userName));
     }
 
     @PatchMapping("user/{userId}")
-    public ResponseEntity<String> update(@PathVariable Long userId, @RequestBody UserRequestDto.Update update) {
-        return ResponseEntity.ok(userService.update(userId, update));
+    public ResponseEntity<String> update(@PathVariable String userName, @RequestBody UserRequestDto.Update update) {
+        return ResponseEntity.ok(userService.update(userName, update));
     }
 
     @DeleteMapping("user/{userId}")
-    public ResponseEntity<String> delete(@PathVariable Long userId) {
-        return ResponseEntity.ok(userService.delete(userId));
+    public ResponseEntity<String> delete(@PathVariable String userName) {
+        return ResponseEntity.ok(userService.delete(userName));
     }
 
     @GetMapping("/user/search")

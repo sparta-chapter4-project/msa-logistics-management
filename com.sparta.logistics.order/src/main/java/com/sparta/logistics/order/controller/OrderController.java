@@ -1,10 +1,13 @@
 package com.sparta.logistics.order.controller;
 
 import com.sparta.logistics.order.dto.OrderResponseDto;
+import com.sparta.logistics.order.security.UserDetailsImpl;
 import com.sparta.logistics.order.service.OrderService;
 import com.sparta.logistics.order.dto.OrderRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,8 +27,8 @@ public class OrderController {
     }
 
     @GetMapping
-    public ResponseEntity<List<OrderResponseDto.Get>> getOrder() {
-        return ResponseEntity.ok(orderService.getOrder());
+    public String getOrder(@AuthenticationPrincipal UserDetailsImpl userDetails) {
+        return "hi";
     }
 
     @GetMapping("/{orderId}")
