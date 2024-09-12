@@ -9,7 +9,7 @@ public class SlackRequestDto {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class create {
+    public static class Create {
         private String slackId;
         private String message;
     }

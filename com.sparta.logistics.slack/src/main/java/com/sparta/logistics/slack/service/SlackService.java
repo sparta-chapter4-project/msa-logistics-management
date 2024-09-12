@@ -1,5 +1,6 @@
 package com.sparta.logistics.slack.service;
 
+import com.sparta.logistics.slack.dto.SlackResponseDto;
 import com.sparta.logistics.slack.entity.Slack;
 import com.sparta.logistics.slack.repository.SlackRepository;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +11,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -41,5 +44,9 @@ public class SlackService {
         slackRepository.save(Slack.create(slackId, senderName, message));
 
         return "메세지 전송 완료";
+    }
+
+    public List<SlackResponseDto.Send> list(String senderName) {
+        return slackRepository.findAllBySenderNameAndIsDeletedFalse(senderName).stream().map(SlackResponseDto.Send::get).toList();
     }
 }
