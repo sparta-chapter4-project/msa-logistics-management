@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "p_slack")
+@Table(name = "p_slack_message")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(access = AccessLevel.PRIVATE)
@@ -19,16 +19,25 @@ public class Slack extends BaseEntity {
     private UUID id;
 
     @Column
-    private UUID receiverId;
+    private String slackId;
 
     @Column
-    private UUID senderId;
+    private String senderName;
 
     @Column(updatable = false, nullable = false)
     private LocalDateTime shippingTime;
 
     @Column
     private String message;
+
+    public static Slack create(String slackId, String senderName, String message) {
+        return Slack.builder()
+            .slackId(slackId)
+            .senderName(senderName)
+            .shippingTime(LocalDateTime.now())
+            .message(message)
+            .build();
+    }
 
     public void delete() {
         this.isDeleted = true;
