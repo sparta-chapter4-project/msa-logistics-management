@@ -11,4 +11,6 @@ import java.util.UUID;
 public interface SlackRepository extends JpaRepository<Slack, UUID> {
 
     List<Slack> findAllBySenderNameAndIsDeletedFalse(String senderName);
+
+    Slack findByIdAndIsDeletedFalse(UUID slackId);
 }

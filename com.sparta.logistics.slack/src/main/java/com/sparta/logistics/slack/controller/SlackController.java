@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @RestController
@@ -26,5 +27,10 @@ public class SlackController {
     public ResponseEntity<List<SlackResponseDto.Send>> list() {
         String senderName = "내 이름";
         return ResponseEntity.ok(slackService.list(senderName));
+    }
+
+    @GetMapping("/{slackId}")
+    public ResponseEntity<SlackResponseDto.Send> get(@PathVariable UUID slackId) {
+        return ResponseEntity.ok(slackService.getOne(slackId));
     }
 }

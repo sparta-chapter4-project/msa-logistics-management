@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @Service
@@ -48,5 +49,9 @@ public class SlackService {
 
     public List<SlackResponseDto.Send> list(String senderName) {
         return slackRepository.findAllBySenderNameAndIsDeletedFalse(senderName).stream().map(SlackResponseDto.Send::get).toList();
+    }
+
+    public SlackResponseDto.Send getOne(UUID slackId) {
+        return SlackResponseDto.Send.get(slackRepository.findByIdAndIsDeletedFalse(slackId));
     }
 }
