@@ -63,9 +63,17 @@ public class SlackService {
         return slackRepository.findAllByIsDeletedFalse().stream().map(SlackResponseDto.Get::get).toList();
     }
 
-    private Slack existSlack(UUID slackId){
+    private Slack existSlack(UUID slackId) {
         return slackRepository.findByIdAndIsDeletedFalse(slackId).orElseThrow(
             () -> new IllegalArgumentException("유저가 존재하지 않습니다.")
         );
+    }
+
+    @Transactional
+    public String delete(UUID slackId) {
+        Slack slack = existSlack(slackId);
+        slack.delete();
+
+        return "삭제 완료";
     }
 }

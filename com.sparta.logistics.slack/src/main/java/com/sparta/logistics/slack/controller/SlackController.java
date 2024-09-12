@@ -43,4 +43,9 @@ public class SlackController {
     public ResponseEntity<SlackResponseDto.Get> adminGet(@PathVariable UUID slackId) {
         return ResponseEntity.ok(slackService.getOneByAdmin(slackId));
     }
+
+    @DeleteMapping("/admin/delete/{slackId}")
+    public ResponseEntity<String> delete(@PathVariable UUID slackId) {
+        return ResponseEntity.ok(slackService.delete(slackId));
+    }
 }
