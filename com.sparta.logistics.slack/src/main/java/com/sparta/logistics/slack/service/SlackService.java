@@ -54,4 +54,8 @@ public class SlackService {
     public SlackResponseDto.Send getOne(UUID slackId) {
         return SlackResponseDto.Send.get(slackRepository.findByIdAndIsDeletedFalse(slackId));
     }
+
+    public List<SlackResponseDto.Get> listAll() {
+        return slackRepository.findAllByIsDeletedFalse().stream().map(SlackResponseDto.Get::get).toList();
+    }
 }

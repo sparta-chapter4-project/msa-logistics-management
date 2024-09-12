@@ -30,4 +30,26 @@ public class SlackResponseDto {
                 .build();
         }
     }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Get {
+        private UUID id;
+        private String slackId;
+        private String senderName;
+        private String message;
+        private LocalDateTime shippingTime;
+
+        public static Get get(Slack slack) {
+            return Get.builder()
+                .id(slack.getId())
+                .slackId(slack.getSlackId())
+                .senderName(slack.getSenderName())
+                .message(slack.getMessage())
+                .shippingTime(slack.getShippingTime())
+                .build();
+        }
+    }
 }
