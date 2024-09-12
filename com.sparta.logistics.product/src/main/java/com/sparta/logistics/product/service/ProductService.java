@@ -27,9 +27,16 @@ public class ProductService {
     public List<ProductResponseDto.Get> getProducts() {
         return productRepository.findAllByQuerydsl().stream().map(ProductResponseDto.Get::of).toList();
     }
+
+    public ProductResponseDto.Update updateProduct(ProductRequestDto.Update requestDto) {
+        Product product = findById(requestDto.getProductId());
+        product.update(requestDto);
+        return ProductResponseDto.Update.of(product);
+    }
+
+
     public Product findById(UUID productId){
         return productRepository.findByProductId(productId).orElseThrow(
                 NoSuchElementException::new);
     }
-
 }

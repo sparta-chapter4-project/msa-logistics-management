@@ -60,5 +60,4 @@ public class Company extends BaseEntity{
             this.type = requestDto.getType();
         }
     }
-
 }

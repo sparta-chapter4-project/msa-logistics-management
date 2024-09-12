@@ -30,8 +30,14 @@ public class ProductController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ProductResponseDto.Get>> getProducts(){
+    public ResponseEntity<List<ProductResponseDto.Get>> getProducts() {
         return ResponseEntity.ok(productService.getProducts());
+    }
+
+    @PutMapping
+    public ResponseEntity<ProductResponseDto.Update> updateProduct(
+            @RequestBody ProductRequestDto.Update requestDto) {
+        return ResponseEntity.ok(productService.updateProduct(requestDto));
     }
 
 }
