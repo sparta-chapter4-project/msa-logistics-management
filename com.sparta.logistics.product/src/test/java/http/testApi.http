@@ -1,0 +1,12 @@
+### Company Create - Send Post request with json body
+POST http://localhost:8080/product
+Content-Type: application/json
+
+{
+  "hubId": "126bd829-113e-41b8-ad0c-b86e8b467979",
+  "companyId": "7469d4b6-98e6-4f66-a283-f5426088e5dd",
+  "name": "상품상품222",
+  "hubStock": 10,
+  "companyStock": 20,
+  "price": 2000
+}
