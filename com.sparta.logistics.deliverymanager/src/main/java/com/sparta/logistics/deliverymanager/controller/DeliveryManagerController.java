@@ -35,6 +35,13 @@ public class DeliveryManagerController {
         return ResponseEntity.ok(deliveryManagerService.getFindDeliveryManager(id));
     }
 
+    // deliveryManager를 hubId로 조회
+    @GetMapping("/hub/{hubId}")
+    public ResponseEntity<DeliveryManagerResponseDto.Get> getDeliveryManagersByHubId(
+            @PathVariable(name = "hubId") UUID hubId) {
+        return ResponseEntity.ok(deliveryManagerService.getDeliveryManagerByHubId(hubId));
+    }
+
     @PatchMapping("/{id}")
     public ResponseEntity<Boolean> updateDeliveryManager(
             @PathVariable(name = "id")UUID id,

@@ -36,6 +36,14 @@ public class DeliveryManagerService {
         return DeliveryManagerResponseDto.Get.of(deliveryManager);
     }
 
+    // deliveryManager를 hubId로 조회 비즈니스 로직
+    public DeliveryManagerResponseDto.Get getDeliveryManagerByHubId(UUID hubId) {
+        DeliveryManager deliveryManager = deliveryManagerRepository.findByHubId(hubId).orElseThrow(
+                () -> new NullPointerException("배송 담당자 정보를 찾을 수 없습니다.")
+        );
+        return DeliveryManagerResponseDto.Get.of(deliveryManager);
+    }
+
     @Transactional
     public void updateDeliveryManager(UUID id, DeliveryManagerRequestDto.Update request) {
         DeliveryManager deliveryManager = deliveryManagerRepository.findById(id).orElseThrow(
@@ -49,4 +57,6 @@ public class DeliveryManagerService {
                 () -> new NullPointerException("배송 담당자 정보를 찾을 수 없습니다."));
         deliveryManager.updateIsDeleted();
     }
+
+
 }
