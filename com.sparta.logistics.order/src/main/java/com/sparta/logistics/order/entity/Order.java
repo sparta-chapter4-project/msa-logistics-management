@@ -13,7 +13,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder(access = AccessLevel.PRIVATE)
 @Getter
-public class Order {
+public class Order extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -36,9 +36,6 @@ public class Order {
     @Column(name = "status")
     private String status;
 
-    @Column(name = "is_deleted")
-    private Boolean isDeleted;
-
     public static Order create(final OrderRequestDto.Create request) {
         return Order.builder()
                 .supplyCompanyId(request.getSupplyCompanyId())
@@ -47,7 +44,6 @@ public class Order {
                 .deliveryId(null)
                 .amount(request.getAmount())
                 .status("ORDER_RECEIVED")
-                .isDeleted(false)
                 .build();
     }
 
@@ -58,8 +54,4 @@ public class Order {
     }
 
     public void updateDeliveryId(UUID id) { this.deliveryId = id; }
-
-    public void updateIsDeleted() {
-        this.isDeleted = true;
-    }
 }

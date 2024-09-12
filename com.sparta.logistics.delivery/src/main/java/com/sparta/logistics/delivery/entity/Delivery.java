@@ -12,7 +12,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder(access = AccessLevel.PRIVATE)
 @Getter
-public class Delivery {
+public class Delivery extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -41,9 +41,6 @@ public class Delivery {
     @Column(name = "status")
     private String status;
 
-    @Column(name = "is_deleted")
-    private Boolean isDeleted;
-
     public static Delivery create(DeliveryRequestDto.Create request) {
         return Delivery.builder()
                 .orderId(request.getOrderId())
@@ -55,7 +52,6 @@ public class Delivery {
                 .recipientId(request.getRecipientId())
                 .recipientSlackId(request.getRecipientSlackId())
                 .status("READY_DELIVERY")
-                .isDeleted(false)
                 .build();
     }
 
@@ -67,9 +63,5 @@ public class Delivery {
         this.recipientId = request.getRecipientId();
         this.recipientSlackId = request.getRecipientSlackId();
         this.status = request.getStatus();
-    }
-
-    public void updateIsDeleted() {
-        this.isDeleted = true;
     }
 }

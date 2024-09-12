@@ -5,6 +5,8 @@ import com.sparta.logistics.delivery.dto.DeliveryRouteResponseDto;
 import com.sparta.logistics.delivery.entity.DeliveryRoute;
 import com.sparta.logistics.delivery.repository.DeliveryRouteRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,10 +25,8 @@ public class DeliveryRouteService {
             deliveryRouteRepository.save(DeliveryRoute.create(request));
     }
 
-    public List<DeliveryRouteResponseDto.Get> getDeliveryRoute() {
-        return deliveryRouteRepository.findAll().stream()
-                .map(DeliveryRouteResponseDto.Get::of)
-                .collect(Collectors.toList());
+    public Page<DeliveryRouteResponseDto.Get> getDeliveryRoute(Pageable pageable) {
+        return deliveryRouteRepository.findAll(pageable).map(DeliveryRouteResponseDto.Get::of);
     }
 
     public DeliveryRouteResponseDto.Get getFindDeliveryRoute(UUID id) {
@@ -47,6 +47,6 @@ public class DeliveryRouteService {
         DeliveryRoute deliveryRoute = deliveryRouteRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 배송 경로를 찾을 수 없습니다."));
 
-        deliveryRoute.updateIsDeleted();
+        deliveryRoute.delete();
     }
 }

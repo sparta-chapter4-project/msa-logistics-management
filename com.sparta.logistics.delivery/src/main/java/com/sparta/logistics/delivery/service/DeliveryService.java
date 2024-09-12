@@ -6,6 +6,8 @@ import com.sparta.logistics.delivery.dto.DeliveryRouteRequestDto;
 import com.sparta.logistics.delivery.entity.Delivery;
 import com.sparta.logistics.delivery.repository.DeliveryRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -53,10 +55,8 @@ public class DeliveryService {
         return delivery.getId();
     }
 
-    public List<DeliveryResponseDto.Get> getDelivery() {
-        return deliveryRepository.findAll().stream()
-                .map(DeliveryResponseDto.Get::of)
-                .collect(Collectors.toList());
+    public Page<DeliveryResponseDto.Get> getDelivery(Pageable pageable) {
+        return deliveryRepository.findAll(pageable).map(DeliveryResponseDto.Get::of);
     }
 
     public DeliveryResponseDto.Get getFindDelivery(UUID id) {
@@ -77,6 +77,6 @@ public class DeliveryService {
         Delivery delivery = deliveryRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 배송 정보를 찾을 수 없습니다."));
 
-        delivery.updateIsDeleted();
+        delivery.delete();
     }
 }

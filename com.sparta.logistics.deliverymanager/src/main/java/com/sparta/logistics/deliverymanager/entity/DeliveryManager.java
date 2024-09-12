@@ -12,7 +12,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder(access = AccessLevel.PRIVATE)
 @Getter
-public class DeliveryManager {
+public class DeliveryManager extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
@@ -29,25 +29,17 @@ public class DeliveryManager {
     @Column(name = "type")
     private String type;
 
-    @Column(name = "is_deleted")
-    private Boolean isDeleted;
-
     public static DeliveryManager create(DeliveryManagerRequestDto.Create request) {
         return DeliveryManager.builder()
                 .userId(request.getUserId())
                 .hubId(request.getHubId())
                 .slackId(request.getSlackId())
                 .type(request.getType())
-                .isDeleted(false)
                 .build();
     }
 
     public void update(DeliveryManagerRequestDto.Update request) {
         this.hubId = request.getHubId();
         this.type = request.getType();
-    }
-
-    public void updateIsDeleted() {
-        this.isDeleted = true;
     }
 }

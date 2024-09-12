@@ -1,5 +1,6 @@
+@DeliveryRoutePort=8081
 ### Delivery Create - Send Post request with json body
-POST http://localhost:8080/deliveryroute
+POST http://localhost:{{DeliveryRoutePort}}/deliveryroute
 Content-Type: application/json
 
 [
@@ -28,14 +29,14 @@ Content-Type: application/json
 ]
 
 ### DeliveryRoute Get - Send Get request
-GET http://localhost:8080/deliveryroute
+GET http://localhost:{{DeliveryRoutePort}}/deliveryroute
 
 ### DeliveryRoute Get - Send Get request with path variable
 @deliveryRouteId=53e0d99e-d292-45c6-942f-30a3b92ed82b
-GET http://localhost:8080/deliveryroute/{{deliveryRouteId}}
+GET http://localhost:{{DeliveryRoutePort}}/deliveryroute/{{deliveryRouteId}}
 
 ### DeliveryRoute Update - Send Put request with path variable, json body
-PUT http://localhost:8080/deliveryroute/{{deliveryRouteId}}
+PUT http://localhost:{{DeliveryRoutePort}}/deliveryroute/{{deliveryRouteId}}
 Content-Type: application/json
 
 {
@@ -45,4 +46,4 @@ Content-Type: application/json
 }
 
 ### DeliveryRoute Cancel - Send Delete request with path variable
-DELETE http://localhost:8080/deliveryroute/{{deliveryRouteId}}
+DELETE http://localhost:{{DeliveryRoutePort}}/deliveryroute/{{deliveryRouteId}}
