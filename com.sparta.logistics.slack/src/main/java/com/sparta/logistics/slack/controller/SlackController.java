@@ -35,7 +35,12 @@ public class SlackController {
     }
 
     @GetMapping("/admin")
-    public ResponseEntity<List<SlackResponseDto.Get>> listAll() {
+    public ResponseEntity<List<SlackResponseDto.Get>> adminList() {
         return ResponseEntity.ok(slackService.listAll());
+    }
+
+    @GetMapping("/admin/{slackId}")
+    public ResponseEntity<SlackResponseDto.Get> adminGet(@PathVariable UUID slackId) {
+        return ResponseEntity.ok(slackService.getOneByAdmin(slackId));
     }
 }

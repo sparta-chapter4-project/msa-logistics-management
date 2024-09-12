@@ -52,10 +52,20 @@ public class SlackService {
     }
 
     public SlackResponseDto.Send getOne(UUID slackId) {
-        return SlackResponseDto.Send.get(slackRepository.findByIdAndIsDeletedFalse(slackId));
+        return SlackResponseDto.Send.get(existSlack(slackId));
+    }
+
+    public SlackResponseDto.Get getOneByAdmin(UUID slackId) {
+        return SlackResponseDto.Get.get(existSlack(slackId));
     }
 
     public List<SlackResponseDto.Get> listAll() {
         return slackRepository.findAllByIsDeletedFalse().stream().map(SlackResponseDto.Get::get).toList();
+    }
+
+    private Slack existSlack(UUID slackId){
+        return slackRepository.findByIdAndIsDeletedFalse(slackId).orElseThrow(
+            () -> new IllegalArgumentException("유저가 존재하지 않습니다.")
+        );
     }
 }
