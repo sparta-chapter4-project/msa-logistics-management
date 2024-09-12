@@ -34,9 +34,15 @@ public class ProductService {
         return ProductResponseDto.Update.of(product);
     }
 
+    public ProductResponseDto.Delete deleteProduct(UUID productId) {
+        Product product = findById(productId);
+        product.delete();
+        return ProductResponseDto.Delete.of(product);
+    }
 
     public Product findById(UUID productId){
         return productRepository.findByProductId(productId).orElseThrow(
                 NoSuchElementException::new);
     }
+
 }

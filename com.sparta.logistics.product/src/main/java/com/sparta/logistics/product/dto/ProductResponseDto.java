@@ -77,4 +77,19 @@ public class ProductResponseDto {
                     .build();
         }
     }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Delete {
+
+        private UUID productId;
+
+        public static Delete of(Product product){
+            return Delete.builder()
+                    .productId(product.getId())
+                    .build();
+        }
+    }
 }
