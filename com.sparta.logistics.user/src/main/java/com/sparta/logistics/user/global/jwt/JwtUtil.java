@@ -25,7 +25,7 @@ public class JwtUtil {
     private final SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
     public int REFRESH_TOKEN_TTL_SECONDS = 60 * 60 * 24 * 1000;
     public int ACCESS_TOKEN_TTL_SECONDS = 60 * 60 * 1000;
-    @Value("${jwt.secret-key}")
+    @Value("${jwt.secret.key}")
     private String JWT_SECRET_KEY;
     private SecretKey secretKey;
     private JwtParser jwtParser;

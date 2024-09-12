@@ -30,7 +30,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final SecretKey secretKey;
 
     public JwtAuthenticationFilter(UserDetailsServiceImpl userDetailsService,
-                            @Value("${jwt.secret-key}") String secretKey) {
+                            @Value("${jwt.secret.key}") String secretKey) {
         this.userDetailsService = userDetailsService;
         this.secretKey = Keys.hmacShaKeyFor(Decoders.BASE64URL.decode(secretKey));
     }
