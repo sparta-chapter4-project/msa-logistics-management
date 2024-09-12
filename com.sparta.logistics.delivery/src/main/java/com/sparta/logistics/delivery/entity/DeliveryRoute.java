@@ -12,7 +12,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder(access = AccessLevel.PRIVATE)
 @Getter
-public class DeliveryRoute {
+public class DeliveryRoute extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -44,9 +44,6 @@ public class DeliveryRoute {
     @Column(name = "status")
     private String status;
 
-    @Column(name = "is_deleted")
-    private Boolean isDeleted;
-
     public static DeliveryRoute create(DeliveryRouteRequestDto.Create request) {
         return DeliveryRoute.builder()
                 .deliveryId(request.getDeliveryId())
@@ -58,7 +55,6 @@ public class DeliveryRoute {
                 .realDistance(request.getRealDistance())
                 .realTime(request.getRealTime())
                 .status(request.getStatus())
-                .isDeleted(false)
                 .build();
     }
 
@@ -66,9 +62,5 @@ public class DeliveryRoute {
         this.realDistance = request.getRealDistance();
         this.realTime = request.getRealTime();
         this.status = request.getStatus();
-    }
-
-    public void updateIsDeleted() {
-        this.isDeleted = true;
     }
 }

@@ -4,10 +4,13 @@ import com.sparta.logistics.delivery.dto.DeliveryRouteRequestDto;
 import com.sparta.logistics.delivery.dto.DeliveryRouteResponseDto;
 import com.sparta.logistics.delivery.service.DeliveryRouteService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -25,8 +28,10 @@ public class DeliveryRouteController {
     }
 
     @GetMapping
-    public ResponseEntity<List<DeliveryRouteResponseDto.Get>> getDeliveryRoute() {
-        return ResponseEntity.ok(deliveryRouteService.getDeliveryRoute());
+    public ResponseEntity<Page<DeliveryRouteResponseDto.Get>> getDeliveryRoute(
+            @PageableDefault(size = 10, sort = "createdAt", direction = Sort.Direction.ASC) Pageable pageable
+    ) {
+        return ResponseEntity.ok(deliveryRouteService.getDeliveryRoute(pageable));
     }
 
     @GetMapping("/{id}")
