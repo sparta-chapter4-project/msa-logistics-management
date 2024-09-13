@@ -1,0 +1,37 @@
+### Hub Create - Send Post request with json body
+POST http://localhost:8080/hub
+Content-Type: application/json
+
+{
+  "name": "test",
+  "address": "서울특별시 노원구 공릉동 589-15 305호",
+  "latitude": 10,
+  "longitude": 20
+}
+
+### Hub Get - Send Get request with Path Variable
+< {%
+    request.variables.set("hubId", "d5c567b7-76f1-4b65-aa45-4ab28b6dcd31")
+%}
+GET http://localhost:8080/hub/{{hubId}}
+
+### Hub Get - Send Get request
+GET http://localhost:8080/hub
+
+### Hub Update - Send Update Request
+PUT http://localhost:8080/hub
+Content-Type: application/json
+
+{
+  "hubId": "d5c567b7-76f1-4b65-aa45-4ab28b6dcd31",
+  "name": "test",
+  "address": "서울특별시 노원구 공릉동 589-15 305호",
+  "latitude": 30,
+  "longitude": 20
+}
+
+### Hub Delete - Send Delete Request
+< {%
+    request.variables.set("hubId", "d5c567b7-76f1-4b65-aa45-4ab28b6dcd31")
+%}
+DELETE http://localhost:8080/hub/{{hubId}}

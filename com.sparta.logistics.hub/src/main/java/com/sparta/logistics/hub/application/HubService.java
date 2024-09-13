@@ -1,9 +1,10 @@
-package com.sparta.logistics.hub.service;
+package com.sparta.logistics.hub.application;
 
-import com.sparta.logistics.hub.dto.HubRequestDto;
-import com.sparta.logistics.hub.dto.HubResponseDto;
-import com.sparta.logistics.hub.entity.Hub;
-import com.sparta.logistics.hub.repository.HubRepository;
+import com.sparta.logistics.hub.domain.entity.Hub;
+import com.sparta.logistics.hub.domain.repository.HubQueryRepository;
+import com.sparta.logistics.hub.domain.repository.HubRepository;
+import com.sparta.logistics.hub.presentation.dtos.HubRequestDto;
+import com.sparta.logistics.hub.presentation.dtos.HubResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
@@ -20,6 +21,8 @@ import java.util.UUID;
 public class HubService {
 
     private final HubRepository hubRepository;
+    private final HubQueryRepository hubQueryRepository;
+
 
     public HubResponseDto.Create createHub(HubRequestDto.Create requestDto) {
         return HubResponseDto.Create.of(hubRepository.save(Hub.create(requestDto)));
@@ -33,7 +36,7 @@ public class HubService {
 
     @Cacheable(cacheNames = "hubAllCache", key = "getMethodName()")
     public List<HubResponseDto.Get> getHubList() {
-        return hubRepository.findAllAndIsDeletedFalse().stream().map(HubResponseDto.Get::of).toList();
+        return hubRepository.findAllByIsDeletedFalse().stream().map(HubResponseDto.Get::of).toList();
     }
 
     @CachePut(cacheNames = "hubCache", key = "args[0].hubId")
@@ -56,7 +59,7 @@ public class HubService {
 
     @Cacheable(cacheNames = "hubSearchCache", key = "{args[0],args[1]}")
     public List<HubResponseDto.Get> searchHub(String address, String name) {
-        return hubRepository.findAllByAddressAndName(address, name);
+        return hubQueryRepository.findAllByAddressAndName(address, name);
     }
 
     public Hub findById(UUID hubId){

@@ -1,4 +1,4 @@
-package com.sparta.logistics.hub.config;
+package com.sparta.logistics.hub.infrastructure.config;
 
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;

@@ -1,6 +1,6 @@
-package com.sparta.logistics.hub.dto;
+package com.sparta.logistics.hub.presentation.dtos;
 
-import com.sparta.logistics.hub.entity.Hub;
+import com.sparta.logistics.hub.domain.entity.Hub;
 import lombok.*;
 
 import java.io.Serializable;

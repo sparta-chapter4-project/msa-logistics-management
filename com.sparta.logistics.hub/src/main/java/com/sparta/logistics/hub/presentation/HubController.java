@@ -1,8 +1,8 @@
-package com.sparta.logistics.hub.controller;
+package com.sparta.logistics.hub.presentation;
 
-import com.sparta.logistics.hub.dto.HubRequestDto;
-import com.sparta.logistics.hub.dto.HubResponseDto;
-import com.sparta.logistics.hub.service.HubService;
+import com.sparta.logistics.hub.presentation.dtos.HubRequestDto;
+import com.sparta.logistics.hub.presentation.dtos.HubResponseDto;
+import com.sparta.logistics.hub.application.HubService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

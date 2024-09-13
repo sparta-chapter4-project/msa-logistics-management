@@ -1,10 +1,9 @@
-package com.sparta.logistics.hub.entity;
+package com.sparta.logistics.hub.domain.entity;
 
-import com.sparta.logistics.hub.dto.HubRequestDto;
+import com.sparta.logistics.hub.presentation.dtos.HubRequestDto;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.io.Serializable;
 import java.util.UUID;
 
 @Entity

@@ -1,4 +1,4 @@
-package com.sparta.logistics.hub.dto;
+package com.sparta.logistics.hub.presentation.dtos;
 
 import lombok.*;
 
