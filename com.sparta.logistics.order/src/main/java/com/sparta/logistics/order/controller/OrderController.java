@@ -3,6 +3,7 @@ package com.sparta.logistics.order.controller;
 import com.sparta.logistics.order.dto.OrderRequestDto;
 import com.sparta.logistics.order.dto.OrderResponseDto;
 import com.sparta.logistics.order.service.OrderService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,15 +22,20 @@ public class OrderController {
     private final OrderService orderService;
 
     @PostMapping
-    public ResponseEntity<Boolean> createOrder(@RequestBody OrderRequestDto.Create request) {
-        orderService.createOrder(request);
+    public ResponseEntity<Boolean> createOrder(
+            HttpServletRequest httpRequest,
+            @RequestBody OrderRequestDto.Create request
+    ) {
+        orderService.createOrder(httpRequest, request);
         return ResponseEntity.ok(true);
     }
 
     @GetMapping
     public ResponseEntity<Page<OrderResponseDto.Get>> getOrder(
-            @PageableDefault(size = 10, sort = "createdAt", direction = Sort.Direction.ASC)Pageable pageable) {
-        return ResponseEntity.ok(orderService.getOrder(pageable));
+            HttpServletRequest httpRequest,
+            @PageableDefault(size = 10, sort = "createdAt", direction = Sort.Direction.ASC)Pageable pageable
+    ) {
+        return ResponseEntity.ok(orderService.getOrder(httpRequest, pageable));
     }
 
     @GetMapping("/{orderId}")
