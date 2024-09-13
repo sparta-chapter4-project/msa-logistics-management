@@ -7,8 +7,8 @@ Content-Type: application/json
   "name": "newname2",
   "password": "new_password",
   "email": "email2@email.com",
-  "tel": "010-9173-9506",
-  "role": "MASTER"
+  "tel": "010-9173-9507",
+  "role": "HUB_MANAGER"
 }
 
 ### User SignIn - Send Post request with json body
@@ -16,6 +16,6 @@ POST http://localhost:{{userPort}}/user/signIn
 Content-Type: application/json
 
 {
-  "name": "newname",
+  "name": "newname2",
   "password": "new_password"
 }
