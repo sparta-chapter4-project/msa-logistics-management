@@ -1,5 +1,6 @@
 package com.sparta.logistics.hub.presentation.dtos;
 
+import com.sparta.logistics.hub.domain.entity.hub.Location;
 import lombok.*;
 
 import java.util.UUID;
@@ -10,12 +11,10 @@ public class HubRequestDto {
     @Getter
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     @AllArgsConstructor(access = AccessLevel.PRIVATE)
-    public static class Create{
+    public static class Create {
 
         private String name;
-        private String address;
-        private Float latitude;
-        private Float longitude;
+        private Location location;
     }
 
     @Builder
@@ -26,9 +25,16 @@ public class HubRequestDto {
 
         private UUID hubId;
         private String name;
-        private String address;
-        private Float latitude;
-        private Float longitude;
+        private Location location;
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @AllArgsConstructor(access = AccessLevel.PRIVATE)
+    public static class Search {
+
+        HubCondition hubCondition;
 
     }
 }

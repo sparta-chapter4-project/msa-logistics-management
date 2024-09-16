@@ -4,9 +4,11 @@ Content-Type: application/json
 
 {
   "name": "test",
-  "address": "서울특별시 노원구 공릉동 589-15 305호",
-  "latitude": 10,
-  "longitude": 20
+  "location": {
+    "address": "서울특별시 노원구 공릉동 589-15 305호",
+    "latitude": 10,
+    "longitude": 20
+  }
 }
 
 ### Hub Get - Send Get request with Path Variable
@@ -23,11 +25,13 @@ PUT http://localhost:8080/hub
 Content-Type: application/json
 
 {
-  "hubId": "d5c567b7-76f1-4b65-aa45-4ab28b6dcd31",
+  "hubId": "50144c3f-c196-48a9-9067-fe4041fd8d96",
   "name": "test",
-  "address": "서울특별시 노원구 공릉동 589-15 305호",
-  "latitude": 30,
-  "longitude": 20
+  "location": {
+    "address": "서울특별시 서초구 양재동 589-15 305호",
+    "latitude": 10,
+    "longitude": 20
+  }
 }
 
 ### Hub Delete - Send Delete Request
@@ -35,3 +39,9 @@ Content-Type: application/json
     request.variables.set("hubId", "d5c567b7-76f1-4b65-aa45-4ab28b6dcd31")
 %}
 DELETE http://localhost:8080/hub/{{hubId}}
+
+
+### Hub Search - Send Get Request
+GET http:// localhost:8080/hub
+    ?address=서울
+    &name=컴퍼니

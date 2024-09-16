@@ -1,8 +1,9 @@
 package com.sparta.logistics.hub.application;
 
-import com.sparta.logistics.hub.domain.entity.Hub;
+import com.sparta.logistics.hub.domain.entity.hub.Hub;
 import com.sparta.logistics.hub.domain.repository.HubQueryRepository;
 import com.sparta.logistics.hub.domain.repository.HubRepository;
+import com.sparta.logistics.hub.presentation.dtos.HubCondition;
 import com.sparta.logistics.hub.presentation.dtos.HubRequestDto;
 import com.sparta.logistics.hub.presentation.dtos.HubResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -57,9 +58,9 @@ public class HubService {
         return HubResponseDto.Delete.of(hub);
     }
 
-    @Cacheable(cacheNames = "hubSearchCache", key = "{args[0],args[1]}")
-    public List<HubResponseDto.Get> searchHub(String address, String name) {
-        return hubQueryRepository.findAllByAddressAndName(address, name);
+    @Cacheable(cacheNames = "hubSearchCache", key = "{args[0]}")
+    public List<HubResponseDto.Get> searchHub(HubCondition hubCondition) {
+        return hubQueryRepository.search(hubCondition);
     }
 
     public Hub findById(UUID hubId){

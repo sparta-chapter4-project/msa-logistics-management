@@ -1,5 +1,6 @@
-package com.sparta.logistics.hub.domain.entity;
+package com.sparta.logistics.hub.domain.entity.hub;
 
+import com.sparta.logistics.hub.domain.entity.BaseEntity;
 import com.sparta.logistics.hub.presentation.dtos.HubRequestDto;
 import jakarta.persistence.*;
 import lombok.*;
@@ -10,7 +11,7 @@ import java.util.UUID;
 @Getter
 @Builder(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Hub extends BaseEntity {
 
     @Id
@@ -19,20 +20,15 @@ public class Hub extends BaseEntity {
 
     private String name;
 
-    private String address;
-
-    private Float latitude;
-
-    private Float longitude;
+    @Embedded
+    private Location location;
 
     private Boolean isDeleted;
 
     public static Hub create(HubRequestDto.Create requestDto) {
         return Hub.builder()
                 .name(requestDto.getName())
-                .address(requestDto.getAddress())
-                .latitude(requestDto.getLatitude())
-                .longitude(requestDto.getLongitude())
+                .location(requestDto.getLocation())
                 .isDeleted(false)
                 .build();
     }
@@ -41,18 +37,8 @@ public class Hub extends BaseEntity {
         if(!requestDto.getName().isEmpty()){
             this.name = requestDto.getName();
         }
-        if(!requestDto.getAddress().isEmpty()){
-            this.address = requestDto.getAddress();
+        if(!requestDto.getLocation().equals(this.location)){
+            this.location = requestDto.getLocation();
         }
-        if(!requestDto.getLatitude().equals(this.latitude)){
-            this.latitude = requestDto.getLatitude();
-        }
-        if(!requestDto.getLongitude().equals(this.longitude)){
-            this.longitude = requestDto.getLongitude();
-        }
-    }
-
-    public void delete() {
-        this.isDeleted = true;
     }
 }

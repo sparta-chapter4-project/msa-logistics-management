@@ -1,5 +1,7 @@
 package com.sparta.logistics.hub.presentation;
 
+import com.sparta.logistics.hub.infrastructure.config.QueryStringArgResolver;
+import com.sparta.logistics.hub.presentation.dtos.HubCondition;
 import com.sparta.logistics.hub.presentation.dtos.HubRequestDto;
 import com.sparta.logistics.hub.presentation.dtos.HubResponseDto;
 import com.sparta.logistics.hub.application.HubService;
@@ -50,9 +52,8 @@ public class HubController {
     // Get -> Body 사용 X
     @GetMapping("/search")
     public ResponseEntity<List<HubResponseDto.Get>> searchHub(
-            @RequestParam(name = "address") String address,
-            @RequestParam(name = "name") String name
-    ) {
-        return ResponseEntity.ok(hubService.searchHub(address, name));
+            @QueryStringArgResolver HubCondition hubCondition
+            ) {
+        return ResponseEntity.ok(hubService.searchHub(hubCondition));
     }
 }
