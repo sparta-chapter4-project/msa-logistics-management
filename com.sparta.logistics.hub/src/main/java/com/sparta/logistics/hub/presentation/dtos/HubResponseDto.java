@@ -1,7 +1,11 @@
-package com.sparta.logistics.hub.dto;
+package com.sparta.logistics.hub.presentation.dtos;
 
-import com.sparta.logistics.hub.entity.Hub;
-import lombok.*;
+import com.sparta.logistics.hub.domain.entity.hub.Hub;
+import com.sparta.logistics.hub.domain.entity.hub.Location;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.UUID;
@@ -31,17 +35,13 @@ public class HubResponseDto {
 
         private UUID hubId;
         private String name;
-        private String address;
-        private Float latitude;
-        private Float longitude;
+        private Location location;
 
         public static Get of(Hub hub) {
             return Get.builder()
                     .hubId(hub.getId())
                     .name(hub.getName())
-                    .address(hub.getAddress())
-                    .latitude(hub.getLatitude())
-                    .longitude(hub.getLongitude())
+                    .location(hub.getLocation())
                     .build();
         }
     }
@@ -54,17 +54,13 @@ public class HubResponseDto {
 
         private UUID hubId;
         private String name;
-        private String address;
-        private Float latitude;
-        private Float longitude;
+        private Location location;
 
         public static Update of(Hub hub) {
             return Update.builder()
                     .hubId(hub.getId())
                     .name(hub.getName())
-                    .address(hub.getAddress())
-                    .latitude(hub.getLatitude())
-                    .longitude(hub.getLongitude())
+                    .location(hub.getLocation())
                     .build();
         }
     }

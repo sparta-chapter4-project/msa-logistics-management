@@ -1,4 +1,4 @@
-package com.sparta.logistics.hub.config;
+package com.sparta.logistics.hub.infrastructure.config;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
