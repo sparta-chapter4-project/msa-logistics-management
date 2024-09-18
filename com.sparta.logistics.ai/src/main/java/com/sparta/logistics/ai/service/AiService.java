@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -26,6 +27,7 @@ public class AiService {
     private final DeliveryManagerService deliveryManagerService;
     private final HubService hubService;
     private final SlackService slackService;
+    private final OrderService orderService;
 
     private final String WEATHER_URL = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0";
     @Value("${gemini-key}")
@@ -72,7 +74,7 @@ public class AiService {
             log.info(String.valueOf(hubAddress.getLongitude()));
             log.info(String.valueOf(hubAddress.getLatitude()));
 
-            slackService.sendDeliveryManager(SlackRequestDto.Create.of(deliveryManager.getSlackId(),create(deliveryManager.getUserId(),"오늘 날씨는 맑음, 오늘 배송은 경기도 안양에 우유1개, 평택에 초콜릿1개, 용인에 사탕5개를 해야한다. 이것을 요약하여 정라해줘")));
+            slackService.sendDeliveryManager(SlackRequestDto.Create.of(deliveryManager.getSlackId(), create(deliveryManager.getUserId(), "오늘 날씨는 맑음, 오늘 배송은 경기도 안양에 우유1개, 평택에 초콜릿1개, 용인에 사탕5개를 해야한다. 이것을 요약하여 정라해줘")));
         });
         //배송 담당자 테이블에서 타입이 업체 배송 담당자인 것들의 리스트를 가져온다.
 
@@ -90,8 +92,15 @@ public class AiService {
     }
 
     @Transactional
-    public String test8() {
+    public String test8(String type) {
+        deliveryManagerService.getDeliveryManagerListByType(type).stream().forEach(deliveryManager -> {
+            UUID deliveryManagerId = deliveryManager.getDeliveryManagerId();
 
+            String orderList = orderService.getOneDay().stream().map(order -> "( 요청업체ID: " + order.getDemandCompanyId() + ", 수령업체ID: " + order.getSupplyCompanyId() + ", 상품ID: " + order.getProductId() + ", 갯수: " + order.getAmount() + ", 상태: " + order.getStatus() + ")")
+                .collect(Collectors.joining(", "));
+
+            slackService.sendDeliveryManager(SlackRequestDto.Create.of(deliveryManager.getSlackId(), create(deliveryManager.getUserId(), orderList+"이것을 요약하여 정라해줘")));
+        });
         //배송 담당자 테이블에서 타입이 허브 이동 담당자인 것들의 리스트를 가져온다. (배송담당자 id, 슬랙아이디)
 
         //24시간 내의 주문을 가져온다. 그런데 조건이 있어야됨. 배송 담당자가 담당하고 있는 주문에 대해서 가져와야 할듯?? 이야기 해봐야겠다. (요청업체, 수령업체, 상품, 주문 샅애)

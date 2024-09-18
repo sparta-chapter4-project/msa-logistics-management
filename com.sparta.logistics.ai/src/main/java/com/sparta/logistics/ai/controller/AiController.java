@@ -3,10 +3,7 @@ package com.sparta.logistics.ai.controller;
 import com.sparta.logistics.ai.service.AiService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
@@ -21,5 +18,12 @@ public class AiController {
         @RequestParam(value = "userId") Long userId
     ) {
         return ResponseEntity.ok(aiService.create(userId, question));
+    }
+
+    @GetMapping()
+    public String test(
+        @RequestParam(value = "type") String type
+    ){
+        return aiService.test8(type);
     }
 }

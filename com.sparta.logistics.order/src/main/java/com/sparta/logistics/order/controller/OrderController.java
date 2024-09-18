@@ -12,6 +12,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -41,6 +42,11 @@ public class OrderController {
     @GetMapping("/{orderId}")
     public ResponseEntity<OrderResponseDto.Get> getFindOrder(@PathVariable(name = "orderId")UUID id) {
         return ResponseEntity.ok(orderService.getFindOrder(id));
+    }
+
+    @GetMapping("/getOneDay")
+    public ResponseEntity<List<OrderResponseDto.Get>> getOneDay() {
+        return ResponseEntity.ok(orderService.getOneDay());
     }
 
     @PutMapping("/{orderId}")
