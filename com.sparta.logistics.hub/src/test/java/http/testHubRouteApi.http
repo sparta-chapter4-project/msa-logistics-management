@@ -27,3 +27,9 @@ Content-Type: application/json
   "prevHubRouteId" :  "aab3cca5-6382-46d4-979f-f1804c6b4ff0",
   "time" :  20
 }
+
+### HubRoute Delete - Send Delete Request
+< {%
+    request.variables.set("hubRouteId", "6247f4f1-a84b-4506-bcab-3d7b797b46f5")
+%}
+DELETE http://localhost:8080/hubRoute/{{hubRouteId}}
