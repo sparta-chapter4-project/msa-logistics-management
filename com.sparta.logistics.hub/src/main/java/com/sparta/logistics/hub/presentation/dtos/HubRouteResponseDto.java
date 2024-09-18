@@ -56,12 +56,30 @@ public class HubRouteResponseDto {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class Update {
-        private UUID hubRouteId;
 
+        private UUID hubRouteId;
+        private Integer time;
         public static Update of(HubRoute hubRoute){
             return Update.builder()
                     .hubRouteId(hubRoute.getId())
+                    .time(hubRoute.getTime())
                     .build();
         }
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Delete {
+
+        private UUID huRouteId;
+
+        public static Delete of(HubRoute hubRoute) {
+            return Delete.builder()
+                    .huRouteId(hubRoute.getId())
+                    .build();
+        }
+
     }
 }

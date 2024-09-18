@@ -16,6 +16,7 @@ public class HubRouteRequestDto {
         private Integer time;
     }
 
+
     @Getter
     @NoArgsConstructor
     public static class Update {

@@ -40,4 +40,9 @@ public class HubRouteController {
         return ResponseEntity.ok(hubRouteService.updateHubRoute(requestDto));
     }
 
+    @DeleteMapping("/{hubRouteId}")
+    public ResponseEntity<HubRouteResponseDto.Delete> deleteHubRoute(
+            @PathVariable UUID hubRouteId) {
+        return ResponseEntity.ok(hubRouteService.deleteHubRoute(hubRouteId));
+    }
 }

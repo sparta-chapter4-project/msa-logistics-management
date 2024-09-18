@@ -44,4 +44,17 @@ public class HubRoute extends BaseEntity {
         if(!time.equals(this.time))
             this.time = time;
     }
+
+    public void updatePrev(HubRoute prevHubRoute){
+        this.prevHubRoute = prevHubRoute;
+    }
+
+    public void updateNext(HubRoute nextHubRoute) {
+        this.nextHubRoute = nextHubRoute;
+    }
+
+    public void deleteRelation() {
+        this.nextHubRoute = null;
+        this.prevHubRoute = null;
+    }
 }
