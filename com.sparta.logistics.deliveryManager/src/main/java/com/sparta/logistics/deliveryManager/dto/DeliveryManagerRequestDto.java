@@ -12,7 +12,7 @@ public class DeliveryManagerRequestDto {
     public static class Create {
         private Long userId;
         private UUID hubId;
-        private UUID slackId;
+        private String slackId;
         private String type;
     }
 

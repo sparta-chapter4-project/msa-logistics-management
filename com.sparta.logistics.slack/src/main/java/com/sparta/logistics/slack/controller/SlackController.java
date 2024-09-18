@@ -24,6 +24,11 @@ public class SlackController {
         return ResponseEntity.ok(slackService.sendMessageToUser(request.getSlackId(), request.getMessage(), senderName));
     }
 
+    @PostMapping("/deliveryManager")
+    public ResponseEntity<String> sendDeliveryManager(@RequestBody SlackRequestDto.Create request) {
+        return ResponseEntity.ok(slackService.sendDeliveryManager(request.getSlackId(), request.getMessage()));
+    }
+
     @GetMapping()
     public ResponseEntity<List<SlackResponseDto.Send>> list() {
         String senderName = "내 이름";

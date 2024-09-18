@@ -51,6 +51,25 @@ public class SlackService {
         return "메세지 전송 완료";
     }
 
+    @Transactional
+    public String sendDeliveryManager(String slackId, String message) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", "Bearer " + SLACK_BOT_TOKEN);
+        headers.set("Content-Type", "application/json");
+
+        String fullMessage = String.format("메세지: %s", message);
+
+        String requestBody = String.format("{\"channel\":\"%s\", \"text\":\"%s\"}", slackId, fullMessage);
+
+        HttpEntity<String> requestEntity = new HttpEntity<>(requestBody, headers);
+
+        restTemplate.exchange(SLACK_API_URL, HttpMethod.POST, requestEntity, String.class);
+
+        slackRepository.save(Slack.create(slackId, "system", message));
+
+        return "메세지 전송 완료";
+    }
+
     public List<SlackResponseDto.Send> list(String senderName) {
         return slackRepository.findAllBySenderNameAndIsDeletedFalse(senderName).stream().map(SlackResponseDto.Send::get).toList();
     }
