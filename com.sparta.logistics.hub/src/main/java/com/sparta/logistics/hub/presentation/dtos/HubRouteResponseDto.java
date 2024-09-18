@@ -25,4 +25,28 @@ public class HubRouteResponseDto {
                     .build();
         }
     }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Get{
+
+        private UUID hubRouteId;
+        private UUID prevHubRouteId;
+        private UUID currentHubId;
+        private UUID nextHubRouteId;
+        private Integer time;
+
+        public static Get of(HubRoute hubRoute){
+            return Get.builder()
+                    .hubRouteId(hubRoute.getId())
+                    .prevHubRouteId((hubRoute.getPrevHubRoute()) != null ? hubRoute.getPrevHubRoute().getId() : null)
+                    .currentHubId(hubRoute.getCurrentHub().getId())
+                    .nextHubRouteId((hubRoute.getNextHubRoute()) != null ? hubRoute.getNextHubRoute().getId() : null)
+                    .time(hubRoute.getTime())
+                    .build();
+        }
+    }
+
 }

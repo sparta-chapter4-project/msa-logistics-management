@@ -3,19 +3,19 @@ POST http://localhost:8080/hubRoute
 Content-Type: application/json
 
 {
-  "prevHubRouteId" : "f302d561-f1ea-4ad0-b287-e5f9b22d6e81",
+  "prevHubRouteId": "364e957b-6a9d-40c0-ab08-06d16808f7b5",
   "currentHubId": "ac5ebf94-a5fc-4c88-b16c-dcb517e56838",
-  "time" : 20
+  "time" : 30
 }
 
 ### Hub Get - Send Get request with Path Variable
 < {%
-    request.variables.set("hubRouteId", "f302d561-f1ea-4ad0-b287-e5f9b22d6e81")
+    request.variables.set("hubRouteId", "364e957b-6a9d-40c0-ab08-06d16808f7b5")
 %}
 GET http://localhost:8080/hubRoute/{{hubRouteId}}
 
 ### Hub Get - Send Get request
-GET http://localhost:8080/hub
+GET http://localhost:8080/hubRoute
 
 ### Hub Update - Send Update Request
 PUT http://localhost:8080/hub

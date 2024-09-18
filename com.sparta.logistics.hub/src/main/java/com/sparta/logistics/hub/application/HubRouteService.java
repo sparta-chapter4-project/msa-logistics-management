@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
 
@@ -34,8 +35,15 @@ public class HubRouteService {
         );
     }
 
+    public HubRouteResponseDto.Get getHubRoute(UUID hubRouteId) {
+        return HubRouteResponseDto.Get.of(findById(hubRouteId));
+    }
+
+    public List<HubRouteResponseDto.Get> getHubRoutes() {
+        return hubRouteRepository.findAllByIsDeletedFalse().stream().map(HubRouteResponseDto.Get::of).toList();
+    }
+
     public HubRoute findById(UUID hubRouteId) {
         return hubRouteRepository.findByIdAndIsDeletedFalse(hubRouteId).orElseThrow(NoSuchElementException::new);
     }
-
 }

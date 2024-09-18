@@ -20,20 +20,20 @@ public class HubRoute extends BaseEntity {
 
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "prev_hub")
-    private HubRoute prevHub;
+    @JoinColumn(name = "prev_hub_route")
+    private HubRoute prevHubRoute;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "current_hub")
     private Hub currentHub;
 
-    @OneToOne(mappedBy = "prevHub")
-    private HubRoute nextHub;
+    @OneToOne(mappedBy = "prevHubRoute")
+    private HubRoute nextHubRoute;
 
     private Integer time;
     public static HubRoute create(Hub currentHub, HubRoute prevHubRoute, Integer time) {
         return HubRoute.builder()
-                .prevHub(prevHubRoute)
+                .prevHubRoute(prevHubRoute)
                 .currentHub(currentHub)
                 .time(time)
                 .build();
