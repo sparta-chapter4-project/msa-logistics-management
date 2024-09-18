@@ -1,5 +1,6 @@
 package com.sparta.logistics.hub.domain.repository;
 
+import com.sparta.logistics.hub.domain.entity.hub.Hub;
 import com.sparta.logistics.hub.domain.entity.hubroot.HubRoute;
 
 import java.util.List;
@@ -13,4 +14,6 @@ public interface HubRouteRepository {
     Optional<HubRoute> findByIdAndIsDeletedFalse(UUID hubRouteId);
 
     List<HubRoute> findAllByIsDeletedFalse();
+
+    Optional<HubRoute> findByCurrentHub(Hub hub);
 }

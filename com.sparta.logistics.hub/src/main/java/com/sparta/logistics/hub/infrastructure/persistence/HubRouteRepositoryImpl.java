@@ -8,5 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-public interface HubRouteRepositoryImpl extends JpaRepository<HubRoute, UUID> , HubRouteRepository {
+public interface HubRouteRepositoryImpl extends JpaRepository<HubRoute, UUID>, HubRouteRepository {
+
 }

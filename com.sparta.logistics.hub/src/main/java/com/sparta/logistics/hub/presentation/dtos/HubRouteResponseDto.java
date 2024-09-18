@@ -82,4 +82,42 @@ public class HubRouteResponseDto {
         }
 
     }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class FindDown {
+
+        private UUID startId;
+        private UUID endId;
+        private Integer time;
+
+        public static FindDown of(HubRoute hubRoute){
+            return FindDown.builder()
+                    .startId(hubRoute.getCurrentHub().getId())
+                    .endId(hubRoute.getNextHubRoute().getCurrentHub().getId())
+                    .time(hubRoute.getTime())
+                    .build();
+        }
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class FindUp {
+
+        private UUID startId;
+        private UUID endId;
+        private Integer time;
+
+        public static FindUp of(HubRoute hubRoute){
+            return FindUp.builder()
+                    .startId(hubRoute.getCurrentHub().getId())
+                    .endId(hubRoute.getPrevHubRoute().getCurrentHub().getId())
+                    .time(hubRoute.getTime())
+                    .build();
+        }
+    }
 }

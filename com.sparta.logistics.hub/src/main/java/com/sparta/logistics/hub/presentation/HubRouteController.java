@@ -45,4 +45,21 @@ public class HubRouteController {
             @PathVariable UUID hubRouteId) {
         return ResponseEntity.ok(hubRouteService.deleteHubRoute(hubRouteId));
     }
+
+    // 위에서 아래로
+    @GetMapping("/findDown")
+    public ResponseEntity<List<HubRouteResponseDto.FindDown>> findDownRoute(
+            @RequestParam("fromId") UUID fromId,
+            @RequestParam("toId") UUID  toId) {
+        return ResponseEntity.ok(hubRouteService.findDownRoute(fromId, toId));
+    }
+
+    // 아래에서 위로
+    @GetMapping("/findUp")
+    public ResponseEntity<List<HubRouteResponseDto.FindUp>> findUpRoute(
+            @RequestParam("fromId") UUID fromId,
+            @RequestParam("toId") UUID toId) {
+        return ResponseEntity.ok(hubRouteService.findUpRoute(fromId, toId));
+    }
+
 }

@@ -6,15 +6,18 @@ import com.sparta.logistics.hub.domain.repository.HubRouteRepository;
 import com.sparta.logistics.hub.presentation.dtos.HubRouteRequestDto;
 import com.sparta.logistics.hub.presentation.dtos.HubRouteResponseDto;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class HubRouteService {
 
     private final HubRouteRepository hubRouteRepository;
@@ -71,6 +74,33 @@ public class HubRouteService {
 
         hubRoute.delete();
         return HubRouteResponseDto.Delete.of(hubRoute);
+    }
+
+
+    public List<HubRouteResponseDto.FindDown> findDownRoute(UUID fromId, UUID toId) {
+        Hub startHub = hubService.findById(fromId);
+        HubRoute now = findByCurrentHub(startHub);
+        log.info(now.toString());
+        List<HubRoute> hubRouteList = new ArrayList<>();
+        while(!now.getCurrentHub().getId().equals(toId)){
+            hubRouteList.add(now);
+            now = now.getNextHubRoute();
+        }
+        return hubRouteList.stream().map(HubRouteResponseDto.FindDown::of).toList();
+    }
+
+    public List<HubRouteResponseDto.FindUp> findUpRoute(UUID fromId, UUID toId) {
+        Hub startHub = hubService.findById(fromId);
+        HubRoute now = findByCurrentHub(startHub);
+        List<HubRoute> hubRouteList = new ArrayList<>();
+        while(!now.getCurrentHub().getId().equals(toId)){
+            hubRouteList.add(now);
+            now = now.getPrevHubRoute();
+        }
+        return hubRouteList.stream().map(HubRouteResponseDto.FindUp::of).toList();
+    }
+    public HubRoute findByCurrentHub(Hub hub){
+        return hubRouteRepository.findByCurrentHub(hub).orElseThrow(NoSuchElementException::new);
     }
 
     public HubRoute findById(UUID hubRouteId) {

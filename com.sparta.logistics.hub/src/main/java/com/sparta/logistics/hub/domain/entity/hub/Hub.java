@@ -23,10 +23,13 @@ public class Hub extends BaseEntity {
     @Embedded
     private Location location;
 
+    private Integer num;
+
     public static Hub create(HubRequestDto.Create requestDto) {
         return Hub.builder()
                 .name(requestDto.getName())
                 .location(requestDto.getLocation())
+                .num(requestDto.getNum())
                 .build();
     }
 

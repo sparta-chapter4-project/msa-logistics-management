@@ -7,20 +7,17 @@ import java.util.UUID;
 
 public class HubRequestDto {
 
-    @Builder
     @Getter
-    @NoArgsConstructor(access = AccessLevel.PROTECTED)
-    @AllArgsConstructor(access = AccessLevel.PRIVATE)
+    @NoArgsConstructor
     public static class Create {
 
         private String name;
         private Location location;
+        private Integer num;
     }
 
-    @Builder
     @Getter
-    @NoArgsConstructor(access = AccessLevel.PROTECTED)
-    @AllArgsConstructor(access = AccessLevel.PRIVATE)
+    @NoArgsConstructor
     public static class Update {
 
         private UUID hubId;
@@ -28,10 +25,8 @@ public class HubRequestDto {
         private Location location;
     }
 
-    @Builder
     @Getter
-    @NoArgsConstructor(access = AccessLevel.PROTECTED)
-    @AllArgsConstructor(access = AccessLevel.PRIVATE)
+    @NoArgsConstructor
     public static class Search {
 
         HubCondition hubCondition;
