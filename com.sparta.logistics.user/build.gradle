@@ -25,6 +25,7 @@ repositories {
 
 dependencies {
 	implementation 'io.jsonwebtoken:jjwt:0.12.6'
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 	compileOnly 'io.jsonwebtoken:jjwt-api'
 	runtimeOnly 'io.jsonwebtoken:jjwt-impl'
 	runtimeOnly 'io.jsonwebtoken:jjwt-jackson'
@@ -38,6 +39,7 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
+	runtimeOnly 'com.h2database:h2'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 

@@ -1,23 +1,38 @@
-### Order Create - Send Post request with json body
-POST http://localhost:8080/order
+@userPort=8080
+@orderPort=8080
+@token=Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJuYW1lIjoibmV3bmFtZTEiLCJzdWIiOiJlbWFpbDFAZW1haWwuY29tIiwicm9sZSI6Ik1BU1RFUiIsImV4cCI6MTcyNjI0MTc0MiwiaWF0IjoxNzI2MjM4MTQyfQ.RHDqOSm8PgrdQWJ2DHtfgFibPlJ6g7QRoW2LE3e3UVw
+
+### User SignIn - Send Post request with json body
+POST http://localhost:{{userPort}}/user/signIn
 Content-Type: application/json
 
 {
-  "supplyCompanyId": "123e4567-e89b-12d3-a456-426614174000",
-  "demandCompanyId": "987e6543-e21b-12d3-a456-426614174001",
+  "name": "newname1",
+  "password": "new_password"
+}
+
+### Order Create - Send Post request with json body
+POST http://localhost:{{orderPort}}/order
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "supplyCompanyId": "a41ac073-fb0d-47eb-8f96-a81109eebdef",
+  "demandCompanyId": "768c75d6-f941-45fd-a021-28b187587216",
   "productId": "abcde123-4567-8901-abcd-1234567890ab",
   "amount": 100
 }
 
 ### Order Get - Send Get request
-GET http://localhost:8080/order
+GET http://localhost:{{orderPort}}/order
+Authorization: {{token}}
 
 ### Order Find Get - Send Get request with path variable
-@orderId=315e5e10-d5d2-4f10-9672-018b11cf9a9d
-GET http://localhost:8080/order/{{orderId}}
+@orderId=5145738c-6576-4cf2-9821-81e82e253851
+GET http://localhost:{{orderPort}}/order/{{orderId}}
 
 ### Order Update - Send Put request with path variable, json body
-PUT http://localhost:8080/order/{{orderId}}
+PUT http://localhost:{{orderPort}}/order/{{orderId}}
 Content-Type: application/json
 
 {
@@ -27,4 +42,5 @@ Content-Type: application/json
 }
 
 ### Order Cancel - Send Delete request with path variable
-DELETE http://localhost:8080/order/{{orderId}}
+DELETE http://localhost:{{orderPort}}/order/{{orderId}}
+

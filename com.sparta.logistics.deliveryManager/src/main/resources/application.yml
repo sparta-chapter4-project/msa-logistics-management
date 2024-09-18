@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: delivery-manager-service
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: 'jdbc:h2:~/delivery-manager;AUTO_SERVER=true'
+    username: sa
+    password:
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        format_sql: true
+        show_sql: true
+
+server:
+  port: 8085

@@ -9,17 +9,18 @@
 # 배송 조회
 # 배송 경로 조회
 
+@userPort=8080
 @orderPort=8080
-@deliveryPort=8081
-@companyPort=8082
-@deliverymanagerPort=8083
+@deliveryPort=8080
+@companyPort=8080
+@deliverymanagerPort=8080
 
 ### 업체 생성 > 업체 2개(공급, 생성)
 POST http://localhost:{{companyPort}}/company
 Content-Type: application/json
 
 {
-  "hubId": "59d67615-c2b5-4971-9672-edda66e24932",
+  "hubId": "59d67615-c2b5-4971-9672-edda66e24933",
   "name": "컴퍼니3",
   "address": "서울특별시 강남구 테헤란로44길 8",
   "zipcode": "123456",
@@ -30,16 +31,16 @@ Content-Type: application/json
 GET http://localhost:{{companyPort}}/company
 
 ### 공급, 생성 업체 Id
-@supplyCompanyId=a41ac073-fb0d-47eb-8f96-a81109eebdef
-@demandCompanyId=768c75d6-f941-45fd-a021-28b187587216
-@deliveryManagerHubId=59d67615-c2b5-4971-9672-edda66e24930
+@supplyCompanyId=bc4eea40-849e-4892-a33e-f11065949656
+@demandCompanyId=85400f30-11ea-471a-aa0c-65cdaef79cc9
+@deliveryManagerHubId=59d67615-c2b5-4971-9672-edda66e24932
 
 ### 배송 담당자 생성(공급 업체 담당)
 POST http://localhost:{{deliverymanagerPort}}/deliverymanager
 Content-Type: application/json
 
 {
-  "userId": 4,
+  "userId": 1,
   "hubId": "{{deliveryManagerHubId}}",
   "slackId": "5e6fa614-17c6-4a23-8bba-7bf05f11cd89",
   "type": "COMPANY_DELIVERY"
@@ -48,9 +49,23 @@ Content-Type: application/json
 ### 배송 담당자 조회(사용할 데이터는 없음. 잘 생성됬는가 확인)
 GET http://localhost:{{deliverymanagerPort}}/deliverymanager
 
+
+### User SignIn - Send Post request with json body
+POST http://localhost:{{userPort}}/user/signIn
+Content-Type: application/json
+
+{
+  "name": "newname1",
+  "password": "new_password"
+}
+
+### token value
+@token=Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJuYW1lIjoibmV3bmFtZTEiLCJzdWIiOiJlbWFpbDFAZW1haWwuY29tIiwicm9sZSI6Ik1BU1RFUiIsImV4cCI6MTcyNjI0MzQyMiwiaWF0IjoxNzI2MjM5ODIyfQ.uJCzILLk1PH7xsVRfYRfWeeHExX-foM5D6lPDAHDR0o
+
 ### 주문 생성(공급, 생성 업체 Id 데이터에 넣기)
 POST http://localhost:{{orderPort}}/order
 Content-Type: application/json
+Authorization: {{token}}
 
 {
   "supplyCompanyId": "{{supplyCompanyId}}",
@@ -61,6 +76,7 @@ Content-Type: application/json
 
 ### 주문 조회
 GET http://localhost:{{orderPort}}/order
+Authorization: {{token}}
 
 ### 배송 조회
 GET http://localhost:{{deliveryPort}}/delivery
