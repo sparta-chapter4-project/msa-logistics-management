@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
@@ -67,8 +68,9 @@ public class AiService {
     }
 
     @Transactional
-    public String test6(String type) {
-        deliveryManagerService.getDeliveryManagerListByType(type).stream().forEach(deliveryManager -> {
+    @Scheduled(cron = "0 0 6 * * ?")
+    public void companyDeliveryManagerSlack() {
+        deliveryManagerService.getDeliveryManagerListByType("COMPANYDELIVERYMANAGER").stream().forEach(deliveryManager -> {
             UUID deliveryManagerId = deliveryManager.getDeliveryManagerId();
             HubResponseDto.Get hubAddress = hubService.getHubAddress(deliveryManager.getHubId());
             log.info(String.valueOf(hubAddress.getLongitude()));
@@ -87,13 +89,12 @@ public class AiService {
         //배송 테이블에서 배송 담당자 id가 일치하는 것들의 리스트를 가져온다.
 
         //두 데이터를 합쳐 ai를 통해 정보를 요약하고 슬랙 메세지를 보낸다.
-
-        return "6시";
     }
 
     @Transactional
-    public String test8(String type) {
-        deliveryManagerService.getDeliveryManagerListByType(type).stream().forEach(deliveryManager -> {
+    @Scheduled(cron = "0 0 8 * * ?")
+    public void hubDeliveryManagerSlack() {
+        deliveryManagerService.getDeliveryManagerListByType("HUBDELIVERYMANAGER").stream().forEach(deliveryManager -> {
             UUID deliveryManagerId = deliveryManager.getDeliveryManagerId();
 
             String orderList = orderService.getOneDay().stream().map(order -> "( 요청업체ID: " + order.getDemandCompanyId() + ", 수령업체ID: " + order.getSupplyCompanyId() + ", 상품ID: " + order.getProductId() + ", 갯수: " + order.getAmount() + ", 상태: " + order.getStatus() + ")")
@@ -106,8 +107,6 @@ public class AiService {
         //24시간 내의 주문을 가져온다. 그런데 조건이 있어야됨. 배송 담당자가 담당하고 있는 주문에 대해서 가져와야 할듯?? 이야기 해봐야겠다. (요청업체, 수령업체, 상품, 주문 샅애)
 
         //해당 데이터를 ai를 통해 요약하고 슬랙 메세지를 보낸다.
-
-        return "8시";
     }
 
 //    @Scheduled(cron = "0 0 6 * * ?")
@@ -130,10 +129,4 @@ public class AiService {
 ////        log.info(answer);
 //
 //    }
-
-//    @Scheduled(cron = "0 0 8 * * ?")
-//    public void hubOrder() {
-//
-//    }
-
 }

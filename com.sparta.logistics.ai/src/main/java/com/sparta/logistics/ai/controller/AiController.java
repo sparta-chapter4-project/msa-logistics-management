@@ -19,11 +19,4 @@ public class AiController {
     ) {
         return ResponseEntity.ok(aiService.create(userId, question));
     }
-
-    @GetMapping()
-    public String test(
-        @RequestParam(value = "type") String type
-    ){
-        return aiService.test8(type);
-    }
 }
