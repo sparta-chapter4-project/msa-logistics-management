@@ -57,7 +57,24 @@ public class HubRouteService {
         return HubRouteResponseDto.Update.of(hubRoute);
     }
 
+    @Transactional
+    public HubRouteResponseDto.Delete deleteHubRoute(UUID hubRouteId) {
+        HubRoute hubRoute = findById(hubRouteId);
+        HubRoute nextHubRoute = hubRoute.getNextHubRoute();
+        HubRoute prevHubRoute = hubRoute.getPrevHubRoute();
+
+        // 양쪽 관계를 정리
+        hubRoute.deleteRelation();
+
+        nextHubRoute.updatePrev(prevHubRoute);
+        prevHubRoute.updateNext(nextHubRoute);
+
+        hubRoute.delete();
+        return HubRouteResponseDto.Delete.of(hubRoute);
+    }
+
     public HubRoute findById(UUID hubRouteId) {
         return hubRouteRepository.findByIdAndIsDeletedFalse(hubRouteId).orElseThrow(NoSuchElementException::new);
     }
+
 }
