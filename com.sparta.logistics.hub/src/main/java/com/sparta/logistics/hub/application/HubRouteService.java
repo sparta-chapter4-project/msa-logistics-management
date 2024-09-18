@@ -43,6 +43,20 @@ public class HubRouteService {
         return hubRouteRepository.findAllByIsDeletedFalse().stream().map(HubRouteResponseDto.Get::of).toList();
     }
 
+    @Transactional
+    public HubRouteResponseDto.Update updateHubRoute(HubRouteRequestDto.Update requestDto) {
+        HubRoute hubRoute = findById(requestDto.getHubRouteId());
+        if(requestDto.getNextHubRouteId() != null){
+            HubRoute nextHubRoute = findById(requestDto.getNextHubRouteId());
+            nextHubRoute.update(hubRoute, requestDto.getTime());
+        }
+        if(requestDto.getPrevHubRouteId() != null){
+            HubRoute prevHubRoute = findById(requestDto.getPrevHubRouteId());
+            hubRoute.update(prevHubRoute, requestDto.getTime());
+        }
+        return HubRouteResponseDto.Update.of(hubRoute);
+    }
+
     public HubRoute findById(UUID hubRouteId) {
         return hubRouteRepository.findByIdAndIsDeletedFalse(hubRouteId).orElseThrow(NoSuchElementException::new);
     }

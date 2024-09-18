@@ -34,4 +34,10 @@ public class HubRouteController {
         return ResponseEntity.ok(hubRouteService.getHubRoutes());
     }
 
+    @PutMapping
+    public ResponseEntity<HubRouteResponseDto.Update> updateHubRoute(
+            @RequestBody HubRouteRequestDto.Update requestDto) {
+        return ResponseEntity.ok(hubRouteService.updateHubRoute(requestDto));
+    }
+
 }

@@ -49,4 +49,19 @@ public class HubRouteResponseDto {
         }
     }
 
+
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Update {
+        private UUID hubRouteId;
+
+        public static Update of(HubRoute hubRoute){
+            return Update.builder()
+                    .hubRouteId(hubRoute.getId())
+                    .build();
+        }
+    }
 }

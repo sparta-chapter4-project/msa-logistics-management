@@ -1,44 +1,29 @@
-### Hub Create - Send Post request with json body
+### HubRoute Create - Send Post request with json body
 POST http://localhost:8080/hubRoute
 Content-Type: application/json
 
 {
-  "prevHubRouteId": "364e957b-6a9d-40c0-ab08-06d16808f7b5",
-  "currentHubId": "ac5ebf94-a5fc-4c88-b16c-dcb517e56838",
-  "time" : 30
+  "prevHubRouteId": "f0a25ca1-3e0d-4118-862e-e07f4ce95ff8",
+  "currentHubId": "a805c1de-5fb9-45ac-94cd-be8ce2d51dac",
+  "time" : 20
 }
 
-### Hub Get - Send Get request with Path Variable
+### HubRoute Get - Send Get request with Path Variable
 < {%
-    request.variables.set("hubRouteId", "364e957b-6a9d-40c0-ab08-06d16808f7b5")
+    request.variables.set("hubRouteId", "6247f4f1-a84b-4506-bcab-3d7b797b46f5")
 %}
 GET http://localhost:8080/hubRoute/{{hubRouteId}}
 
-### Hub Get - Send Get request
+### HubRoute Get - Send Get request
 GET http://localhost:8080/hubRoute
 
-### Hub Update - Send Update Request
-PUT http://localhost:8080/hub
+### HubRoute Update - Send Update Request
+PUT http://localhost:8080/hubRoute
 Content-Type: application/json
 
 {
-  "hubId": "50144c3f-c196-48a9-9067-fe4041fd8d96",
-  "name": "test",
-  "location": {
-    "address": "서울특별시 서초구 양재동 589-15 305호",
-    "latitude": 10,
-    "longitude": 20
-  }
+  "hubRouteId" : "6247f4f1-a84b-4506-bcab-3d7b797b46f5",
+  "nextHubRouteId" :  "f0a25ca1-3e0d-4118-862e-e07f4ce95ff8",
+  "prevHubRouteId" :  "aab3cca5-6382-46d4-979f-f1804c6b4ff0",
+  "time" :  20
 }
-
-### Hub Delete - Send Delete Request
-< {%
-    request.variables.set("hubId", "d5c567b7-76f1-4b65-aa45-4ab28b6dcd31")
-%}
-DELETE http://localhost:8080/hub/{{hubId}}
-
-
-### Hub Search - Send Get Request
-GET http:// localhost:8080/hub
-    ?address=서울
-    &name=컴퍼니

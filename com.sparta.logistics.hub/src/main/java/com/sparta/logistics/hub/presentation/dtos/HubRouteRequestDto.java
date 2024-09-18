@@ -15,4 +15,14 @@ public class HubRouteRequestDto {
         private UUID currentHubId;
         private Integer time;
     }
+
+    @Getter
+    @NoArgsConstructor
+    public static class Update {
+
+        private UUID hubRouteId;
+        private UUID nextHubRouteId;
+        private UUID prevHubRouteId;
+        private Integer time;
+    }
 }

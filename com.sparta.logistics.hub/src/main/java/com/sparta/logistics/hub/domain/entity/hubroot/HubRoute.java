@@ -18,7 +18,6 @@ public class HubRoute extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "prev_hub_route")
     private HubRoute prevHubRoute;
@@ -31,11 +30,18 @@ public class HubRoute extends BaseEntity {
     private HubRoute nextHubRoute;
 
     private Integer time;
+
     public static HubRoute create(Hub currentHub, HubRoute prevHubRoute, Integer time) {
         return HubRoute.builder()
                 .prevHubRoute(prevHubRoute)
                 .currentHub(currentHub)
                 .time(time)
                 .build();
+    }
+
+    public void update(HubRoute prevHubRoute, Integer time) {
+        this.prevHubRoute = prevHubRoute;
+        if(!time.equals(this.time))
+            this.time = time;
     }
 }
