@@ -67,4 +67,7 @@ public class HubService {
         return hubRepository.findByIdAndIsDeletedFalse(hubId).orElseThrow(NoSuchElementException::new);
     }
 
+    public HubResponseDto.GetHubAddress getHubAddress(UUID hubId) {
+        return HubResponseDto.GetHubAddress.of(findById(hubId));
+    }
 }

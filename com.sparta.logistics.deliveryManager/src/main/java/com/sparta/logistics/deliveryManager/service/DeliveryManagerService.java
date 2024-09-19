@@ -58,5 +58,10 @@ public class DeliveryManagerService {
         deliveryManager.delete();
     }
 
+    @Transactional
+    public List<DeliveryManagerResponseDto.Get> getDeliveryManagerListByType(String type){
+        return deliveryManagerRepository.findAllByTypeAndIsDeletedFalse(type).stream().map(DeliveryManagerResponseDto.Get::of).toList();
+    }
+
 
 }

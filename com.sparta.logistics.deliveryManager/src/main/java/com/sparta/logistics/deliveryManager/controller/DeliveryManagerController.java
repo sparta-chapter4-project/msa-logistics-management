@@ -11,6 +11,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -45,6 +46,12 @@ public class DeliveryManagerController {
     public ResponseEntity<DeliveryManagerResponseDto.Get> getDeliveryManagersByHubId(
             @PathVariable(name = "hubId") UUID hubId) {
         return ResponseEntity.ok(deliveryManagerService.getDeliveryManagerByHubId(hubId));
+    }
+
+    @GetMapping("/ai/{type}")
+    public ResponseEntity<List<DeliveryManagerResponseDto.Get>> getDeliveryManagerListByType(
+        @PathVariable(name = "type") String type) {
+        return ResponseEntity.ok(deliveryManagerService.getDeliveryManagerListByType(type));
     }
 
     @PatchMapping("/{id}")

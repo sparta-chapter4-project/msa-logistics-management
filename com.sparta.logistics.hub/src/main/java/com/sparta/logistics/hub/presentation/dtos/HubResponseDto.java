@@ -78,4 +78,27 @@ public class HubResponseDto {
                     .build();
         }
     }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class GetHubAddress{
+
+        private UUID hubId;
+        private String name;
+        private String address;
+        private Float latitude;
+        private Float longitude;
+
+        public static GetHubAddress of(Hub hub){
+            return GetHubAddress.builder()
+                .hubId(hub.getId())
+                .name(hub.getName())
+                .address(hub.getLocation().getAddress())
+                .latitude(hub.getLocation().getLatitude())
+                .longitude(hub.getLocation().getLongitude())
+                .build();
+        }
+    }
 }

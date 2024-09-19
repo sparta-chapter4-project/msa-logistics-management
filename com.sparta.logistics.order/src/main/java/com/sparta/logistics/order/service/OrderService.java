@@ -12,6 +12,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
+import java.util.List;
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -75,5 +79,12 @@ public class OrderService {
         if (!role.equals(userRole)) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "해당 기능을 사용할 권한이 없습니다.");
         }
+    }
+
+    public List<OrderResponseDto.Get> getOneDay() {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime yesterday8AM = now.minusDays(1).with(LocalTime.of(8, 0));
+
+        return orderRepository.findAllByCreatedAtBetween(yesterday8AM, now).stream().map(OrderResponseDto.Get::of).toList();
     }
 }

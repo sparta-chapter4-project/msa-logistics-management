@@ -15,7 +15,7 @@ public class DeliveryManagerResponseDto {
         private UUID deliveryManagerId;
         private Long userId;
         private UUID hubId;
-        private UUID slackId;
+        private String slackId;
         private String type;
 
         public static DeliveryManagerResponseDto.Get of(final DeliveryManager deliveryManager) {

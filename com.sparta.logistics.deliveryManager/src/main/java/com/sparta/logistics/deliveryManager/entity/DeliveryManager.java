@@ -24,7 +24,7 @@ public class DeliveryManager extends BaseEntity{
     private UUID hubId;
 
     @Column(name = "slack_id")
-    private UUID slackId;
+    private String slackId;
 
     @Column(name = "type")
     private String type;

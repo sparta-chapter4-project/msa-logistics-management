@@ -79,4 +79,8 @@ public class DeliveryService {
 
         delivery.delete();
     }
+
+    public List<DeliveryResponseDto.Get> getDeliveryListByDeliveryManagerId(UUID deliveryManagerId) {
+        return deliveryRepository.findAllByDeliveryManagerIdAndIsDeletedFalse(deliveryManagerId).stream().map(DeliveryResponseDto.Get::of).toList();
+    }
 }

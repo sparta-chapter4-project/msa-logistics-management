@@ -31,6 +31,12 @@ public class HubController {
         return ResponseEntity.ok(hubService.getHub(hubId));
     }
 
+    @GetMapping("/ai/{hubId}")
+    public ResponseEntity<HubResponseDto.GetHubAddress> getHubAddress(
+        @PathVariable UUID hubId) {
+        return ResponseEntity.ok(hubService.getHubAddress(hubId));
+    }
+
     @GetMapping
     public ResponseEntity<List<HubResponseDto.Get>> getHubList() {
         return ResponseEntity.ok(hubService.getHubList());
