@@ -28,44 +28,49 @@
 ### 서비스 구성:
 - **Delivery Service**
     - **기능**: 배송 및 배송경로 관리
-        - `POST /delivery`: 배송 생성
-        - `GET /delivery/{id}`: 배송 상세 조회
-        - `GET /delivery`: 모든 배송 목록 조회 (페이징 지원)
-        - `POST /deliveryroute`: 배송 경로 생성
-        - `GET /deliveryroute/{id}`: 배송 경로 상세 조회
+    - **주요 Endpoint**:
+      - `POST /delivery`: 배송 생성
+      - `GET /delivery/{id}`: 배송 상세 조회
+      - `GET /delivery`: 모든 배송 목록 조회 (페이징 지원)
+      - `POST /deliveryroute`: 배송 경로 생성
+      - `GET /deliveryroute/{id}`: 배송 경로 상세 조회
 
 - **Order Service**
     - **기능**: 주문 관리
-        - `POST /order`: 주문 생성
-        - `GET /order/{id}`: 주문 상세 조회
-        - `GET /order`: 모든 주문 목록 조회
+    - **주요 Endpoint**:
+      - `POST /order`: 주문 생성
+      - `GET /order/{id}`: 주문 상세 조회
+      - `GET /order`: 모든 주문 목록 조회
 
 - **Hub Service**
     - **기능**: 허브 및 허브간 이동 정보 관리
-        - `POST /hub`: 허브 생성
-        - `GET /hub/{id}`: 허브 상세 조회
-        - `POST /hubRoute`: 허브간 이동 정보 생성
-        - `GET /hubRoute/{id}`: 이동 정보 조회
+    - **주요 Endpoint**:
+      - `POST /hub`: 허브 생성
+      - `GET /hub/{id}`: 허브 상세 조회
+      - `POST /hubRoute`: 허브간 이동 정보 생성
+      - `GET /hubRoute/{id}`: 이동 정보 조회
 
 - **Company and Product Service**
     - **기능**: 업체 및 상품 관리
-        - `POST /company`: 업체 등록
-        - `GET /company/{id}`: 업체 정보 조회
-        - `POST /product`: 상품 등록
-        - `GET /product/{id}`: 상품 정보 조회
+    - **주요 Endpoint**:
+      - `POST /company`: 업체 등록
+      - `GET /company/{id}`: 업체 정보 조회
+      - `POST /product`: 상품 등록
+      - `GET /product/{id}`: 상품 정보 조회
 
 - **User and Delivery Manager Service**
     - **기능**: 사용자 및 배송 담당자 관리
-        - `POST /user`: 사용자 등록
-        - `GET /user/{id}`: 사용자 정보 조회
-        - `POST /deliverymanager`: 배송 담당자 등록
-        - `GET /deliverymanager/{id}`: 배송 담당자 정보 조회
+    - **주요 Endpoint**:
+      - `POST /user`: 사용자 등록
+      - `GET /user/{id}`: 사용자 정보 조회
+      - `POST /deliverymanager`: 배송 담당자 등록
+      - `GET /deliverymanager/{id}`: 배송 담당자 정보 조회
 
 - **Slack Messaging and AI Service**
     - **기능**: Slack 메시지 관리 및 AI 기반 기능
     - **주요 Endpoint**:
-        - `POST /slack`: 슬랙 메시지 전송
-        - `POST /ai`: AI 기반 추천 시스템
+      - `POST /slack`: 슬랙 메시지 전송
+      - `POST /ai`: AI 기반 추천 시스템
 
 ### 실행 방법:
 1. **프로젝트 클론**:
