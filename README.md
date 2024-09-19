@@ -84,10 +84,6 @@
 여러 서비스가 각각 독립적으로 관리되어 대규모 물류 환경에서의 유연성과 확장성을 제공합니다. 
 주요 목적은 주문이 생성될 때, 배달과 경로 데이터를 효율적으로 관리하고, 인증 서비스로 각 사용자의 권한을 관리하는 것입니다.
 
-## Infra
-
-![물류_관리_ERD.png](assets/물류_관리_Infra.png)
-
 ## ERD
 
 ![물류_관리_ERD.png](assets/물류_관리_ERD.png)
@@ -108,10 +104,6 @@
 - Infra: Eureka Server, Eureka Client, Docker, API Gateway
 
 ## 트러블 슈팅/ 개선 사항 
-### 김경민
-```markdown
-test
-```
 ### 김종규
 - Custom Annotion 도입 
     - **기존 방식**: RequestParam을 통해 매개 변수를 하나씩 정의
