@@ -9,7 +9,6 @@ import com.sparta.logistics.ai.dto.SlackRequestDto;
 import com.sparta.logistics.ai.entity.Ai;
 import com.sparta.logistics.ai.repository.AiRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -24,7 +23,6 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
-@Slf4j
 public class AiService {
 
     private static final double RE = 6371.00877; // 지구 반경(km)
@@ -87,8 +85,6 @@ public class AiService {
     public void companyDeliveryManagerSlack() {
         deliveryManagerService.getDeliveryManagerListByType("MASTER").stream().forEach(deliveryManager -> {
             HubResponseDto.Get hubAddress = hubService.getHubAddress(deliveryManager.getHubId());
-            log.info(String.valueOf(hubAddress.getLongitude()));
-            log.info(String.valueOf(hubAddress.getLatitude()));
 
             int[] address = convertCoordinates(hubAddress.getLatitude(), hubAddress.getLongitude());
 

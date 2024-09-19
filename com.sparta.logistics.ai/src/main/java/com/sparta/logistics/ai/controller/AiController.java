@@ -1,12 +1,12 @@
 package com.sparta.logistics.ai.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.sparta.logistics.ai.service.AiService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.io.UnsupportedEncodingException;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
@@ -21,10 +21,5 @@ public class AiController {
         @RequestParam(value = "userId") Long userId
     ) {
         return ResponseEntity.ok(aiService.create(userId, question));
-    }
-
-    @GetMapping("test")
-    public String test() throws UnsupportedEncodingException, JsonProcessingException {
-        return aiService.weatherDelivery();
     }
 }
