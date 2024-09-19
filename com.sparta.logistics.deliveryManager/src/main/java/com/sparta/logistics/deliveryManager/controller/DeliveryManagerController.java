@@ -49,7 +49,7 @@ public class DeliveryManagerController {
     }
 
     @GetMapping("/ai/{type}")
-    public ResponseEntity<List<DeliveryManagerResponseDto.Get>> getDeliveryManagersByHubId(
+    public ResponseEntity<List<DeliveryManagerResponseDto.Get>> getDeliveryManagerListByType(
         @PathVariable(name = "type") String type) {
         return ResponseEntity.ok(deliveryManagerService.getDeliveryManagerListByType(type));
     }

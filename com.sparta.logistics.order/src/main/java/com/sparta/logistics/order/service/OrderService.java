@@ -85,6 +85,6 @@ public class OrderService {
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime yesterday8AM = now.minusDays(1).with(LocalTime.of(8, 0));
 
-        return orderRepository.findByCreatedAtBetween(yesterday8AM, now).stream().map(OrderResponseDto.Get::of).toList();
+        return orderRepository.findAllByCreatedAtBetween(yesterday8AM, now).stream().map(OrderResponseDto.Get::of).toList();
     }
 }

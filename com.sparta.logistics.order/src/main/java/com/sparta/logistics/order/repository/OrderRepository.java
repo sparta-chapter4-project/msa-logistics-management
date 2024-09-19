@@ -10,5 +10,5 @@ import java.util.UUID;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order, UUID> {
-    List<Order> findByCreatedAtBetween(LocalDateTime yesterday8AM, LocalDateTime now);
+    List<Order> findAllByCreatedAtBetween(LocalDateTime yesterday8AM, LocalDateTime now);
 }
