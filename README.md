@@ -107,15 +107,18 @@
 - Security: Spring Security, JWT
 - Infra: Eureka Server, Eureka Client, Docker, API Gateway
 
-## 트러블슈팅
+## 트러블 슈팅/ 개선 사항 
 ### 김경민
 ```markdown
 test
 ```
 ### 김종규
-```markdown
-test
-```
+- Custom Annotion 도입 
+    - **기존 방식**: RequestParam을 통해 매개 변수를 하나씩 정의
+        ![스크린샷 2024-09-20 오전 8 06 17](https://github.com/user-attachments/assets/608ef82e-f505-4469-9349-13cfa5fd2a6b)
+    - **개선 방식** : Custome Annotation을 활용해 RequestParam을 하나의 객체로 받음
+        ![스크린샷 2024-09-20 오전 8 08 33](https://github.com/user-attachments/assets/b1da80d8-9e7c-4a53-ba5f-6d9b6c2e8635)
+
 ### 김정수
 - **기상청 api secret key**
   - **문제 발생**: 기상청 api의 secret key가 유효하지 않은 문제
@@ -130,9 +133,8 @@ test
 - 개선할 점: 인증 관련 코드의 중복을 줄이고 좀 더 일관성 있는 인증 로직을 구성해야 할 것 같습니다.
 
 ### 김종규
-```markdown
-test
-```
+- 배운 점 : MSA환경에서 각 서비스간의 데이터 통신을 하는 방법을 배웠습니다. 
+- 개선할 점 : hub 간 경로 최적화를 하지 못한 부분이 아쉽습니다.
 
 ### 김정수
 - 배운 점: MSA환경에서 각 서비스간의 데이터 통신을 하는 방법을 배웠고 외부 api연동하는 것에 조금 익숙해 졌습니다.
