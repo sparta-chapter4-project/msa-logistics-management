@@ -14,7 +14,7 @@ services:
 
   redis-stack:
     image: redis/redis-stack
-    container_name: redis-stack-compose
+    container_name: redis-stack
     restart: always
     environment:
       REDIS_ARGS: "--requirepass systempass"

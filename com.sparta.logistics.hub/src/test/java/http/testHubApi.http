@@ -1,0 +1,264 @@
+### Hub Create - Send Post request with json body
+POST http://localhost:8080/hub
+Content-Type: application/json
+
+{
+  "name": "서울특별시 센터",
+  "location": {
+    "address": "서울특별시 송파구 송파대로 55",
+    "latitude": 37.4742027808565,
+    "longitude": 127.123621185562
+  },
+  "num" : 1
+}
+
+### Hub Create - Send Post request with json body
+POST http://localhost:8080/hub
+Content-Type: application/json
+
+{
+  "name": "경기 북부 센터",
+  "location": {
+    "address": "경기도 고양시 덕양구 권율대로 570",
+    "latitude": 37.6403771056018,
+    "longitude": 126.87379545786
+  },
+  "num" : 2
+}
+### Hub Create - Send Post request with json body
+POST http://localhost:8080/hub
+Content-Type: application/json
+
+{
+  "name": "경기 남부 센터",
+  "location": {
+    "address": "경기도 이천시 덕평로 257-21",
+    "latitude": 37.1896213142136,
+    "longitude": 127.375050006958
+  },
+  "num" : 3
+}
+### Hub Create - Send Post request with json body
+POST http://localhost:8080/hub
+Content-Type: application/json
+
+{
+  "name": "부산광역시 센터",
+  "location": {
+    "address": "부산 동구 중앙대로 206",
+    "latitude": 35.117605126596,
+    "longitude": 129.045060216345
+  },
+  "num" : 4
+}
+### Hub Create - Send Post request with json body
+POST http://localhost:8080/hub
+Content-Type: application/json
+
+{
+  "name": "대구광역시 센터",
+  "location": {
+    "address": "대구 북구 태평로 161",
+    "latitude": 35.8758849492106,
+    "longitude": 128.596129208483
+  },
+  "num" : 5
+}
+### Hub Create - Send Post request with json body
+POST http://localhost:8080/hub
+Content-Type: application/json
+
+{
+  "name": "인천광역시 센터",
+  "location": {
+    "address": "인천 남동구 정각로 29",
+    "latitude": 37.4560499608337,
+    "longitude": 126.705255744089
+  },
+  "num" : 6
+}
+### Hub Create - Send Post request with json body
+POST http://localhost:8080/hub
+Content-Type: application/json
+
+{
+  "name": "광주광역시 센터",
+  "location": {
+    "address": "서울특별시 송파구 송파대로 55",
+    "latitude": 35.1600994105234,
+    "longitude": 126.851461925213
+  },
+  "num" : 7
+}
+### Hub Create - Send Post request with json body
+POST http://localhost:8080/hub
+Content-Type: application/json
+
+{
+  "name": "대전광역시 센터",
+  "location": {
+    "address": "대전 서구 둔산로 100",
+    "latitude": 36.3503849976553,
+    "longitude": 127.384633005948
+  },
+  "num" : 8
+}
+### Hub Create - Send Post request with json body
+POST http://localhost:8080/hub
+Content-Type: application/json
+
+{
+  "name": "울산광역시 센터",
+  "location": {
+    "address": "울산 남구 중앙로 201",
+    "latitude": 35.5379472830778,
+    "longitude": 129.311256608093
+  },
+  "num" : 9
+}
+
+### Hub Create - Send Post request with json body
+POST http://localhost:8080/hub
+Content-Type: application/json
+
+{
+  "name": "세종특별자치시 센터",
+  "location": {
+    "address": "세종특별자치시 한누리대로 2130",
+    "latitude": 36.4800579897497,
+    "longitude": 127.289039408864
+  },
+  "num" : 10
+}
+
+### Hub Create - Send Post request with json body
+POST http://localhost:8080/hub
+Content-Type: application/json
+
+{
+  "name": "강원특별자치도 센터",
+  "location": {
+    "address": "강원특별자치도 춘천시 중앙로 1",
+    "latitude": 37.8800729197963,
+    "longitude": 127.727907820318
+  },
+  "num" : 11
+}
+
+### Hub Create - Send Post request with json body
+POST http://localhost:8080/hub
+Content-Type: application/json
+
+{
+  "name": "충청북도 센터",
+  "location": {
+    "address": "충북 청주시 상당구 상당로 82",
+    "latitude": 36.6353867908159,
+    "longitude": 127.491428436987
+  },
+  "num" : 12
+}
+
+### Hub Create - Send Post request with json body
+POST http://localhost:8080/hub
+Content-Type: application/json
+
+{
+  "name": "충청남도 센터",
+  "location": {
+    "address": "충남 홍성군 홍북읍 충남대로 21",
+    "latitude": 36.6590666265439,
+    "longitude": 126.672978750559
+  },
+  "num" : 13
+}
+### Hub Create - Send Post request with json body
+POST http://localhost:8080/hub
+Content-Type: application/json
+
+{
+  "name": "전북특별자치도 센터",
+  "location": {
+    "address": "전북특별자치도 전주시 완산구 효자로 225",
+    "latitude": 35.8194374902358,
+    "longitude": 127.106374667247
+  },
+  "num" : 14
+}
+### Hub Create - Send Post request with json body
+POST http://localhost:8080/hub
+Content-Type: application/json
+
+{
+  "name": "전라남도 센터",
+  "location": {
+    "address": "전남 무안군 삼향읍 오룡길 1",
+    "latitude": 34.8174988528003,
+    "longitude": 126.465423854957
+  },
+  "num" : 15
+}
+
+### Hub Create - Send Post request with json body
+POST http://localhost:8080/hub
+Content-Type: application/json
+
+{
+  "name": "경상북도 센터",
+  "location": {
+    "address": "경북 안동시 풍천면 도청대로 455",
+    "latitude": 36.5761205474728,
+    "longitude": 128.505722686385
+  },
+  "num" : 16
+}
+
+### Hub Create - Send Post request with json body
+POST http://localhost:8080/hub
+Content-Type: application/json
+
+{
+  "name": "경상남도 센터",
+  "location": {
+    "address": "경남 창원시 의창구 중앙대로 300",
+    "latitude": 35.2378032514675,
+    "longitude": 128.691940442146
+  },
+  "num" : 17
+}
+
+
+### Hub Get - Send Get request with Path Variable
+< {%
+    request.variables.set("hubId", "d5c567b7-76f1-4b65-aa45-4ab28b6dcd31")
+%}
+GET http://localhost:8080/hub/{{hubId}}
+
+### Hub Get - Send Get request
+GET http://localhost:8080/hub
+
+### Hub Update - Send Update Request
+PUT http://localhost:8080/hub
+Content-Type: application/json
+
+{
+  "hubId": "50144c3f-c196-48a9-9067-fe4041fd8d96",
+  "name": "test",
+  "location": {
+    "address": "서울특별시 서초구 양재동 589-15 305호",
+    "latitude": 10,
+    "longitude": 20
+  }
+}
+
+### Hub Delete - Send Delete Request
+< {%
+    request.variables.set("hubId", "1abcf426-cc7d-43fc-b988-60f35c61dd5f")
+%}
+DELETE http://localhost:8080/hub/{{hubId}}
+
+
+### Hub Search - Send Get Request
+GET http:// localhost:8080/hub
+    ?address=서울
+    &name=컴퍼니

@@ -1,6 +1,7 @@
-package com.sparta.logistics.hub.entity;
+package com.sparta.logistics.hub.domain.entity;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -35,5 +36,14 @@ public class BaseEntity {
 
     @Column
     private Long deletedBy;
+
+    @Column
+    @Builder.Default
+    private Boolean isDeleted = false;
+
+    public void delete(){
+        this.isDeleted = true;
+        this.deletedAt = LocalDateTime.now();
+    }
 
 }
