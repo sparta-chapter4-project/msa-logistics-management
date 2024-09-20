@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.UUID;
 
-@FeignClient(name = "delivery-service", url = "http://localhost:8084")
+@FeignClient(name = "delivery-service")
 public interface DeliveryClient extends DeliveryService {
     @PostMapping("/delivery")
     UUID createDelivery(@RequestBody DeliveryRequestDto.Create request);

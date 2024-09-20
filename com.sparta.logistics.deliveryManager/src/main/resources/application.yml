@@ -1,3 +1,6 @@
+server:
+  port: 19096
+
 spring:
   application:
     name: delivery-manager-service
@@ -16,5 +19,7 @@ spring:
         format_sql: true
         show_sql: true
 
-server:
-  port: 8085
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:19090/eureka/

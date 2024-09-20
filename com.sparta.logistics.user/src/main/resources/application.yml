@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: 19092
 spring:
   application:
     name: user-service
@@ -27,3 +27,8 @@ spring:
 jwt:
   secret:
     key: 2e2ab37ae96a148bcb9919d74ecbd818ce9c097151c4b5d5d9049bcbdc05d349c59b9e1ad762c7b6ccf8b73e79fef4a82d13f08db22ca3c3070705b08df3f41c
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:19090/eureka/

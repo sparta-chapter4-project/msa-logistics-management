@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 import java.util.UUID;
 
-@FeignClient(name = "delivery-service", url = "http://localhost:8084/delivery")
+@FeignClient(name = "delivery-service", url = "http://localhost:19095/delivery")
 public interface DeliveryClient extends DeliveryService {
     @GetMapping("/deliverymanager/{deliveryManagerId}")
     List<DeliveryResponseDto.Get> getDeliveryListByDeliveryManagerId(@PathVariable(name = "deliveryManagerId") UUID deliveryManagerId);

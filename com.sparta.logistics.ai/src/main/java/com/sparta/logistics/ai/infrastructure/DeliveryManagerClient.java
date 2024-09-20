@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
-@FeignClient(name = "delivery-manager-service", url = "http://localhost:8085/deliverymanager")
+@FeignClient(name = "delivery-manager-service", url = "http://localhost:19096/deliverymanager")
 public interface DeliveryManagerClient extends DeliveryManagerService {
     @GetMapping("/ai/{type}")
     List<DeliveryManagerResponseDto.Get> getDeliveryManagerListByType(@PathVariable(name = "type") String type);

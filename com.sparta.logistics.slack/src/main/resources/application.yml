@@ -1,5 +1,5 @@
-#server:
-#  port: 19091
+server:
+  port: 19098
 
 spring:
   application:
@@ -30,7 +30,7 @@ service:
     api-url: "https://slack.com/api/chat.postMessage"
     user-list-url: "https://slack.com/api/users.list"
 
-#eureka:
-#  client:
-#    service-url:
-#      defaultZone: http://localhost:19090/eureka
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:19090/eureka
