@@ -103,7 +103,22 @@
 - Security: Spring Security, JWT
 - Infra: Eureka Server, Eureka Client, Docker, API Gateway
 
-## 트러블 슈팅/ 개선 사항 
+## 트러블 슈팅/ 개선 사항
+### 김경민
+- 비즈니스 로직에서 권한 체크
+
+    - **기존 방식**
+
+        현재 시스템에서는 각 서비스마다 Spring Security를 설치하고, **@PreAuthorize** 어노테이션을 활용하여 권한을 검증하는 방식으로 유저 권한을 체크하고 있습니다. 이 방식은 코드의 가독성을 높이고, 권한 관리가 간단해 보이는 장점이 있습니다.
+
+    - **기존 방식의 문제점**
+
+        **@PreAuthorize** 어노테이션을 적용하려면 Spring Security 설정이 필수적입니다. 이는 각 마이크로서비스마다 Spring Security를 설치해야 한다는 부담이 있으며, 보안 설정 및 관리가 복잡해질 수 있었습니다.
+
+    - **개선 방식**
+
+        Spring Security에 의존하지 않고 **HttpServletRequest** 객체를 이용하여 직접 비즈니스 로직에서 권한을 검증하는 방식으로 개선했습니다. 이 방식은 Spring Security의 설치를 생략하면서도, 요청 헤더에서 유저의 권한 정보를 직접 추출해 권한을 체크할 수 있도록 해줍니다. 이를 통해 불필요한 의존성을 줄이고, 더 가벼운 권한 관리 체계를 구현할 수 있었습니다.
+
 ### 김종규
 - Custom Annotion 도입 
     - **기존 방식**: RequestParam을 통해 매개 변수를 하나씩 정의
