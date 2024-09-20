@@ -23,7 +23,7 @@
         - 슬랙 메시지 기능
         - AI 기능
 
-## 서비스 구성 및 실행방법
+## 서비스 구성
 
 ### 서비스 구성:
 - **Delivery Service**
@@ -61,8 +61,8 @@
 - **User and Delivery Manager Service**
     - **기능**: 사용자 및 배송 담당자 관리
     - **주요 Endpoint**:
-      - `POST /user`: 사용자 등록
-      - `GET /user/{id}`: 사용자 정보 조회
+      - `POST /user/signUp`: 사용자 등록
+      - `POST /user/signIn`: 로그인
       - `POST /deliverymanager`: 배송 담당자 등록
       - `GET /deliverymanager/{id}`: 배송 담당자 정보 조회
 
@@ -71,12 +71,6 @@
     - **주요 Endpoint**:
       - `POST /slack`: 슬랙 메시지 전송
       - `POST /ai`: AI 기반 추천 시스템
-
-### 실행 방법:
-1. **프로젝트 클론**:
-    ```bash
-    git clone https://github.com/sparta-chapter4-project/msa-logistics-management.git
-    ```
 
 ## 프로젝트 목적/상세
 
