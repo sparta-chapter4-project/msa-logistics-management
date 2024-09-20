@@ -117,7 +117,7 @@
 - Custom Annotion 도입 
     - **기존 방식**: RequestParam을 통해 매개 변수를 하나씩 정의
     - ![스크린샷 2024-09-20 오전 8 06 17](https://github.com/user-attachments/assets/608ef82e-f505-4469-9349-13cfa5fd2a6b)
-    - **개선 방식** : Custome Annotation을 활용해 RequestParam을 하나의 객체로 받음
+    - **개선 방식** : Custom Annotation을 활용해 RequestParam을 하나의 객체로 받음
     - ![스크린샷 2024-09-20 오전 8 08 33](https://github.com/user-attachments/assets/b1da80d8-9e7c-4a53-ba5f-6d9b6c2e8635)
 
 ### 김정수
